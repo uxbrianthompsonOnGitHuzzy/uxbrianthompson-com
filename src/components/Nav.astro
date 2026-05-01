@@ -1,0 +1,16 @@
+---
+const p = Astro.url.pathname;
+const links = [['Work','/'],['Resume','/resume'],['About','/about'],['Contact ↗','mailto:uxbrianthompson@gmail.com']];
+---
+<nav style="display:flex;align-items:center;justify-content:space-between;padding:24px 48px;border-bottom:1px solid var(--border);">
+  <div>
+    <div style="font-size:13px;font-weight:500;color:var(--text);">Brian Thompson</div>
+    <div style="font-size:10px;color:var(--blue);letter-spacing:.14em;text-transform:uppercase;margin-top:2px;">AI Product Design</div>
+  </div>
+  <ul style="display:flex;gap:32px;list-style:none;margin:0;padding:0;">
+    {links.map(([label,href])=>{
+      const active = href==='/'?p==='/':p.startsWith(href);
+      return <li><a href={href} style={`font-size:11px;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;color:${active?'var(--text)':'var(--blue-dim)'};border-bottom:${active?'1px solid var(--blue)':'none'};padding-bottom:${active?'2px':'0'};`}>{label}</a></li>;
+    })}
+  </ul>
+</nav>

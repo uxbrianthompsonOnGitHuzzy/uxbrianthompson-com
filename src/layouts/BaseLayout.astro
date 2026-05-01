@@ -1,0 +1,18 @@
+---
+import '../styles/global.css';
+const { title = 'Brian Thompson — AI Product Design', description = 'Sr. Product Designer, Salesforce FSC' } = Astro.props;
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width"/>
+  <meta name="description" content={description}/>
+  <title>{title}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet"/>
+</head>
+<body>
+  <slot/>
+</body>
+</html>
