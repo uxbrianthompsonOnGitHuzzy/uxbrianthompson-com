@@ -23,8 +23,8 @@ import Nav from '../components/Nav.astro';
       <a href="/fsc" style="display:block; background:var(--dim-grey); border-radius:14px; text-decoration:none; margin-bottom:10px; position:relative; overflow:hidden; transition:transform 0.3s;"
          onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='translateY(0)'">
         <span style="position:absolute; top:20px; right:20px; font-size:9px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:var(--parchment); border:1px solid var(--parchment); padding:3px 10px; border-radius:100px; opacity:0.6;">Live · Evolving</span>
-        <div style="padding:36px; min-height:340px; display:flex; flex-direction:column; justify-content:space-between;">
-          <div class="placeholder" style="height:180px; border-radius:12px;">Hero video / Figma export — FSC</div>
+        <div style="padding:36px;">
+          <div class="placeholder" style="width:100%; aspect-ratio:16/9; border-radius:12px; height:auto;">Hero video / Figma export — FSC</div>
           <div style="margin-top:28px;">
             <div style="font-size:10px; letter-spacing:0.14em; text-transform:uppercase; color:var(--silver); margin-bottom:8px; font-family:'Inter',sans-serif;">Featured · Salesforce FSC</div>
             <h2 class="font-display" style="font-size:clamp(2rem,5vw,4rem); color:var(--parchment); margin:0 0 8px; line-height:1;">FSC Agentic Experience</h2>
@@ -33,8 +33,8 @@ import Nav from '../components/Nav.astro';
         </div>
       </a>
 
-      <!-- Bento tiles — wrap responsively -->
-      <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(140px, 1fr)); gap:10px;">
+      <!-- Bento tiles — auto-fit fills row -->
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(120px, 1fr)); gap:10px;">
         {[
           { title: 'Run My Day',            href: '/run-my-day' },
           { title: 'Meeting 360',           href: '/meeting-360' },
@@ -44,8 +44,8 @@ import Nav from '../components/Nav.astro';
         ].map(exp => (
           <a href={exp.href} style="display:block; background:var(--silver); border-radius:12px; text-decoration:none; transition:transform 0.2s;"
              onmouseover="this.style.transform='translateY(-3px)'" onmouseout="this.style.transform='translateY(0)'">
-            <div style="padding:14px; height:130px; display:flex; flex-direction:column; justify-content:space-between;">
-              <div class="placeholder" style="height:66px; border-radius:8px; font-size:0;">img</div>
+            <div style="padding:12px; display:flex; flex-direction:column; gap:10px;">
+              <div class="placeholder" style="width:100%; aspect-ratio:16/9; border-radius:8px; height:auto; font-size:0;">img</div>
               <span class="font-display" style="color:var(--dark-warm); font-size:12px; line-height:1.15;">{exp.title}</span>
             </div>
           </a>
@@ -56,11 +56,11 @@ import Nav from '../components/Nav.astro';
 
     <!-- Earlier Work -->
     <p style="font-size:10px; letter-spacing:0.18em; text-transform:uppercase; color:var(--silver); margin:0 0 16px; font-family:'Inter',sans-serif;">Earlier Work</p>
-    <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(280px, 1fr)); gap:12px; margin-bottom:80px;">
+    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:12px; margin-bottom:80px;">
       <a href="/bank-of-america" style="display:block; background:var(--silver); border-radius:16px; text-decoration:none; transition:transform 0.3s;"
          onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='translateY(0)'">
-        <div style="padding:28px; height:260px; display:flex; flex-direction:column; justify-content:space-between;">
-          <div class="placeholder" style="height:100px; border-radius:10px; font-size:0;">logo</div>
+        <div style="padding:28px; display:flex; flex-direction:column; gap:20px;">
+          <div class="placeholder" style="width:100%; aspect-ratio:16/9; border-radius:10px; height:auto; font-size:0;">logo</div>
           <div>
             <div style="font-size:10px; color:rgba(58,56,53,0.35); font-family:'Inter',sans-serif; margin-bottom:6px;">02</div>
             <h3 class="font-display" style="font-size:2rem; color:var(--dim-grey); margin:0 0 4px; line-height:1.05;">Bank of America</h3>
@@ -70,8 +70,8 @@ import Nav from '../components/Nav.astro';
       </a>
       <a href="/google" style="display:block; background:var(--silver); border-radius:16px; text-decoration:none; transition:transform 0.3s;"
          onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='translateY(0)'">
-        <div style="padding:28px; height:260px; display:flex; flex-direction:column; justify-content:space-between;">
-          <div class="placeholder" style="height:100px; border-radius:10px; font-size:0;">logo</div>
+        <div style="padding:28px; display:flex; flex-direction:column; gap:20px;">
+          <div class="placeholder" style="width:100%; aspect-ratio:16/9; border-radius:10px; height:auto; font-size:0;">logo</div>
           <div>
             <div style="font-size:10px; color:rgba(58,56,53,0.35); font-family:'Inter',sans-serif; margin-bottom:6px;">03</div>
             <h3 class="font-display" style="font-size:2rem; color:var(--dim-grey); margin:0 0 4px; line-height:1.05;">Google</h3>
@@ -83,7 +83,7 @@ import Nav from '../components/Nav.astro';
 
     <!-- The Vault -->
     <p style="font-size:10px; letter-spacing:0.18em; text-transform:uppercase; color:var(--silver); margin:0 0 16px; font-family:'Inter',sans-serif;">The Vault</p>
-    <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(200px, 1fr)); gap:12px;">
+    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:12px;">
       {[
         { label: 'Funimation', href: '/funimation', role: 'Design Director' },
         { label: 'Apple',      href: '/apple',      role: 'Apple Watch · Assoc. Creative Director' },
@@ -91,8 +91,8 @@ import Nav from '../components/Nav.astro';
       ].map(item => (
         <a href={item.href} style="display:block; background:var(--soft-linen); border-radius:14px; text-decoration:none; transition:transform 0.3s;"
            onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='translateY(0)'">
-          <div style="padding:24px; height:200px; display:flex; flex-direction:column; justify-content:space-between;">
-            <div class="placeholder" style="height:80px; border-radius:8px; font-size:0;">logo</div>
+          <div style="padding:24px; display:flex; flex-direction:column; gap:16px;">
+            <div class="placeholder" style="width:100%; aspect-ratio:16/9; border-radius:8px; height:auto; font-size:0;">logo</div>
             <div>
               <h3 class="font-display" style="font-size:1.6rem; color:var(--silver); margin:0 0 4px; line-height:1;">{item.label}</h3>
               <p style="font-size:11px; color:var(--silver); margin:0; font-family:'Inter',sans-serif; opacity:0.7;">{item.role}</p>
