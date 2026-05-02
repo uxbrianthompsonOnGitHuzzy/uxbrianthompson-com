@@ -109,7 +109,7 @@ import Nav from '../components/Nav.astro';
     ↑ Back to Top
   </button>
 
-  <script>
+  <script is:inline>
     const btn = document.getElementById('btt');
     window.addEventListener('scroll', () => {
       btn.style.display = window.scrollY > window.innerHeight ? 'block' : 'none';
