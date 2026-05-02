@@ -3,18 +3,22 @@
 @tailwind utilities;
 
 :root {
-  --space-indigo:  #22223b;
-  --dusty-grape:   #4a4e69;
-  --lilac-ash:     #9a8c98;
-  --almond-silk:   #c9ada7;
-  --parchment:     #f2e9e4;
-  --bg:            var(--space-indigo);
-  --surface:       #2e3050;
-  --surface-raised:#393d5e;
-  --border:        #3a3d5c;
-  --accent:        var(--almond-silk);
-  --accent-dim:    var(--lilac-ash);
-  --text:          var(--parchment);
+  --carbon-black:  #212529;
+  --iron-grey:     #495057;
+  --mid-grey:      #343a40;
+  --border-grey:   #6c757d;
+  --pale-slate:    #adb5bd;
+  --lilac:         #b096b6;
+  --dusty-mauve:   #93799a;
+  --soft-linen:    #e5e2d9;
+
+  --bg:            var(--carbon-black);
+  --surface:       var(--iron-grey);
+  --surface-raised:var(--mid-grey);
+  --border:        #3d4146;
+  --accent:        var(--lilac);
+  --accent-dim:    var(--dusty-mauve);
+  --text:          var(--soft-linen);
 }
 
 * { box-sizing: border-box; }
@@ -35,11 +39,11 @@ body { margin: 0; min-height: 100vh; }
 
 .placeholder {
   background: rgba(255,255,255,0.04);
-  border: 1px dashed rgba(255,255,255,0.1);
+  border: 1px dashed rgba(255,255,255,0.08);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: rgba(255,255,255,0.2);
+  color: rgba(255,255,255,0.15);
   font-size: 0.65rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;

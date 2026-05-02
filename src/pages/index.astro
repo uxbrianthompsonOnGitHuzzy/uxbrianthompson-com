@@ -20,9 +20,9 @@ import Nav from '../components/Nav.astro';
       <div style="padding:40px; min-height:380px; display:flex; flex-direction:column; justify-content:space-between;">
         <div class="placeholder" style="height:200px; border-radius:14px;">Hero video / Figma export — FSC</div>
         <div style="margin-top:32px;">
-          <div style="font-size:10px; letter-spacing:0.14em; text-transform:uppercase; color:var(--accent-dim); margin-bottom:8px; font-family:'Inter',sans-serif; opacity:0.7;">Featured · Salesforce FSC</div>
+          <div style="font-size:10px; letter-spacing:0.14em; text-transform:uppercase; color:var(--accent-dim); margin-bottom:8px; font-family:'Inter',sans-serif;">Featured · Salesforce FSC</div>
           <h2 class="font-display" style="font-size:clamp(2rem,5vw,4rem); color:var(--text); margin:0 0 8px; line-height:1;">FSC Agentic Experience</h2>
-          <p style="font-size:13px; color:var(--accent-dim); margin:0; opacity:0.75;">Reinventing Financial Services — AI-powered workflows for wealth advisors</p>
+          <p style="font-size:13px; color:var(--accent-dim); margin:0; opacity:0.8;">Reinventing Financial Services — AI-powered workflows for wealth advisors</p>
         </div>
       </div>
     </a>
@@ -44,25 +44,25 @@ import Nav from '../components/Nav.astro';
       ))}
     </div>
     <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:12px;">
-      <a href="/bank-of-america" style="display:block; background:#3a2042; border-radius:16px; text-decoration:none; transition:transform 0.3s;"
+      <a href="/bank-of-america" style="display:block; background:#2d2030; border-radius:16px; text-decoration:none; transition:transform 0.3s;"
          onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='translateY(0)'">
         <div style="padding:28px; height:260px; display:flex; flex-direction:column; justify-content:space-between;">
           <div class="placeholder" style="height:100px; border-radius:10px; font-size:0;">logo</div>
           <div>
-            <div style="font-size:10px; color:rgba(242,233,228,0.3); font-family:'Inter',sans-serif; margin-bottom:6px;">02</div>
+            <div style="font-size:10px; color:rgba(229,226,217,0.3); font-family:'Inter',sans-serif; margin-bottom:6px;">02</div>
             <h3 class="font-display" style="font-size:2rem; color:var(--text); margin:0 0 4px; line-height:1.05;">Bank of America</h3>
-            <p style="font-size:12px; color:rgba(242,233,228,0.4); margin:0; font-family:'Inter',sans-serif;">Erica AI · Sr. Product Designer</p>
+            <p style="font-size:12px; color:rgba(229,226,217,0.4); margin:0; font-family:'Inter',sans-serif;">Erica AI · Sr. Product Designer</p>
           </div>
         </div>
       </a>
-      <a href="/google" style="display:block; background:#1e3040; border-radius:16px; text-decoration:none; transition:transform 0.3s;"
+      <a href="/google" style="display:block; background:#1e2a30; border-radius:16px; text-decoration:none; transition:transform 0.3s;"
          onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='translateY(0)'">
         <div style="padding:28px; height:260px; display:flex; flex-direction:column; justify-content:space-between;">
           <div class="placeholder" style="height:100px; border-radius:10px; font-size:0;">logo</div>
           <div>
-            <div style="font-size:10px; color:rgba(242,233,228,0.3); font-family:'Inter',sans-serif; margin-bottom:6px;">03</div>
+            <div style="font-size:10px; color:rgba(229,226,217,0.3); font-family:'Inter',sans-serif; margin-bottom:6px;">03</div>
             <h3 class="font-display" style="font-size:2rem; color:var(--text); margin:0 0 4px; line-height:1.05;">Google</h3>
-            <p style="font-size:12px; color:rgba(242,233,228,0.4); margin:0; font-family:'Inter',sans-serif;">Pixel Hardware · Sr. Experience Designer</p>
+            <p style="font-size:12px; color:rgba(229,226,217,0.4); margin:0; font-family:'Inter',sans-serif;">Pixel Hardware · Sr. Experience Designer</p>
           </div>
         </div>
       </a>
@@ -71,9 +71,9 @@ import Nav from '../components/Nav.astro';
       <p style="font-size:10px; letter-spacing:0.16em; text-transform:uppercase; color:var(--accent-dim); margin:0 0 12px; font-family:'Inter',sans-serif;">Earlier Work</p>
       <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:12px;">
         {[
-          { label: 'Funimation', href: '/funimation', bg: '#2d1c42', role: 'Design Director' },
-          { label: 'Apple',      href: '/apple',      bg: '#252338', role: 'Apple Watch · Assoc. Creative Director' },
-          { label: 'Audi',       href: '/audi',       bg: '#27213a', role: 'FWA Award · Assoc. Creative Director' },
+          { label: 'Funimation', href: '/funimation', bg: '#2a1f30', role: 'Design Director' },
+          { label: 'Apple',      href: '/apple',      bg: '#28282c', role: 'Apple Watch · Assoc. Creative Director' },
+          { label: 'Audi',       href: '/audi',       bg: '#252830', role: 'FWA Award · Assoc. Creative Director' },
         ].map(item => (
           <a href={item.href} style={`display:block; background:${item.bg}; border-radius:14px; text-decoration:none; transition:transform 0.3s;`}
              onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='translateY(0)'">
@@ -81,7 +81,7 @@ import Nav from '../components/Nav.astro';
               <div class="placeholder" style="height:80px; border-radius:8px; font-size:0;">logo</div>
               <div>
                 <h3 class="font-display" style="font-size:1.6rem; color:var(--text); margin:0 0 4px; line-height:1;">{item.label}</h3>
-                <p style="font-size:11px; color:rgba(242,233,228,0.35); margin:0; font-family:'Inter',sans-serif;">{item.role}</p>
+                <p style="font-size:11px; color:rgba(229,226,217,0.35); margin:0; font-family:'Inter',sans-serif;">{item.role}</p>
               </div>
             </div>
           </a>
