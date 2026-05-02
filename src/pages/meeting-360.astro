@@ -1,11 +1,34 @@
 ---
 import CaseStudy from "../components/CaseStudy.astro";
+const summary = "Client meetings are the highest-stakes moments in the wealth advisory relationship — and for most advisors, they were also the least supported. Meeting 360 was designed as a unified meeting intelligence layer covering everything before, during, and after a client meeting: AI-generated prep briefs, live assistance during the session, and automated follow-up that commits actions back to the CRM without a manual entry. One coherent experience across the full meeting arc.";
+const bullets = [
+  "Pre-meeting prep brief generated automatically from the client's 360 record — recent signals, portfolio performance, open cases, and AI-drafted talking points ready before the advisor opens the meeting",
+  "Live meeting assistance panel with real-time context surfacing, AI note-taking, and action capture that runs during the session without interrupting the advisor-client conversation",
+  "Post-meeting follow-up automation that converts captured actions into FSC tasks, emails, and case updates — reducing the administrative tail of every meeting from hours to minutes",
+  "Integrated across Run My Day, Client 360, and Advisor Anywhere — meeting intelligence appears where the advisor is, not in a separate application",
+];
+const sections = [
+  { heading: "The prep brief arrives before the advisor thinks to look for it.", body: "Meeting 360 generates a pre-meeting intelligence brief automatically when a client meeting is logged — pulling recent signals, portfolio drift, open cases, and sentiment indicators from the client's 360 record, then using AI to synthesize them into a readable brief the advisor can scan in two minutes. The design goal was to eliminate the preparation work without eliminating the advisor's ownership of the meeting." },
+  { heading: "Live assistance that stays out of the way.", body: "The live meeting panel was designed with one constraint above all others: it must not compete with the advisor's attention during the client conversation. The AI captures notes and surfaces relevant context passively — flagging relevant portfolio data, logging action items as they are mentioned, and tracking conversation themes — while keeping the advisor's focus where it belongs. Assistance that announces itself has failed." },
+  { heading: "Every action committed. Every follow-up tracked.", body: "The post-meeting experience converts captured notes and actions into FSC records automatically — tasks assigned, cases opened, emails drafted — with the advisor reviewing and approving before anything is sent or saved. The design eliminates the administrative debt that accumulates after every client meeting while keeping the human decision point intact. The agent drafts; the advisor decides." },
+];
+const takeaways = [
+  "The meeting arc is a design surface. Most tools design for the meeting itself and ignore the preparation and follow-up. Meeting 360 treated all three phases as one coherent product, and the value of each phase depends on the others being designed well.",
+  "Passive intelligence requires more design rigor than active features. A panel that surfaces context without being asked must know exactly when to surface what, at what prominence, and when to stay silent. Getting that calibration right took more iteration than any interactive element.",
+  "CRM follow-up is the most hated part of wealth advisory work. Meeting 360 did not try to eliminate the follow-up — it tried to make the follow-up happen automatically from what the advisor was already doing during the meeting. The result is a zero-incremental-effort workflow that gets the work done.",
+  "Integration beats standalone. Meeting 360 derives most of its value from being connected to Run My Day, Client 360, and Advisor Anywhere. A standalone meeting tool would have been a calendar feature. An integrated meeting layer is an operating system capability.",
+];
 ---
 <CaseStudy
   title="Meeting 360"
-  eyebrow="Salesforce"
-  role="Sr. Product Designer"
-  year="2024"
+  eyebrow="Salesforce · Agentforce"
+  role="Senior Product Designer"
+  year="2023–2025"
+  summary={summary}
+  bullets={bullets}
+  sections={sections}
+  takeaways={takeaways}
+  imageStart={19}
   prevCase={{ title: "Run My Day", href: "/run-my-day", eyebrow: "Salesforce" }}
   nextCase={{ title: "Performance Analytics", href: "/performance-analytics", eyebrow: "Salesforce" }}
 />

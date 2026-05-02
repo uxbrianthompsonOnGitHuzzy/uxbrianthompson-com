@@ -1,11 +1,34 @@
 ---
 import CaseStudy from "../components/CaseStudy.astro";
+const summary = "In 2022, Google launched three major hardware products simultaneously at Google I/O — Pixel 7a, Pixel Fold, and Pixel Tablet — each requiring a distinct buy-flow, a product launch framework that could scale internationally, and an accessibility integration that met AAA standards. I supported UX design and content design across all three, working with Devices and Services, Google Store, cross-functional partners, and international localization teams across 18 markets. Three products, one launch window, one coherent framework.";
+const bullets = [
+  "Three simultaneous product launches at Google I/O — Pixel 7a, Pixel Fold, and Pixel Tablet — each with distinct hardware configurations, pricing structures, and market requirements",
+  "Single-page progressive configuration buy-flow designed for the Google Store — customers configure, compare, and purchase without leaving the product page or losing their selections",
+  "18-market localization framework built into the launch — language, currency, carrier, and regulatory requirements resolved at the design layer, not post-launch",
+  "AAA accessibility integration across all three product buy-flows — meeting the highest level of WCAG compliance for a consumer hardware launch at Google's scale",
+];
+const sections = [
+  { heading: "One page. Every configuration. No dead ends.", body: "The buy-flow for each Pixel product was designed as a single progressive page — color, storage, carrier, and trade-in options surfaced in sequence as the customer narrows their configuration, with pricing updating in real time and no page reloads. For a folding phone with a novel form factor and a tablet entering a competitive market, the configuration experience had to reduce uncertainty rather than amplify it. Every state in the flow was designed to keep the customer oriented and moving forward." },
+  { heading: "Pixel Watch. Pixel Buds. Pixel Cases. Designed into the purchase moment.", body: "The product launch framework included an upsell and cross-sell layer that surfaced compatible accessories and ecosystem products at the right moment in the buy-flow — after configuration, before checkout — without interrupting the primary purchase intent. The framework was built to scale across all three product lines and across the 18-market international rollout, with localized product availability and pricing handled at the content layer." },
+  { heading: "Language is the smallest part of localization. Legal and carrier requirements are the hard part.", body: "The international launch framework resolved language and currency requirements as table stakes, then focused on the design problems that actually vary by market: carrier partnership structures, device unlock policies, regulatory disclosure requirements, and trade-in program availability. The localization framework was built so that market-specific variations could be managed through content configuration rather than design duplication — one system, 18 expressions." },
+];
+const takeaways = [
+  "Three simultaneous launches require a framework, not three separate designs. The discipline of building one buy-flow system that could accommodate all three Pixel products — with their different form factors, price points, and configurations — produced a better result than designing each in isolation.",
+  "Progressive disclosure is the right model for hardware configuration. Surface the most important decision first (color), then the next (storage), then the next (carrier) — each step reducing the universe of options without hiding them. Customers feel in control; the flow does not feel long.",
+  "Accessibility at AAA is a design input, not a compliance checkbox. Working to the highest WCAG level for a major consumer hardware launch changes how you think about contrast, focus states, screen reader semantics, and motion — from the first frame, not as a final audit.",
+  "Localization design at 18-market scale requires treating content as a system, not a translation task. The design has to anticipate variation by market and build flexibility in — otherwise every market becomes a one-off that accumulates into technical debt.",
+];
 ---
 <CaseStudy
   title="Google"
-  eyebrow="Google"
-  role="Sr. Experience Designer"
+  eyebrow="Google · Pixel Hardware"
+  role="UX Designer & Content Designer (Contract)"
   year="2022"
+  summary={summary}
+  bullets={bullets}
+  sections={sections}
+  takeaways={takeaways}
+  imageStart={67}
   prevCase={{ title: "Bank of America", href: "/bank-of-america", eyebrow: "Bank of America" }}
-  nextCase={{ title: "Bank of America", href: "/bank-of-america", eyebrow: "Bank of America" }}
+  nextCase={{ title: "Google", href: "/google", eyebrow: "Google" }}
 />

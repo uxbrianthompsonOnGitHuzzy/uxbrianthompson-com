@@ -1,11 +1,34 @@
 ---
 import CaseStudy from "../components/CaseStudy.astro";
+const summary = "FunimationCon was the first-ever virtual anime convention — conceived, designed, and executed from scratch as Funimation's response to a world where physical events had stopped. I led the conceptualization and execution of UX and brand design, writing, social strategy, and online marketing for an event that had no template, no precedent, and roughly the budget of a mid-size conference, aimed at an audience of millions. The result: 63,000+ registered attendees, 331,000+ hours on platform, and a subscriber growth story that went from 3 million to 5 million paid subscribers in one campaign window.";
+const bullets = [
+  "63,000+ registered attendees for the first-ever virtual anime convention — a zero-to-launch event with no physical event precedent to adapt from",
+  "331,000+ hours consumed on the Funimation platform during the event window — average session depth far exceeding a typical content consumption day",
+  "Week-over-week AVOD growth of 97% and SVOD growth of 125% during the FunimationCon window — the convention drove the platform, not just awareness of it",
+  "Subscriber growth from 3 million to 5 million paid subscribers, with FunimationCon as the acquisition and engagement accelerant",
+];
+const sections = [
+  { heading: "No one had built a virtual anime convention before. We started with a blank page.", body: "FunimationCon had no conference app to adapt, no virtual event platform to license, and no comparable audience to benchmark against. The design process started with the questions anime convention attendees actually ask — where do I find the panels I care about, how do I get the exclusive content, where do I find the community — and worked backward from those into an experience architecture that could scale to tens of thousands of simultaneous users without losing the intimate, fandom-native feel of a convention floor." },
+  { heading: "74% of banner clicks. 6,750 social posts. 108,000 chat comments. One mechanic.", body: "Swag Quest was the engagement system built into FunimationCon — a gamified hunt for exclusive digital content and merchandise that drove attendees across every surface of the event: panels, live chats, social posts, and platform content. The mechanic was simple enough to explain in one sentence and deep enough to sustain engagement across an entire weekend. The numbers were the result of designing the game into the event structure rather than layering it on top." },
+  { heading: "Four pillars. One visual language. Zero compromise on fandom authenticity.", body: "The FunimationCon brand system — Alley Reference, Alley Sketch, Alley Color, Alley Motion — was built to evoke the aesthetic of a convention artist alley: handmade, expressive, community-made. That authenticity was non-negotiable for an audience that can immediately identify when a brand is performing fandom rather than living in it. The four-pillar system gave the design team a framework for staying coherent across hundreds of assets without flattening the energy that made the convention feel real." },
+];
+const takeaways = [
+  "Audience authenticity is a design constraint, not a nice-to-have. Anime convention attendees have a highly developed sense of what feels genuine versus performed. Every design decision — tone of voice, visual language, community mechanic — had to pass that test before it got to scale.",
+  "Gamification works when it is native to the experience, not layered on top. Swag Quest succeeded because it was built into the event structure — not a points system added to make content consumption feel more engaging. The game was the event.",
+  "Virtual events need a platform strategy, not just an event design. FunimationCon drove 97% week-over-week AVOD growth because the event was designed to drive platform behavior — watch time, subscriptions, community activity — not just registration numbers. The goal was always the platform.",
+  "67% mobile traffic requires designing for the phone first, every time. The majority of FunimationCon attendees experienced the event on a mobile device. Every layout, every interaction, every loading state was designed mobile-first with desktop as the second surface, not the primary one.",
+];
 ---
 <CaseStudy
   title="Crunchyroll"
-  eyebrow="Crunchyroll"
+  eyebrow="Funimation · Crunchyroll"
   role="Design Director"
-  year="2020"
-  prevCase={{ title: "Home", href: "/", eyebrow: "Work Index" }}
-  nextCase={{ title: "Apple Watch", href: "/apple", eyebrow: "Apple" }}
+  year="2020–2021"
+  summary={summary}
+  bullets={bullets}
+  sections={sections}
+  takeaways={takeaways}
+  imageStart={73}
+  prevCase={{ title: "Home", href: "/", eyebrow: "Portfolio" }}
+  nextCase={{ title: "Apple", href: "/apple", eyebrow: "Apple" }}
 />

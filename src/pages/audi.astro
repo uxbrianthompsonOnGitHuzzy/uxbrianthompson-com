@@ -1,11 +1,34 @@
 ---
 import CaseStudy from "../components/CaseStudy.astro";
+const summary = "The brief for AudiUSA.com was to allow people to configure, save, and order a hyper-custom Audi — and to recreate the experience of seeing Audi cars in real life using artistry and technology. The redesign earned an FWA Award and drove results that were not marginal improvements — they were category-level shifts: a 227% increase in car configurations, a 675% increase in myAudi interactions, a 2,763% increase in financing page visits, and an all-time high in trackable sales. The design turned a brand website into a vehicle for conversion.";
+const bullets = [
+  "227% increase in car configurations — the design turned the configurator from a feature into the primary conversion path on the site",
+  "675% increase in myAudi interactions — the saved garage and personalization features drove repeat engagement at a scale that exceeded the site's historical benchmarks",
+  "2,763% increase in financing page visits — the design made financing feel like a natural next step, not a separate destination that required intent to find",
+  "All-time high in trackable sales attributed to the digital experience — the FWA-winning redesign was directly connected to commercial outcomes, not just aesthetic recognition",
+];
+const sections = [
+  { heading: "Configuring an Audi is the product. The configurator cannot be a utility.", body: "Most automotive configurators are functional but joyless — form fields, dropdown menus, and a rendered image that updates when you change a color. The AudiUSA.com configurator was designed as an experience: the materials, the colors, the options were presented with the visual quality and editorial care of a luxury brand's print campaign. The 227% lift in configurations was not the result of making the configurator easier to find — it was the result of making it worth spending time in." },
+  { heading: "Innovation. Motorsport. Ultra. TFSI. Four pillars. One design language.", body: "The Defining Moments sections — Innovation, Motorsport, Ultra, and TFSI — were editorial surfaces within the site that told the engineering and heritage story of Audi without breaking from the design language of the configurator and product pages. They gave customers a reason to stay on the site beyond purchase intent and a vocabulary for the product decisions they were making in the configurator. Brand storytelling and conversion were not separate journeys — they were the same one." },
+  { heading: "myAudi turns a single configuration into a long-term relationship.", body: "The myAudi platform — saved configurations, personalized pricing, dealer connections, ownership resources — was designed to persist the customer's investment in their Audi configuration beyond a single session. The 675% increase in myAudi interactions was the result of designing the saved garage as a genuine destination: a place where your configured Audi waited for you, with financing tools and dealer connections one step away, whenever you were ready to act. The platform converted browsers into buyers across longer decision windows." },
+];
+const takeaways = [
+  "The configurator is the highest-value page on an automotive website. Treating it as a utility is a category error. Treating it as an editorial experience that communicates the brand through the act of configuring is what drove a 227% lift.",
+  "Financing as a natural next step, not a separate destination. The 2,763% increase in financing page visits was the result of positioning financing within the configurator flow rather than as a separate section requiring a user to navigate there intentionally. Design the path, and the path gets walked.",
+  "Brand storytelling and conversion are not competing objectives. The Defining Moments sections gave customers reasons to stay and vocabulary for their decisions. Customers who understand why a product is engineered the way it is convert at higher rates than customers who only see the feature list.",
+  "All-time high trackable sales means the design was the commercial strategy. The FWA Award was the recognition; the sales result was the proof. Design that does not connect to commercial outcomes is decoration. This one did.",
+];
 ---
 <CaseStudy
-  title="AudiUSA.com"
-  eyebrow="Audi"
-  role="UX Designer"
-  year="2018"
-  prevCase={{ title: "Apple Watch", href: "/apple", eyebrow: "Apple" }}
-  nextCase={{ title: "Crunchyroll", href: "/funimation", eyebrow: "Crunchyroll" }}
+  title="Audi"
+  eyebrow="Audi · FWA Award"
+  role="UX & Creative Director"
+  year="2013–2014"
+  summary={summary}
+  bullets={bullets}
+  sections={sections}
+  takeaways={takeaways}
+  imageStart={85}
+  prevCase={{ title: "Apple", href: "/apple", eyebrow: "Apple" }}
+  nextCase={{ title: "Dreamforce", href: "/dreamforce", eyebrow: "Salesforce" }}
 />

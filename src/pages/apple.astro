@@ -1,11 +1,34 @@
 ---
 import CaseStudy from "../components/CaseStudy.astro";
+const summary = "Apple Watch was a new category — not an accessory, not a phone, not a fitness tracker, but a wearable computing platform that required an entirely new way of being sold, demonstrated, and understood. I was part of the team that designed the in-store launch experience for Apple Watch, including the worldwide interactive iPad-to-Watch demo that let customers experience the product for the first time — and I led the materials section, working directly with the metals, glass, polymers, and leathers business unit leads to ensure the design communicated what made Apple Watch physically remarkable. During the launch window, 36 million units were sold.";
+const bullets = [
+  "36 million Apple Watch units sold during the launch window — cited as one of the strongest consumer electronics launches of the period",
+  "Worldwide in-store interactive iPad-to-Watch demo — a first-of-its-kind experience that let customers see exactly what a Watch interaction looked like on a device they were already holding",
+  "Materials section design led through direct collaboration with Apple's metals, glass, polymers, and leathers business unit leads — accuracy of material representation was a design requirement, not a marketing choice",
+  "First-of-its-kind in-store experience for a new product category — no existing retail playbook, no comparable device to reference; the design had to invent the demo format",
+];
+const sections = [
+  { heading: "You can't understand Apple Watch by looking at it. You have to experience it on your wrist.", body: "The design challenge for the in-store launch experience was that Apple Watch's value proposition — glanceability, haptic communication, always-available context — is invisible until you are wearing one. The interactive iPad-to-Watch demo was designed to solve that: customers could explore the Watch interface on the iPad in their hands while seeing the exact interactions reflected in real time on the Watch display. The demo made the new category legible without requiring customers to already own the product." },
+  { heading: "38mm stainless steel. Ion-X glass. Fluoroelastomer band. The materials were part of the product story.", body: "Apple Watch launched with unprecedented material variety — aluminum cases, stainless steel cases, and an 18-karat gold edition, each with multiple band materials and colors. The materials section of the in-store experience had to communicate why those differences mattered — the scratch resistance of sapphire glass, the lightness of aerospace-grade aluminum, the durability of the fluoroelastomer sport band — with accuracy and confidence. That required working directly with the business unit leads for each material category, not adapting marketing copy." },
+  { heading: "No reference product. No customer mental model. The design had to create the frame, not fill one.", body: "Consumer electronics launches typically adapt existing retail experiences — the new iPhone goes where the old iPhone was; the new iPad follows the iPad formula. Apple Watch had no formula. It was the first new Apple product category in years, and the in-store experience had to do the work of creating the customer's mental model for the product before selling it. Every design decision — how the Watch was presented, how it was demonstrated, how its material story was told — had to assume a customer who had never encountered the concept before." },
+];
+const takeaways = [
+  "New categories require new demo formats. The iPad-to-Watch interactive demo was not a clever execution — it was the only honest way to show customers what Apple Watch actually did. If the experience does not reveal the value proposition, the design has failed regardless of how beautiful it is.",
+  "Material specificity is brand credibility. The difference between 'premium materials' as marketing copy and 'ion-exchange-strengthened glass with a scratch-resistant surface' as design content is the difference between a claim and a fact. Working with the BU leads to get the material description right was not a detail — it was the strategy.",
+  "Designing without a reference is the highest-difficulty launch condition. When there is no existing product to adapt from, the design has to invent the customer's mental model while simultaneously meeting the sales goal. That requires unusually tight collaboration between design, product, and the retail team from day one.",
+  "Launch scale changes design priorities. At 36 million units, the in-store experience is not a boutique moment — it is the primary onboarding surface for millions of first-time customers simultaneously. The design has to hold up at that scale: self-explanatory, durable, and reproducible across every Apple Store worldwide.",
+];
 ---
 <CaseStudy
-  title="Apple Watch"
-  eyebrow="Apple"
+  title="Apple"
+  eyebrow="Apple · Watch"
   role="Associate Creative Director"
-  year="2019"
-  prevCase={{ title: "Crunchyroll", href: "/funimation", eyebrow: "Crunchyroll" }}
-  nextCase={{ title: "AudiUSA.com", href: "/audi", eyebrow: "Audi" }}
+  year="2014–2015"
+  summary={summary}
+  bullets={bullets}
+  sections={sections}
+  takeaways={takeaways}
+  imageStart={79}
+  prevCase={{ title: "Crunchyroll", href: "/funimation", eyebrow: "Funimation" }}
+  nextCase={{ title: "Audi", href: "/audi", eyebrow: "Audi" }}
 />

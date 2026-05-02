@@ -1,11 +1,34 @@
 ---
 import CaseStudy from "../components/CaseStudy.astro";
+const summary = "Bank of America lacked a prequalification path for direct auto loan applicants — putting it behind competitors and forcing customers through a hard credit inquiry before they knew if they were even eligible. The design challenge was to build a prequalification program that reduced friction for the customer, increased confidence before commitment, and created a new digital revenue channel for BofA — without compromising the rigor of the underlying credit assessment. Twenty-seven entry points audited. Nine steps of the customer pain point journey mapped. Three rounds of user testing. One new revenue channel.";
+const bullets = [
+  "New prequalification revenue channel launched — customers can assess eligibility before a formal credit application, reducing drop-off at the hard inquiry moment",
+  "27 auto loan entry points audited across the Bank of America digital ecosystem — identifying where customers arrived, what they expected, and where they abandoned",
+  "9-step customer pain point map developed across the full Understanding, Planning, Acting journey, identifying the exact moments where the existing experience lost customer confidence",
+  "Pilot results showed significant digital engagement increase and improved customer confidence, confirmed by post-interaction satisfaction surveys",
+];
+const sections = [
+  { heading: "27 entry points. 9 pain points. One coherent picture of where customers got lost.", body: "Before designing a single screen, the project required understanding where customers arrived, what they expected at each entry point, and at which step of the Understanding, Planning, Acting journey they abandoned. The 27-entry-point audit and 9-step pain point map gave the design a precise target: not 'improve the auto loan experience' but 'reduce uncertainty at the moment a customer is asked to commit to a hard credit inquiry.'" },
+  { heading: "Knowing you're eligible before applying changes the psychology of the transaction.", body: "The hard credit inquiry is the moment most auto loan drop-off occurs — customers who are not sure they will qualify will not take the risk of a credit impact to find out. Prequalification inverts that dynamic: the soft inquiry establishes eligibility first, with no credit impact, so that by the time a customer submits a formal application they already know the answer. The design's job was to make that soft-inquiry step feel definitive enough to trust." },
+  { heading: "Three rounds of user testing, each built on what the previous round broke.", body: "The research and testing process ran in three structured rounds — the first to validate the flow and messaging, the second to pressure-test the soft-versus-hard inquiry communication, and the third to validate the final design against drop-off behavior from the pain point map. Each round produced findings that changed the design, not just confirmed it. The final experience was substantively different from the first testable prototype." },
+];
+const takeaways = [
+  "Auditing every entry point before designing any screen is the correct sequence. If you do not know where customers are arriving from, you cannot know what state they are in when they land. The entry point audit is the research, not a preamble to research.",
+  "Prequalification is a trust design problem, not just a UX flow problem. The goal is not a shorter form — it is giving customers enough confidence that they will complete the form at all. The design has to earn that confidence before asking for commitment.",
+  "The soft/hard inquiry distinction is the most consequential piece of copy in the product. How you frame the difference between a prequalification check and a formal application is the difference between a customer who continues and one who exits. That framing was the most iterated element across all three testing rounds.",
+  "Digital engagement increases when customers feel informed, not just guided. The satisfaction survey results confirmed what the testing suggested: confidence in the outcome — not speed or simplicity — drove the engagement lift.",
+];
 ---
 <CaseStudy
   title="Bank of America"
-  eyebrow="Bank of America"
-  role="Sr. Product Designer"
-  year="2021"
-  prevCase={{ title: "Home", href: "/", eyebrow: "Work Index" }}
+  eyebrow="Bank of America · Lending"
+  role="Senior Product Designer"
+  year="2022–2023"
+  summary={summary}
+  bullets={bullets}
+  sections={sections}
+  takeaways={takeaways}
+  imageStart={61}
+  prevCase={{ title: "Home", href: "/", eyebrow: "Portfolio" }}
   nextCase={{ title: "Google", href: "/google", eyebrow: "Google" }}
 />

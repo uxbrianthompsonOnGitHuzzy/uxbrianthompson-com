@@ -1,11 +1,34 @@
 ---
 import CaseStudy from "../components/CaseStudy.astro";
+const summary = "The Future of Advising had a problem: it only existed inside the CRM. Advisor Anywhere was the answer to a deceptively simple question — how does the intelligent advisor experience follow the advisor, rather than waiting for the advisor to return to it? Built purpose-first for independent RIAs, boutique wealth managers, and breakaway brokers who overwhelmingly run on Slack, Advisor Anywhere brings the full Run My Day action layer into the place advisors already work — with zero CRM login required.";
+const bullets = [
+  "Proactive daily intelligence delivered as a Slack DM each morning — the same signal priority and composite scoring as Run My Day, surfaced where the advisor already starts their day",
+  "Real-time Client 360 alerts with an IF/THEN visual rule builder that lets admins define exactly which signals trigger which Slack notifications, without writing code",
+  "Persistent meeting channels — auto-created, auto-populated with agenda and client context, with a Commit to Salesforce button that writes actions back to FSC without leaving Slack",
+  "Full action layer in Slack using Block Kit as the design system — no notification relay, no deep links to another surface; the advisor can act, respond, and commit from within the message",
+];
+const sections = [
+  { heading: "Not a notification relay. A full action layer built on Block Kit.", body: "The core design decision for Advisor Anywhere was treating Slack not as a delivery channel but as a product surface — with the same design rigor as any FSC screen. Block Kit became the design system, with interactive components, modal flows, and structured data rendering that let advisors inspect, act, and commit without ever leaving the conversation thread." },
+  { heading: "The IF/THEN rule builder: visual logic without engineering.", body: "Firm administrators can define exactly which FSC signal types trigger which Slack notifications, for which advisor segments, under which conditions — using a visual IF/THEN editor that maps insight categories to Block Kit components. This separates admin configuration from advisor experience, gives operations teams direct control over the alert model, and eliminates the need for custom development to tune the notification logic." },
+  { heading: "The meeting exists in Slack before the advisor opens their calendar.", body: "When a client meeting is logged in FSC, Advisor Anywhere automatically creates a dedicated Slack channel, populates it with the client 360 context, recent signals, and AI-generated prep notes, and keeps it open as a persistent context layer through and after the meeting. The Commit to Salesforce button inside the channel writes any actions taken back to the FSC record — closing the loop without a CRM session." },
+];
+const takeaways = [
+  "Proactive by design means the agent initiates. The advisor should not have to open an app to know what needs attention. The DM arrives because the system decided it was the right moment, not because the advisor asked.",
+  "Zero CRM login required is a product promise, not a technical constraint. It means the design had to support full decision-making and action-taking entirely within Slack — which required rethinking every screen that assumed FSC context was available.",
+  "Block Kit is a design system constraint worth embracing. Working within Slack's component model forced design decisions that made the experience more focused, not less capable. Constraints produce clarity.",
+  "Meeting channels as persistent context change the advisor's relationship with preparation. When the channel already exists with everything you need before the meeting starts, preparation stops being work and becomes orientation.",
+];
 ---
 <CaseStudy
   title="Advisor Anywhere"
-  eyebrow="Salesforce"
-  role="Sr. Product Designer"
-  year="2024"
+  eyebrow="Salesforce · Agentforce"
+  role="Senior Product Designer"
+  year="2024–2025"
+  summary={summary}
+  bullets={bullets}
+  sections={sections}
+  takeaways={takeaways}
+  imageStart={31}
   prevCase={{ title: "Performance Analytics", href: "/performance-analytics", eyebrow: "Salesforce" }}
   nextCase={{ title: "Integration Hub", href: "/integration-hub", eyebrow: "Salesforce" }}
 />

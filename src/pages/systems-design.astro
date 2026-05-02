@@ -1,11 +1,34 @@
 ---
 import CaseStudy from "../components/CaseStudy.astro";
+const summary = "The FSC agentic system is four products. But it was designed as one. Systems Design documents the architectural thinking behind the FSC agentic layer — how Run My Day, Advisor Anywhere, Integration Hub, and Portfolio Performance connect through shared signal vocabulary, common data flows, and a unified urgency language. The design story is not about any single feature. It is about why the features are coherent, and what that coherence makes possible.";
+const bullets = [
+  "Four-product system designed with shared information architecture — signal types, urgency scores, and client identifiers are consistent across Run My Day, Advisor Anywhere, Integration Hub, and Portfolio Performance",
+  "Data flow mapping from custodial source (BridgeFT) through Data Cloud to advisor surface — every data point has a traceable path from origination to action",
+  "Cross-product urgency language: a Portfolio Drift signal in Performance Analytics generates the same urgency score as a Retain signal in Run My Day, ranked on the same composite scale",
+  "Admin configuration layer designed separately from advisor experience — setup, rule definition, and data connection all happen on distinct surfaces from the advisor-facing products",
+];
+const sections = [
+  { heading: "Four products. One information architecture.", body: "The decision to build a shared information architecture before designing individual product surfaces was the most consequential design choice in the FSC agentic work. Signal types, urgency vocabulary, client identifiers, and action schemas were standardized across all four products first — so that a signal generated in one product could be consumed by another without translation. The coherence of the system is not a result of good product management. It is a result of shared design infrastructure." },
+  { heading: "Every data point has a traceable path from source to action.", body: "The data flow map documents how custodial data moves from BridgeFT through Data Cloud, how it maps to FSC financial data model objects, how it generates signals in Run My Day, how those signals surface in Advisor Anywhere, and how advisor actions commit back to the record. Designing the full flow — not just the advisor-visible surfaces — revealed the integration gaps, the latency points, and the human decision requirements that shaped every product design downstream." },
+  { heading: "The agentic operating layer is the system the individual products add up to.", body: "Run My Day is a daily intelligence tool. Advisor Anywhere is a mobile action layer. Integration Hub is a data pipeline. Portfolio Performance is an analytics surface. Together, they form something more than their sum: an agentic operating system for the modern wealth advisor. That systemic claim required designing the connections between products as carefully as the products themselves — and documenting the architecture so that future products could join the system rather than sit beside it." },
+];
+const takeaways = [
+  "Shared information architecture is the most leveraged design investment. Once the signal vocabulary, urgency model, and client data schema were standardized, every subsequent product feature was faster to design, easier to integrate, and more coherent for the advisor using it.",
+  "Data flow mapping is design work. Understanding how data moves through a system — and where human decision points are required — is not an engineering deliverable. It is the design foundation for every interaction that touches that data.",
+  "Designing for future extensibility requires making the architecture visible. The FSC agentic system was designed so that new products and features could join the existing signal model without requiring a redesign of what already existed. That required documenting the architecture explicitly and treating it as a design asset.",
+  "The system story is the portfolio story. Individual case studies explain individual products. The systems design case study explains why the products are greater than the sum of their parts — and why that matters for an advisor managing 100 clients at scale.",
+];
 ---
 <CaseStudy
   title="Systems Design"
-  eyebrow="Salesforce"
-  role="Sr. Product Designer"
+  eyebrow="Salesforce · FSC"
+  role="Senior Product Designer"
   year="2023–2025"
+  summary={summary}
+  bullets={bullets}
+  sections={sections}
+  takeaways={takeaways}
+  imageStart={49}
   prevCase={{ title: "Wealth Agents", href: "/wealth-agents", eyebrow: "Salesforce" }}
   nextCase={{ title: "XFN Alignment", href: "/xfn-alignment", eyebrow: "Salesforce" }}
 />
