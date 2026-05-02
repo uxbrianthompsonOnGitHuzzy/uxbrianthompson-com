@@ -17,6 +17,9 @@ import Nav from '../components/Nav.astro';
 
   <section style="padding:0 48px 96px;">
 
+    <!-- Featured label -->
+    <p style="font-size:10px; letter-spacing:0.18em; text-transform:uppercase; color:var(--silver); margin:0 0 16px; font-family:'Inter',sans-serif;">Featured</p>
+
     <!-- Salesforce dark container -->
     <div style="background:#504e4b; border-radius:20px; padding:16px; margin-bottom:80px;">
 
@@ -26,14 +29,13 @@ import Nav from '../components/Nav.astro';
         <div style="padding:36px;">
           <div class="placeholder" style="width:100%; aspect-ratio:16/9; border-radius:12px; height:auto;">Hero video / Figma export — FSC</div>
           <div style="margin-top:28px;">
-            <div style="font-size:10px; letter-spacing:0.14em; text-transform:uppercase; color:var(--silver); margin-bottom:8px; font-family:'Inter',sans-serif;">Featured · Salesforce FSC</div>
+            <div style="font-size:10px; letter-spacing:0.14em; text-transform:uppercase; color:var(--silver); margin-bottom:8px; font-family:'Inter',sans-serif;">Salesforce</div>
             <h2 class="font-display" style="font-size:clamp(2rem,5vw,4rem); color:var(--parchment); margin:0 0 8px; line-height:1;">FSC Agentic Experience</h2>
             <p style="font-size:13px; color:var(--silver); margin:0;">Reinventing Financial Services — AI-powered workflows for wealth advisors</p>
           </div>
         </div>
       </a>
 
-      <!-- Bento tiles — auto-fit fills row -->
       <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(120px, 1fr)); gap:10px;">
         {[
           { title: 'Run My Day',            href: '/run-my-day' },
@@ -62,9 +64,8 @@ import Nav from '../components/Nav.astro';
         <div style="padding:28px; display:flex; flex-direction:column; gap:20px;">
           <div class="placeholder" style="width:100%; aspect-ratio:16/9; border-radius:10px; height:auto; font-size:0;">logo</div>
           <div>
-            <div style="font-size:10px; color:rgba(58,56,53,0.35); font-family:'Inter',sans-serif; margin-bottom:6px;">02</div>
             <h3 class="font-display" style="font-size:2rem; color:var(--dim-grey); margin:0 0 4px; line-height:1.05;">Bank of America</h3>
-            <p style="font-size:12px; color:rgba(58,56,53,0.4); margin:0; font-family:'Inter',sans-serif;">Erica AI · Sr. Product Designer</p>
+            <p style="font-size:12px; color:rgba(58,56,53,0.4); margin:0; font-family:'Inter',sans-serif;">Lending</p>
           </div>
         </div>
       </a>
@@ -73,9 +74,8 @@ import Nav from '../components/Nav.astro';
         <div style="padding:28px; display:flex; flex-direction:column; gap:20px;">
           <div class="placeholder" style="width:100%; aspect-ratio:16/9; border-radius:10px; height:auto; font-size:0;">logo</div>
           <div>
-            <div style="font-size:10px; color:rgba(58,56,53,0.35); font-family:'Inter',sans-serif; margin-bottom:6px;">03</div>
             <h3 class="font-display" style="font-size:2rem; color:var(--dim-grey); margin:0 0 4px; line-height:1.05;">Google</h3>
-            <p style="font-size:12px; color:rgba(58,56,53,0.4); margin:0; font-family:'Inter',sans-serif;">Pixel Hardware · Sr. Experience Designer</p>
+            <p style="font-size:12px; color:rgba(58,56,53,0.4); margin:0; font-family:'Inter',sans-serif;">Pixel Hardware</p>
           </div>
         </div>
       </a>
@@ -85,9 +85,9 @@ import Nav from '../components/Nav.astro';
     <p style="font-size:10px; letter-spacing:0.18em; text-transform:uppercase; color:var(--silver); margin:0 0 16px; font-family:'Inter',sans-serif;">The Vault</p>
     <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:12px;">
       {[
-        { label: 'Funimation', href: '/funimation', role: 'Design Director' },
-        { label: 'Apple',      href: '/apple',      role: 'Apple Watch · Assoc. Creative Director' },
-        { label: 'Audi',       href: '/audi',       role: 'FWA Award · Assoc. Creative Director' },
+        { label: 'Crunchyroll', href: '/funimation',  role: 'FunimationCon' },
+        { label: 'Apple',       href: '/apple',        role: 'Apple Watch' },
+        { label: 'Audi',        href: '/audi',         role: 'AudiUSA.com' },
       ].map(item => (
         <a href={item.href} style="display:block; background:var(--soft-linen); border-radius:14px; text-decoration:none; transition:transform 0.3s;"
            onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='translateY(0)'">
@@ -103,4 +103,17 @@ import Nav from '../components/Nav.astro';
     </div>
 
   </section>
+
+  <!-- Back to top -->
+  <button id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="display:none; position:fixed; bottom:32px; left:50%; transform:translateX(-50%); background:rgba(58,56,53,0.55); backdrop-filter:blur(8px); color:var(--parchment); border:1px solid rgba(245,244,239,0.2); font-size:10px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; padding:9px 20px; border-radius:100px; cursor:pointer; font-family:'Inter',sans-serif; transition:opacity 0.2s;">
+    ↑ Back to Top
+  </button>
+
+  <script>
+    const btn = document.getElementById('btt');
+    window.addEventListener('scroll', () => {
+      btn.style.display = window.scrollY > window.innerHeight ? 'block' : 'none';
+    });
+  </script>
+
 </BaseLayout>
