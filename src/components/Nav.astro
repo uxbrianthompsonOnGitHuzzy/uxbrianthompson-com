@@ -7,12 +7,12 @@ const links = [
   { label: 'Contact ↗', href: 'mailto:uxbrianthompson@gmail.com', external: true },
 ];
 ---
-<nav style="display:flex; align-items:center; justify-content:space-between; padding:24px 48px; border-bottom:1px solid var(--border);">
-  <div>
-    <div style="font-size:13px; font-weight:500; color:var(--text); letter-spacing:0.02em;">Brian Thompson</div>
-    <div style="font-size:10px; color:var(--accent); letter-spacing:0.14em; text-transform:uppercase; margin-top:2px;">AI Product Design</div>
+<nav>
+  <div class="nav-brand">
+    <div class="nav-name">Brian Thompson</div>
+    <div class="nav-sub">AI Product Design</div>
   </div>
-  <ul style="display:flex; gap:32px; list-style:none; margin:0; padding:0;">
+  <ul class="nav-links">
     {links.map(link => {
       const active = link.href !== '/' ? currentPath.startsWith(link.href) : currentPath === '/';
       return (
@@ -20,10 +20,7 @@ const links = [
           
             href={link.href}
             target={link.external ? '_blank' : undefined}
-            style={`font-size:11px; letter-spacing:0.1em; text-transform:uppercase; text-decoration:none; transition:color 0.2s;
-              color:${active ? 'var(--text)' : 'var(--accent-dim)'};
-              border-bottom:${active ? '1px solid var(--accent)' : 'none'};
-              padding-bottom:${active ? '2px' : '0'};`}
+            class={active ? 'nav-link active' : 'nav-link'}
           >
             {link.label}
           </a>
@@ -32,3 +29,46 @@ const links = [
     })}
   </ul>
 </nav>
+
+<style>
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 24px 48px;
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-name {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text);
+    letter-spacing: 0.02em;
+  }
+  .nav-sub {
+    font-size: 10px;
+    color: var(--accent);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-top: 2px;
+  }
+  .nav-links {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .nav-link {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--accent-dim);
+    transition: color 0.2s;
+  }
+  .nav-link.active {
+    color: var(--text);
+    border-bottom: 1px solid var(--accent);
+    padding-bottom: 2px;
+  }
+</style>
