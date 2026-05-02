@@ -33,7 +33,8 @@ import Nav from '../components/Nav.astro';
         </div>
       </a>
 
-      <div style="display:grid; grid-template-columns:repeat(5,1fr); gap:10px;">
+      <!-- Bento tiles — wrap responsively -->
+      <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(140px, 1fr)); gap:10px;">
         {[
           { title: 'Run My Day',            href: '/run-my-day' },
           { title: 'Meeting 360',           href: '/meeting-360' },
@@ -55,15 +56,15 @@ import Nav from '../components/Nav.astro';
 
     <!-- Earlier Work -->
     <p style="font-size:10px; letter-spacing:0.18em; text-transform:uppercase; color:var(--silver); margin:0 0 16px; font-family:'Inter',sans-serif;">Earlier Work</p>
-    <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:80px;">
+    <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(280px, 1fr)); gap:12px; margin-bottom:80px;">
       <a href="/bank-of-america" style="display:block; background:var(--silver); border-radius:16px; text-decoration:none; transition:transform 0.3s;"
          onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='translateY(0)'">
         <div style="padding:28px; height:260px; display:flex; flex-direction:column; justify-content:space-between;">
           <div class="placeholder" style="height:100px; border-radius:10px; font-size:0;">logo</div>
           <div>
             <div style="font-size:10px; color:rgba(58,56,53,0.35); font-family:'Inter',sans-serif; margin-bottom:6px;">02</div>
-            <h3 class="font-display" style="font-size:2rem; color:var(--ink); margin:0 0 4px; line-height:1.05;">Bank of America</h3>
-            <p style="font-size:12px; color:rgba(58,56,53,0.5); margin:0; font-family:'Inter',sans-serif;">Erica AI · Sr. Product Designer</p>
+            <h3 class="font-display" style="font-size:2rem; color:var(--dim-grey); margin:0 0 4px; line-height:1.05;">Bank of America</h3>
+            <p style="font-size:12px; color:rgba(58,56,53,0.4); margin:0; font-family:'Inter',sans-serif;">Erica AI · Sr. Product Designer</p>
           </div>
         </div>
       </a>
@@ -73,8 +74,8 @@ import Nav from '../components/Nav.astro';
           <div class="placeholder" style="height:100px; border-radius:10px; font-size:0;">logo</div>
           <div>
             <div style="font-size:10px; color:rgba(58,56,53,0.35); font-family:'Inter',sans-serif; margin-bottom:6px;">03</div>
-            <h3 class="font-display" style="font-size:2rem; color:var(--ink); margin:0 0 4px; line-height:1.05;">Google</h3>
-            <p style="font-size:12px; color:rgba(58,56,53,0.5); margin:0; font-family:'Inter',sans-serif;">Pixel Hardware · Sr. Experience Designer</p>
+            <h3 class="font-display" style="font-size:2rem; color:var(--dim-grey); margin:0 0 4px; line-height:1.05;">Google</h3>
+            <p style="font-size:12px; color:rgba(58,56,53,0.4); margin:0; font-family:'Inter',sans-serif;">Pixel Hardware · Sr. Experience Designer</p>
           </div>
         </div>
       </a>
@@ -82,7 +83,7 @@ import Nav from '../components/Nav.astro';
 
     <!-- The Vault -->
     <p style="font-size:10px; letter-spacing:0.18em; text-transform:uppercase; color:var(--silver); margin:0 0 16px; font-family:'Inter',sans-serif;">The Vault</p>
-    <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:12px;">
+    <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(200px, 1fr)); gap:12px;">
       {[
         { label: 'Funimation', href: '/funimation', role: 'Design Director' },
         { label: 'Apple',      href: '/apple',      role: 'Apple Watch · Assoc. Creative Director' },
