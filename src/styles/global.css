@@ -3,22 +3,22 @@
 @tailwind utilities;
 
 :root {
-  --carbon-black:  #212529;
-  --iron-grey:     #495057;
-  --mid-grey:      #343a40;
-  --border-grey:   #6c757d;
-  --pale-slate:    #adb5bd;
-  --lilac:         #b096b6;
-  --dusty-mauve:   #93799a;
-  --soft-linen:    #e5e2d9;
+  --parchment:    #f5f4ef;
+  --soft-linen:   #e5e2d9;
+  --powder-petal: #f1dbce;
+  --silver:       #b8b5b0;
+  --dim-grey:     #686763;
+  --dark-warm:    #504e4b;
+  --ink:          #3a3835;
 
-  --bg:            var(--carbon-black);
-  --surface:       var(--iron-grey);
-  --surface-raised:var(--mid-grey);
-  --border:        #3d4146;
-  --accent:        var(--lilac);
-  --accent-dim:    var(--dusty-mauve);
-  --text:          var(--soft-linen);
+  --bg:           var(--parchment);
+  --surface:      var(--dim-grey);
+  --surface-mid:  var(--silver);
+  --surface-light:var(--soft-linen);
+  --border:       var(--silver);
+  --text:         var(--ink);
+  --text-dim:     var(--dim-grey);
+  --text-muted:   var(--silver);
 }
 
 * { box-sizing: border-box; }
@@ -38,12 +38,12 @@ body { margin: 0; min-height: 100vh; }
 }
 
 .placeholder {
-  background: rgba(255,255,255,0.04);
-  border: 1px dashed rgba(255,255,255,0.08);
+  background: rgba(0,0,0,0.06);
+  border: 1px dashed rgba(0,0,0,0.12);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: rgba(255,255,255,0.15);
+  color: rgba(0,0,0,0.2);
   font-size: 0.65rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
