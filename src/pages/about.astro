@@ -1,0 +1,188 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+<BaseLayout
+  title="About — Brian Thompson, Senior Product Designer"
+  description="The convergence of Experience Design, Agent Behavior Design, Systems Architecture, and Rapid Prototyping defines a new kind of practitioner. This is how I think about design."
+>
+
+  <!-- Hero -->
+  <section style="padding:120px 40px 80px; max-width:800px; margin:0 auto;">
+
+    <p style="font-size:11px; letter-spacing:0.18em; text-transform:uppercase;
+       color:var(--silver); margin:0 0 24px; font-family:'Inter',sans-serif;">About</p>
+
+    <h1 class="font-display" style="font-size:clamp(2.6rem,5.5vw,4.8rem);
+       color:var(--dark-warm); line-height:1.05; margin:0 0 40px; max-width:680px;">
+      I design systems that help people think better.
+    </h1>
+
+    <p style="font-size:1.1rem; line-height:1.8; color:var(--dim-grey); max-width:620px;
+       font-family:'Inter',sans-serif; margin:0 0 20px;">
+      I'm a Senior Product Designer at Salesforce Financial Services Cloud, where I lead
+      AI product design for wealth advisors, bankers, and financial institutions navigating
+      some of the most complex, regulated workflows in the world. The work happens at the edge
+      of what AI can do today — and what people are ready to trust.
+    </p>
+
+    <p style="font-size:1.1rem; line-height:1.8; color:var(--dim-grey); max-width:620px;
+       font-family:'Inter',sans-serif; margin:0;">
+      Before Salesforce: I designed for Bank of America, Google, Crunchyroll, Apple, and Audi.
+      Each project was a different version of the same question — how do you make a complex
+      system feel navigable to the person inside it?
+    </p>
+
+  </section>
+
+  <!-- Philosophy -->
+  <section style="background:var(--soft-linen); padding:80px 40px;">
+    <div style="max-width:800px; margin:0 auto;">
+
+      <p style="font-size:11px; letter-spacing:0.18em; text-transform:uppercase;
+         color:var(--silver); margin:0 0 56px; font-family:'Inter',sans-serif;">
+        Design Philosophy
+      </p>
+
+      {[
+        ["AI systems should be understandable before they are powerful.",
+         "Capability without legibility is a liability. Before shipping power, ship clarity."],
+        ["Trust emerges from legibility, not persuasion.",
+         "You cannot convince someone to trust a system. You can only make the system worth trusting."],
+        ["Designing for AI requires shaping systems and behaviors, not just interfaces.",
+         "The interface is the last 10%. The interaction model, the data contract, the error state — those are the design."],
+        ["The goal is not automation, but better human judgment.",
+         "The measure of a good AI system isn't how much it replaces. It's how much better the person at the center makes decisions."],
+      ].map(([principle, commentary]) => (
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:48px;
+                    padding:36px 0; border-top:1px solid var(--silver);">
+          <p class="font-display" style="font-size:1.25rem; color:var(--dark-warm);
+             line-height:1.35; margin:0;">
+            {principle}
+          </p>
+          <p style="font-size:0.95rem; line-height:1.75; color:var(--dim-grey);
+             margin:0; font-family:'Inter',sans-serif; padding-top:4px;">
+            {commentary}
+          </p>
+        </div>
+      ))}
+
+    </div>
+  </section>
+
+  <!-- Convergence thesis -->
+  <section style="padding:80px 40px; max-width:800px; margin:0 auto;">
+
+    <p style="font-size:11px; letter-spacing:0.18em; text-transform:uppercase;
+       color:var(--silver); margin:0 0 32px; font-family:'Inter',sans-serif;">
+      Where the work lives
+    </p>
+
+    <p class="font-display" style="font-size:1.7rem; color:var(--dark-warm);
+       line-height:1.25; margin:0 0 40px; max-width:620px;">
+      The most interesting design problems of the next decade sit at the intersection of
+      four disciplines that have never really talked to each other.
+    </p>
+
+    <div style="display:grid; grid-template-columns:repeat(2,1fr); gap:2px;
+                margin:0 0 48px; background:var(--silver);">
+      {[
+        ["Experience Design",     "How people encounter, navigate, and make sense of systems"],
+        ["Agent Behavior Design", "How AI systems are prompted, constrained, and evaluated"],
+        ["Systems Architecture",  "How data, state, and logic connect across surfaces"],
+        ["Rapid Prototyping",     "How ideas become testable things fast enough to matter"],
+      ].map(([name, desc]) => (
+        <div style="background:var(--cream); padding:32px;">
+          <p class="font-display" style="font-size:1.05rem; color:var(--dark-warm);
+             margin:0 0 10px; line-height:1.2;">{name}</p>
+          <p style="font-size:0.9rem; line-height:1.65; color:var(--dim-grey);
+             margin:0; font-family:'Inter',sans-serif;">{desc}</p>
+        </div>
+      ))}
+    </div>
+
+    <p style="font-size:1.05rem; line-height:1.8; color:var(--dim-grey); max-width:620px;
+       font-family:'Inter',sans-serif; margin:0;">
+      I think of myself as a practitioner at that intersection — which means being in the
+      room when the model behavior is defined, when the data contract is written, when the
+      error state is considered. The screen is where the system becomes visible.
+      It's rarely where the real design decisions happen.
+    </p>
+
+  </section>
+
+  <!-- The thread -->
+  <section style="background:var(--soft-linen); padding:80px 40px;">
+    <div style="max-width:800px; margin:0 auto;">
+
+      <p style="font-size:11px; letter-spacing:0.18em; text-transform:uppercase;
+         color:var(--silver); margin:0 0 32px; font-family:'Inter',sans-serif;">
+        The thread
+      </p>
+
+      <p style="font-size:1.05rem; line-height:1.85; color:var(--dim-grey); max-width:660px;
+         font-family:'Inter',sans-serif; margin:0 0 24px;">
+        Every project in this portfolio is about the same underlying problem: how do you give
+        someone the right information, at the right moment, in a form they can actually act on?
+        At Dreamforce, that was 170,000 people and 3,500 sessions. At Audi, a configurator with
+        400+ option combinations. At Bank of America, a loan application with 27 entry points.
+        At Salesforce today, it's a wealth advisor managing 87 active client relationships while
+        an AI system surfaces what matters most.
+      </p>
+
+      <p class="font-display" style="font-size:1.3rem; color:var(--dark-warm); margin:0;
+         line-height:1.4;">
+        The problem scales. The discipline stays the same.
+      </p>
+
+    </div>
+  </section>
+
+  <!-- Tools -->
+  <section style="padding:80px 40px; max-width:800px; margin:0 auto;">
+
+    <p style="font-size:11px; letter-spacing:0.18em; text-transform:uppercase;
+       color:var(--silver); margin:0 0 32px; font-family:'Inter',sans-serif;">
+      Tools &amp; Methods
+    </p>
+
+    <div style="display:flex; flex-wrap:wrap; gap:10px; margin:0 0 48px;">
+      {[
+        "Figma (advanced prototyping)","Prompt design","Conversational flow design",
+        "Rapid validation","Systems mapping","Research synthesis",
+        "Agent behavior design","AI interaction modeling",
+      ].map(t => (
+        <span style="font-size:13px; font-family:'Inter',sans-serif; color:var(--dim-grey);
+               background:var(--soft-linen); padding:8px 18px; border-radius:100px;
+               border:1px solid var(--silver);">{t}</span>
+      ))}
+    </div>
+
+    <p class="font-display" style="font-size:1.05rem; color:var(--silver); line-height:1.5;
+       margin:0; font-style:italic;">
+      A whiteboard, markers, a No.&nbsp;2 pencil with eraser, and my mind.
+    </p>
+
+  </section>
+
+  <!-- CTA -->
+  <section style="padding:60px 40px 120px; text-align:center;">
+    <div style="display:flex; align-items:center; justify-content:center; gap:24px; flex-wrap:wrap;">
+      <a href="/resume" class="font-display"
+         style="font-size:1rem; color:var(--dark-warm); text-decoration:none;
+                border:1px solid var(--dark-warm); padding:14px 32px; border-radius:100px;
+                transition:all 0.2s;"
+         onmouseover="this.style.background='var(--dark-warm)';this.style.color='var(--cream)'"
+         onmouseout="this.style.background='transparent';this.style.color='var(--dark-warm)'">
+        View Resume
+      </a>
+      <a href="/" class="font-display"
+         style="font-size:1rem; color:var(--dim-grey); text-decoration:none; padding:14px 32px;
+                transition:color 0.2s;"
+         onmouseover="this.style.color='var(--dark-warm)'"
+         onmouseout="this.style.color='var(--dim-grey)'">
+        See the Work →
+      </a>
+    </div>
+  </section>
+
+</BaseLayout>
