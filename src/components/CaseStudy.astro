@@ -293,6 +293,20 @@ const {
       });
     });
   </script>
+
+  <script is:inline>
+    document.addEventListener('DOMContentLoaded', function() {
+      document.querySelectorAll('.takeaway-text').forEach(function(el) {
+        var text = el.textContent || '';
+        var m = text.match(/^([^.!?]*[.!?])(\s*)([\s\S]*)/);
+        if (m && m[3].trim()) {
+          el.innerHTML = '<strong>' + m[1] + '</strong>' + m[2] + m[3];
+        } else if (m) {
+          el.innerHTML = '<strong>' + m[1] + '</strong>';
+        }
+      });
+    });
+  </script>
 </body>
 </html>
 
