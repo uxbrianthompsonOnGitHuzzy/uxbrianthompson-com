@@ -38,16 +38,16 @@ import Nav from '../components/Nav.astro';
 
       <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(120px, 1fr)); gap:10px;">
         {[
-          { title: 'Run My Day',            href: '/run-my-day' },
-          { title: 'Meeting 360',           href: '/meeting-360' },
-          { title: 'Performance Analytics', href: '/performance-analytics' },
-          { title: 'Advisor Anywhere',      href: '/advisor-anywhere' },
-          { title: 'Integration Hub',       href: '/integration-hub' },
+          { title: 'Run My Day',            href: '/run-my-day', imgNum: 13 },
+          { title: 'Meeting 360',           href: '/meeting-360', imgNum: 19 },
+          { title: 'Performance Analytics', href: '/performance-analytics', imgNum: 25 },
+          { title: 'Advisor Anywhere',      href: '/advisor-anywhere', imgNum: 31 },
+          { title: 'Integration Hub',       href: '/integration-hub', imgNum: 37 },
         ].map(exp => (
           <a href={exp.href} style="display:block; background:var(--silver); border-radius:12px; text-decoration:none; transition:transform 0.2s;"
              onmouseover="this.style.transform='translateY(-3px)'" onmouseout="this.style.transform='translateY(0)'">
             <div style="padding:12px; display:flex; flex-direction:column; gap:10px;">
-              <div class="placeholder" style="width:100%; aspect-ratio:16/9; border-radius:8px; height:auto; font-size:0;">img</div>
+              <div class="placeholder" style="position:relative; width:100%; aspect-ratio:16/9; border-radius:8px; height:auto;"><span style="position:absolute;bottom:8px;right:10px;font-size:13px;font-weight:700;color:#fff;background:#cc00cc;padding:2px 8px;border-radius:3px;pointer-events:none;z-index:2;">{exp.imgNum}</span></div>
               <span class="font-display" style="color:var(--dark-warm); font-size:12px; line-height:1.15;">{exp.title}</span>
             </div>
           </a>
@@ -62,8 +62,8 @@ import Nav from '../components/Nav.astro';
 
       <a href="/wealth-agents" style="display:block; background:var(--silver); border-radius:16px; text-decoration:none; transition:transform 0.3s;"
          onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='translateY(0)'">
-        <div<span style="position:absolute;bottom:8px;right:10px;font-size:13px;font-weight:700;color:#fff;background:#cc00cc;padding:2px 8px;border-radius:3px;pointer-events:none;z-index:2;">43</span> style="padding:28px; display:flex; flex-direction:column; gap:20px;">
-          <div class="placeholder" style="width:100%; aspect-ratio:16/9; border-radius:10px; height:auto; font-size:0;">img</div>
+        <div style="padding:28px; display:flex; flex-direction:column; gap:20px;">
+          <div class="placeholder" style="position:relative; width:100%; aspect-ratio:16/9; border-radius:10px; height:auto;"><span style="position:absolute;bottom:8px;right:10px;font-size:13px;font-weight:700;color:#fff;background:#cc00cc;padding:2px 8px;border-radius:3px;pointer-events:none;z-index:2;">43</span></div>
           <div>
             <h3 class="font-display" style="font-size:2rem; color:var(--dim-grey); margin:0 0 4px; line-height:1.05;">Wealth Agents</h3>
             <p style="font-size:12px; color:rgba(58,56,53,0.4); margin:0; font-family:'Inter',sans-serif;">Salesforce</p>
@@ -73,8 +73,8 @@ import Nav from '../components/Nav.astro';
 
       <a href="/systems-design" style="display:block; background:var(--silver); border-radius:16px; text-decoration:none; transition:transform 0.3s;"
          onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='translateY(0)'">
-        <div<span style="position:absolute;bottom:8px;right:10px;font-size:13px;font-weight:700;color:#fff;background:#cc00cc;padding:2px 8px;border-radius:3px;pointer-events:none;z-index:2;">49</span> style="padding:28px; display:flex; flex-direction:column; gap:20px;">
-          <div class="placeholder" style="width:100%; aspect-ratio:16/9; border-radius:10px; height:auto; font-size:0;">img</div>
+        <div style="padding:28px; display:flex; flex-direction:column; gap:20px;">
+          <div class="placeholder" style="position:relative; width:100%; aspect-ratio:16/9; border-radius:10px; height:auto;"><span style="position:absolute;bottom:8px;right:10px;font-size:13px;font-weight:700;color:#fff;background:#cc00cc;padding:2px 8px;border-radius:3px;pointer-events:none;z-index:2;">49</span></div>
           <div>
             <h3 class="font-display" style="font-size:2rem; color:var(--dim-grey); margin:0 0 4px; line-height:1.05;">Systems Design</h3>
             <p style="font-size:12px; color:rgba(58,56,53,0.4); margin:0; font-family:'Inter',sans-serif;">Salesforce</p>
@@ -84,8 +84,8 @@ import Nav from '../components/Nav.astro';
 
       <a href="/xfn-alignment" style="display:block; background:var(--silver); border-radius:16px; text-decoration:none; transition:transform 0.3s;"
          onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='translateY(0)'">
-        <div<span style="position:absolute;bottom:8px;right:10px;font-size:13px;font-weight:700;color:#fff;background:#cc00cc;padding:2px 8px;border-radius:3px;pointer-events:none;z-index:2;">55</span> style="padding:28px; display:flex; flex-direction:column; gap:20px;">
-          <div class="placeholder" style="width:100%; aspect-ratio:16/9; border-radius:10px; height:auto; font-size:0;">img</div>
+        <div style="padding:28px; display:flex; flex-direction:column; gap:20px;">
+          <div class="placeholder" style="position:relative; width:100%; aspect-ratio:16/9; border-radius:10px; height:auto;"><span style="position:absolute;bottom:8px;right:10px;font-size:13px;font-weight:700;color:#fff;background:#cc00cc;padding:2px 8px;border-radius:3px;pointer-events:none;z-index:2;">55</span></div>
           <div>
             <h3 class="font-display" style="font-size:2rem; color:var(--dim-grey); margin:0 0 4px; line-height:1.05;">XFN Alignment</h3>
             <p style="font-size:12px; color:rgba(58,56,53,0.4); margin:0; font-family:'Inter',sans-serif;">Salesforce</p>
@@ -100,8 +100,8 @@ import Nav from '../components/Nav.astro';
     <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:12px; margin-bottom:80px;">
       <a href="/bank-of-america" style="display:block; background:var(--silver); border-radius:16px; text-decoration:none; transition:transform 0.3s;"
          onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='translateY(0)'">
-        <div<span style="position:absolute;bottom:8px;right:10px;font-size:13px;font-weight:700;color:#fff;background:#cc00cc;padding:2px 8px;border-radius:3px;pointer-events:none;z-index:2;">61</span> style="padding:28px; display:flex; flex-direction:column; gap:20px;">
-          <div class="placeholder" style="width:100%; aspect-ratio:16/9; border-radius:10px; height:auto; font-size:0;">logo</div>
+        <div style="padding:28px; display:flex; flex-direction:column; gap:20px;">
+          <div class="placeholder" style="position:relative; width:100%; aspect-ratio:16/9; border-radius:10px; height:auto;"><span style="position:absolute;bottom:8px;right:10px;font-size:13px;font-weight:700;color:#fff;background:#cc00cc;padding:2px 8px;border-radius:3px;pointer-events:none;z-index:2;">{item.imgNum}</span></div>
           <div>
             <h3 class="font-display" style="font-size:2rem; color:var(--dim-grey); margin:0 0 4px; line-height:1.05;">Bank of America</h3>
             <p style="font-size:12px; color:rgba(58,56,53,0.4); margin:0; font-family:'Inter',sans-serif;">Lending</p>
@@ -110,8 +110,8 @@ import Nav from '../components/Nav.astro';
       </a>
       <a href="/google" style="display:block; background:var(--silver); border-radius:16px; text-decoration:none; transition:transform 0.3s;"
          onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='translateY(0)'">
-        <div<span style="position:absolute;bottom:8px;right:10px;font-size:13px;font-weight:700;color:#fff;background:#cc00cc;padding:2px 8px;border-radius:3px;pointer-events:none;z-index:2;">67</span> style="padding:28px; display:flex; flex-direction:column; gap:20px;">
-          <div class="placeholder" style="width:100%; aspect-ratio:16/9; border-radius:10px; height:auto; font-size:0;">logo</div>
+        <div style="padding:28px; display:flex; flex-direction:column; gap:20px;">
+          <div class="placeholder" style="position:relative; width:100%; aspect-ratio:16/9; border-radius:10px; height:auto;"><span style="position:absolute;bottom:8px;right:10px;font-size:13px;font-weight:700;color:#fff;background:#cc00cc;padding:2px 8px;border-radius:3px;pointer-events:none;z-index:2;">{item.imgNum}</span></div>
           <div>
             <h3 class="font-display" style="font-size:2rem; color:var(--dim-grey); margin:0 0 4px; line-height:1.05;">Google</h3>
             <p style="font-size:12px; color:rgba(58,56,53,0.4); margin:0; font-family:'Inter',sans-serif;">Pixel Hardware</p>
@@ -124,15 +124,15 @@ import Nav from '../components/Nav.astro';
     <p style="font-size:10px; letter-spacing:0.18em; text-transform:uppercase; color:var(--silver); margin:0 0 16px; font-family:'Inter',sans-serif;">The Vault</p>
     <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:12px;">
       {[
-        { label: 'Crunchyroll', href: '/funimation',  role: 'FunimationCon' },
-        { label: 'Apple',       href: '/apple',        role: 'Apple Watch' },
-        { label: 'Audi',        href: '/audi',         role: 'AudiUSA.com' },
-        { label: 'Dreamforce', href: '/dreamforce',  role: 'Dreamforce · 2016–2018' },
+        { label: 'Crunchyroll', href: '/funimation',  role: 'FunimationCon', imgNum: 73 },
+        { label: 'Apple',       href: '/apple',        role: 'Apple Watch', imgNum: 79 },
+        { label: 'Audi',        href: '/audi',         role: 'AudiUSA.com', imgNum: 85 },
+        { label: 'Dreamforce', href: '/dreamforce',  role: 'Dreamforce · 2016–2018', imgNum: 91 },
       ].map(item => (
         <a href={item.href} style="display:block; background:var(--soft-linen); border-radius:14px; text-decoration:none; transition:transform 0.3s;"
            onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='translateY(0)'">
           <div style="padding:24px; display:flex; flex-direction:column; gap:16px;">
-            <div class="placeholder" style="width:100%; aspect-ratio:16/9; border-radius:8px; height:auto; font-size:0;">logo</div>
+            <div class="placeholder" style="position:relative; width:100%; aspect-ratio:16/9; border-radius:8px; height:auto;"><span style="position:absolute;bottom:8px;right:10px;font-size:13px;font-weight:700;color:#fff;background:#cc00cc;padding:2px 8px;border-radius:3px;pointer-events:none;z-index:2;">{item.imgNum}</span></div>
             <div>
               <h3 class="font-display" style="font-size:1.6rem; color:var(--silver); margin:0 0 4px; line-height:1;">{item.label}</h3>
               <p style="font-size:11px; color:var(--silver); margin:0; font-family:'Inter',sans-serif; opacity:0.7;">{item.role}</p>
