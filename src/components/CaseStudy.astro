@@ -43,7 +43,7 @@ const {
   <Nav />
 
   <!-- HERO -->
-  <section style="max-width:1100px; margin:0 auto; padding:80px 48px 48px;">
+  <section style="padding:80px 48px 48px;">
     <p style="font-size:10px; letter-spacing:0.18em; text-transform:uppercase; color:var(--silver); margin:0 0 16px; font-family:'Inter',sans-serif;">{eyebrow}</p>
     <h1 class="font-display" style="font-size:clamp(3rem,8vw,6.5rem); color:var(--ink); margin:0 0 32px; line-height:1; text-transform:uppercase;">{title}</h1>
     <div style="display:flex; gap:48px; margin-bottom:32px; border-top:1px solid var(--soft-linen); padding-top:24px;">
@@ -62,11 +62,11 @@ const {
   </section>
 
   <!-- HERO IMAGE -->
-  <div style="max-width:1100px; margin:0 auto; padding:0 48px 80px;">
+  <div style="padding:0 48px 80px;">
     {images && images[0] ? (
       <div style="width:100%; aspect-ratio:16/9; overflow:hidden; border-radius:12px;">
         <img src={images[0]} class="lb"
-             style="width:100%; height:100%; object-fit:cover; object-position:top; display:block; cursor:zoom-in;" />
+             style="width:100%; height:100%; object-fit:cover; object-position:top left; display:block; cursor:zoom-in;" />
       </div>
     ) : (
       <div style="width:100%; aspect-ratio:16/9; background:rgba(80,78,75,0.06); border:1px dashed var(--silver); border-radius:12px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px;">
@@ -79,7 +79,7 @@ const {
   <!-- IMPACT -->
   {bullets.length > 0 && (
     <section style="background:var(--soft-linen); padding:64px 48px;">
-      <div style="max-width:1100px; margin:0 auto;">
+      <div style="">
         <p style="font-size:10px; letter-spacing:0.18em; text-transform:uppercase; color:var(--silver); margin:0 0 32px; font-family:'Inter',sans-serif;">Impact</p>
         <ul style="list-style:none; padding:0; margin:0; display:grid; grid-template-columns:1fr 1fr; gap:24px;">
           {bullets.map(b => (
@@ -93,11 +93,11 @@ const {
   <!-- SECTION 1: image left, text right -->
   {sections.length > 0 && (
     <section style="padding:80px 48px;">
-      <div style="max-width:1100px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:center;">
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:center;">
         {images && images[1] ? (
           <div style="aspect-ratio:3/2; overflow:hidden; border-radius:12px;">
             <img src={images[1]} class="lb"
-                 style="width:100%; height:100%; object-fit:cover; object-position:top; display:block; cursor:zoom-in;" />
+                 style="width:100%; height:100%; object-fit:cover; object-position:top left; display:block; cursor:zoom-in;" />
           </div>
         ) : (
           <div class="lb" style="aspect-ratio:3/2; background:rgba(80,78,75,0.06); border:1px dashed var(--silver); border-radius:12px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px; padding:16px; text-align:center; cursor:zoom-in;">
@@ -116,7 +116,7 @@ const {
   <!-- SECTION 2: text left, image right -->
   {sections.length > 1 && (
     <section style="background:var(--soft-linen); padding:80px 48px;">
-      <div style="max-width:1100px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:center;">
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:center;">
         <div>
           <h2 class="font-display" style="font-size:clamp(1.6rem,2.5vw,2.4rem); color:var(--ink); margin:0 0 20px; line-height:1.1; text-transform:uppercase;">{sections[1].heading}</h2>
           <p style="font-size:1rem; line-height:1.75; color:var(--dim-grey); margin:0; font-family:'Inter',sans-serif;">{sections[1].body}</p>
@@ -124,7 +124,7 @@ const {
         {images && images[2] ? (
           <div style="aspect-ratio:3/2; overflow:hidden; border-radius:12px;">
             <img src={images[2]} class="lb"
-                 style="width:100%; height:100%; object-fit:cover; object-position:top; display:block; cursor:zoom-in;" />
+                 style="width:100%; height:100%; object-fit:cover; object-position:top left; display:block; cursor:zoom-in;" />
           </div>
         ) : (
           <div class="lb" style="aspect-ratio:3/2; background:rgba(80,78,75,0.06); border:1px dashed var(--silver); border-radius:12px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px; padding:16px; text-align:center; cursor:zoom-in;">
@@ -139,11 +139,11 @@ const {
   <!-- SECTION 3: image left, text right -->
   {sections.length > 2 && (
     <section style="padding:80px 48px;">
-      <div style="max-width:1100px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:center;">
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:center;">
         {images && images[3] ? (
           <div style="aspect-ratio:3/2; overflow:hidden; border-radius:12px;">
             <img src={images[3]} class="lb"
-                 style="width:100%; height:100%; object-fit:cover; object-position:top; display:block; cursor:zoom-in;" />
+                 style="width:100%; height:100%; object-fit:cover; object-position:top left; display:block; cursor:zoom-in;" />
           </div>
         ) : (
           <div class="lb" style="aspect-ratio:3/2; background:rgba(80,78,75,0.06); border:1px dashed var(--silver); border-radius:12px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px; padding:16px; text-align:center; cursor:zoom-in;">
@@ -162,12 +162,12 @@ const {
   <!-- TAKEAWAYS -->
   {takeaways.length > 0 && (
     <section style="background:var(--soft-linen); padding:80px 48px;">
-      <div style="max-width:1100px; margin:0 auto;">
+      <div style="">
         <p style="font-size:10px; letter-spacing:0.18em; text-transform:uppercase; color:var(--silver); margin:0 0 40px; font-family:'Inter',sans-serif;">Key Takeaways</p>
         <div style="display:grid; grid-template-columns:1fr 1fr; gap:24px;">
           {takeaways.map(t => (
             <div style="padding:28px; background:var(--parchment); border-radius:12px;">
-              <p style="font-size:0.95rem; line-height:1.7; color:var(--dim-grey); margin:0; font-family:'Inter',sans-serif;">{t}</p>
+              <p class="takeaway-text" style="font-size:0.95rem; line-height:1.7; color:var(--dim-grey); margin:0; font-family:'Inter',sans-serif;">{t}</p>
             </div>
           ))}
         </div>
@@ -177,11 +177,11 @@ const {
 
   <!-- GALLERY -->
   <section style="padding:80px 48px;">
-    <div style="max-width:1100px; margin:0 auto; display:grid; grid-template-columns:2fr 1fr; gap:16px; align-items:stretch;">
+    <div style="display:grid; grid-template-columns:2fr 1fr; gap:16px; align-items:start;">
       {images && images[4] ? (
         <div style="aspect-ratio:16/9; overflow:hidden; border-radius:12px;">
           <img src={images[4]} class="lb"
-               style="width:100%; height:100%; object-fit:cover; object-position:top; display:block; cursor:zoom-in;" />
+               style="width:100%; height:100%; object-fit:cover; object-position:top left; display:block; cursor:zoom-in;" />
         </div>
       ) : (
         <div class="lb" style="aspect-ratio:16/9; background:rgba(80,78,75,0.06); border:1px dashed var(--silver); border-radius:12px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px; cursor:zoom-in;">
@@ -203,7 +203,7 @@ const {
 
   <!-- SEE MORE WORK -->
   <section style="padding:0 48px 80px;">
-    <div style="max-width:1100px; margin:0 auto;">
+    <div style="">
       <p style="font-size:10px; letter-spacing:0.18em; text-transform:uppercase; color:var(--silver); margin:0 0 24px; font-family:'Inter',sans-serif;">See More Work</p>
       <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
         <a href={prevCase.href} style="display:block; background:var(--soft-linen); border-radius:14px; padding:28px; text-decoration:none; transition:transform 0.2s;" onmouseover="this.style.transform='translateY(-3px)'" onmouseout="this.style.transform='translateY(0)'">
@@ -279,6 +279,20 @@ const {
     });
   </script>
 
+
+  <script is:inline>
+    document.addEventListener('DOMContentLoaded', function() {
+      document.querySelectorAll('.takeaway-text').forEach(function(el) {
+        var text = el.textContent || '';
+        var m = text.match(/^([^.!?]*[.!?])(\s*)([\s\S]*)/);
+        if (m && m[3].trim()) {
+          el.innerHTML = '<strong>' + m[1] + '</strong>' + m[2] + m[3];
+        } else if (m) {
+          el.innerHTML = '<strong>' + m[1] + '</strong>';
+        }
+      });
+    });
+  </script>
 </body>
 </html>
 
