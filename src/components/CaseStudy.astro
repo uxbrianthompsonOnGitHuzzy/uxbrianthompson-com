@@ -85,7 +85,7 @@ const {
   {sections.length > 0 && (
     <section style="padding:80px 48px;">
       <div style="max-width:1100px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:center;">
-        <div style="aspect-ratio:3/2; background:rgba(80,78,75,0.06); border:1px dashed var(--silver); border-radius:12px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px; padding:16px; text-align:center;">
+        <div class="lb" style="aspect-ratio:3/2; background:rgba(80,78,75,0.06); border:1px dashed var(--silver); border-radius:12px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px; padding:16px; text-align:center; cursor:zoom-in;">
           <p style="font-size:12px; font-weight:700; color:#cc00cc; font-family:'Inter',sans-serif; margin:0;">{imageStart + 1}. Section 1</p>
           <p style="font-size:10px; color:var(--silver); font-family:'Inter',sans-serif; margin:0; letter-spacing:0.12em; text-transform:uppercase;">Figma Export</p>
         </div>
@@ -105,7 +105,7 @@ const {
           <h2 class="font-display" style="font-size:clamp(1.6rem,2.5vw,2.4rem); color:var(--ink); margin:0 0 20px; line-height:1.1; text-transform:uppercase;">{sections[1].heading}</h2>
           <p style="font-size:1rem; line-height:1.75; color:var(--dim-grey); margin:0; font-family:'Inter',sans-serif;">{sections[1].body}</p>
         </div>
-        <div style="aspect-ratio:3/2; background:rgba(80,78,75,0.06); border:1px dashed var(--silver); border-radius:12px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px; padding:16px; text-align:center;">
+        <div class="lb" style="aspect-ratio:3/2; background:rgba(80,78,75,0.06); border:1px dashed var(--silver); border-radius:12px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px; padding:16px; text-align:center; cursor:zoom-in;">
           <p style="font-size:12px; font-weight:700; color:#cc00cc; font-family:'Inter',sans-serif; margin:0;">{imageStart + 2}. Section 2</p>
           <p style="font-size:10px; color:var(--silver); font-family:'Inter',sans-serif; margin:0; letter-spacing:0.12em; text-transform:uppercase;">Figma Export</p>
         </div>
@@ -117,7 +117,7 @@ const {
   {sections.length > 2 && (
     <section style="padding:80px 48px;">
       <div style="max-width:1100px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:center;">
-        <div style="aspect-ratio:3/2; background:rgba(80,78,75,0.06); border:1px dashed var(--silver); border-radius:12px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px; padding:16px; text-align:center;">
+        <div class="lb" style="aspect-ratio:3/2; background:rgba(80,78,75,0.06); border:1px dashed var(--silver); border-radius:12px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px; padding:16px; text-align:center; cursor:zoom-in;">
           <p style="font-size:12px; font-weight:700; color:#cc00cc; font-family:'Inter',sans-serif; margin:0;">{imageStart + 3}. Section 3</p>
           <p style="font-size:10px; color:var(--silver); font-family:'Inter',sans-serif; margin:0; letter-spacing:0.12em; text-transform:uppercase;">Figma Export</p>
         </div>
@@ -147,12 +147,12 @@ const {
 
   <!-- GALLERY -->
   <section style="padding:80px 48px;">
-    <div style="max-width:1100px; margin:0 auto; display:grid; grid-template-columns:2fr 1fr; gap:16px;">
-      <div style="aspect-ratio:16/9; background:rgba(80,78,75,0.06); border:1px dashed var(--silver); border-radius:12px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px;">
+    <div style="max-width:1100px; margin:0 auto; display:grid; grid-template-columns:2fr 1fr; gap:16px; align-items:stretch;">
+      <div class="lb" style="aspect-ratio:16/9; background:rgba(80,78,75,0.06); border:1px dashed var(--silver); border-radius:12px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px; cursor:zoom-in;">
         <p style="font-size:12px; font-weight:700; color:#cc00cc; font-family:'Inter',sans-serif; margin:0;">{imageStart + 4}. Gallery — Wide</p>
         <p style="font-size:10px; color:var(--silver); font-family:'Inter',sans-serif; margin:0; letter-spacing:0.12em; text-transform:uppercase;">Figma Export</p>
       </div>
-      <div style="aspect-ratio:4/3; background:rgba(80,78,75,0.06); border:1px dashed var(--silver); border-radius:12px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px;">
+      <div class="lb" style="background:rgba(80,78,75,0.06); border:1px dashed var(--silver); border-radius:12px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px; cursor:zoom-in;">
         <p style="font-size:12px; font-weight:700; color:#cc00cc; font-family:'Inter',sans-serif; margin:0;">{imageStart + 5}. Gallery — Detail</p>
         <p style="font-size:10px; color:var(--silver); font-family:'Inter',sans-serif; margin:0; letter-spacing:0.12em; text-transform:uppercase;">Figma Export</p>
       </div>
@@ -190,6 +190,29 @@ const {
       </a>
     </div>
   </footer>
+
+  <!-- LIGHTBOX -->
+  <div id="lb-overlay" style="display:none; position:fixed; inset:0; background:rgba(20,18,16,0.92); z-index:9999; align-items:center; justify-content:center; cursor:zoom-out;" onclick="this.style.display='none'">
+    <div style="max-width:88vw; max-height:88vh; background:rgba(80,78,75,0.1); border:1px dashed rgba(184,181,176,0.4); border-radius:16px; padding:48px 56px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:14px; min-width:55vw; min-height:38vh;">
+      <p id="lb-label" style="font-size:15px; font-weight:700; color:#cc00cc; font-family:'Inter',sans-serif; margin:0; text-align:center;"></p>
+      <p style="font-size:10px; color:rgba(184,181,176,0.6); font-family:'Inter',sans-serif; margin:0; letter-spacing:0.16em; text-transform:uppercase;">Figma export placeholder · click to close</p>
+    </div>
+  </div>
+
+  <script is:inline>
+    document.querySelectorAll('.lb').forEach(function(el) {
+      el.addEventListener('click', function(e) {
+        e.stopPropagation();
+        var label = el.querySelector('p') ? el.querySelector('p').textContent : '';
+        document.getElementById('lb-label').textContent = label;
+        document.getElementById('lb-overlay').style.display = 'flex';
+      });
+    });
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') document.getElementById('lb-overlay').style.display = 'none';
+    });
+  </script>
+
 </body>
 </html>
 
