@@ -14,6 +14,7 @@ interface Props {
   sections?: CaseSection[];
   takeaways?: string[];
   imageStart?: number;
+  images?: string[];
   prevCase: PrevNext;
   nextCase: PrevNext;
 }
@@ -85,10 +86,29 @@ const {
   {sections.length > 0 && (
     <section style="padding:80px 48px;">
       <div style="max-width:1100px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:center;">
+        {images[1] ? (
+        <div style="aspect-ratio:3/2; overflow:hidden; border-radius:12px;">
+          <img src={images[1]} class="lb"
+               style="width:100%; height:100%; object-fit:cover; object-position:top; display:block; cursor:zoom-in;" />
+        </div>
+      ) : (
+        {images[2] ? (
+        <div style="aspect-ratio:3/2; overflow:hidden; border-radius:12px;">
+          <img src={images[2]} class="lb"
+               style="width:100%; height:100%; object-fit:cover; object-position:top; display:block; cursor:zoom-in;" />
+        </div>
+      ) : (
+        {images[3] ? (
+        <div style="aspect-ratio:3/2; overflow:hidden; border-radius:12px;">
+          <img src={images[3]} class="lb"
+               style="width:100%; height:100%; object-fit:cover; object-position:top; display:block; cursor:zoom-in;" />
+        </div>
+      ) : (
         <div class="lb" style="aspect-ratio:3/2; background:rgba(80,78,75,0.06); border:1px dashed var(--silver); border-radius:12px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px; padding:16px; text-align:center; cursor:zoom-in;">
           <p style="font-size:12px; font-weight:700; color:#cc00cc; font-family:'Inter',sans-serif; margin:0;">{imageStart + 1}. Section 1</p>
           <p style="font-size:10px; color:var(--silver); font-family:'Inter',sans-serif; margin:0; letter-spacing:0.12em; text-transform:uppercase;">Figma Export</p>
         </div>
+      )}
         <div>
           <h2 class="font-display" style="font-size:clamp(1.6rem,2.5vw,2.4rem); color:var(--ink); margin:0 0 20px; line-height:1.1; text-transform:uppercase;">{sections[0].heading}</h2>
           <p style="font-size:1rem; line-height:1.75; color:var(--dim-grey); margin:0; font-family:'Inter',sans-serif;">{sections[0].body}</p>
@@ -109,6 +129,7 @@ const {
           <p style="font-size:12px; font-weight:700; color:#cc00cc; font-family:'Inter',sans-serif; margin:0;">{imageStart + 2}. Section 2</p>
           <p style="font-size:10px; color:var(--silver); font-family:'Inter',sans-serif; margin:0; letter-spacing:0.12em; text-transform:uppercase;">Figma Export</p>
         </div>
+      )}
       </div>
     </section>
   )}
@@ -121,6 +142,7 @@ const {
           <p style="font-size:12px; font-weight:700; color:#cc00cc; font-family:'Inter',sans-serif; margin:0;">{imageStart + 3}. Section 3</p>
           <p style="font-size:10px; color:var(--silver); font-family:'Inter',sans-serif; margin:0; letter-spacing:0.12em; text-transform:uppercase;">Figma Export</p>
         </div>
+      )}
         <div>
           <h2 class="font-display" style="font-size:clamp(1.6rem,2.5vw,2.4rem); color:var(--ink); margin:0 0 20px; line-height:1.1; text-transform:uppercase;">{sections[2].heading}</h2>
           <p style="font-size:1rem; line-height:1.75; color:var(--dim-grey); margin:0; font-family:'Inter',sans-serif;">{sections[2].body}</p>
@@ -149,14 +171,26 @@ const {
   <section style="padding:80px 48px;">
     <div style="max-width:1100px; margin:0 auto; display:grid; grid-template-columns:2fr 1fr;
         align-items: stretch; gap:16px; align-items:stretch;">
-      <div class="lb" style="aspect-ratio:16/9; background:rgba(80,78,75,0.06); border:1px dashed var(--silver); border-radius:12px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px; cursor:zoom-in;">
+      {images[4] ? (
+        <div style="aspect-ratio:16/9; overflow:hidden; border-radius:12px;">
+          <img src={images[4]} class="lb"
+               style="width:100%; height:100%; object-fit:cover; object-position:top; display:block; cursor:zoom-in;" />
+        </div>
+      ) : (
+        <div class="lb" style="aspect-ratio:16/9; background:rgba(80,78,75,0.06); border:1px dashed var(--silver); border-radius:12px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px; cursor:zoom-in;">
         <p style="font-size:12px; font-weight:700; color:#cc00cc; font-family:'Inter',sans-serif; margin:0;">{imageStart + 4}. Gallery — Wide</p>
         <p style="font-size:10px; color:var(--silver); font-family:'Inter',sans-serif; margin:0; letter-spacing:0.12em; text-transform:uppercase;">Figma Export</p>
       </div>
-      <div class="lb" style="background:rgba(80,78,75,0.06); border:1px dashed var(--silver); border-radius:12px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px; cursor:zoom-in;">
+      )}
+      {images?.[5] ? (
+        <img src={images[5]} class="lb"
+             style="width:100%; display:block; cursor:zoom-in; border-radius:12px;" />
+      ) : (
+        <div class="lb" style="background:rgba(80,78,75,0.06); border:1px dashed var(--silver); border-radius:12px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px; cursor:zoom-in;">
         <p style="font-size:12px; font-weight:700; color:#cc00cc; font-family:'Inter',sans-serif; margin:0;">{imageStart + 5}. Gallery — Detail</p>
         <p style="font-size:10px; color:var(--silver); font-family:'Inter',sans-serif; margin:0; letter-spacing:0.12em; text-transform:uppercase;">Figma Export</p>
       </div>
+      )}
     </div>
   </section>
 
@@ -214,40 +248,60 @@ const {
     });
   </script>
 
-  <!-- ── Lightbox ──────────────────────────────────────────────── -->
-  <div id="lb-bg" onclick="lbClose()" style="display:none;position:fixed;inset:0;
-    background:rgba(0,0,0,.88);z-index:9000;cursor:zoom-out;"></div>
-  <div id="lb-box" style="display:none;position:fixed;inset:0;z-index:9001;
-    pointer-events:none;align-items:center;justify-content:center;">
-    <div style="background:#1c1a17;color:#f5f0e8;font-family:monospace;
-      font-size:5rem;font-weight:700;padding:3rem 5rem;border-radius:12px;
-      pointer-events:auto;box-shadow:0 24px 80px rgba(0,0,0,.7);text-align:center;">
-      <div style="font-size:1rem;font-weight:400;opacity:.6;margin-bottom:.5rem;">
-        Image placeholder
+  <!-- ── Lightbox ─────────────────────────────────────────────────────────── -->
+  <div id="lb-overlay"
+       style="display:none; position:fixed; inset:0; background:rgba(0,0,0,.92);
+              z-index:9000; overflow-y:auto; cursor:zoom-out;"
+       onclick="lbClose()">
+    <div style="min-height:100%; display:flex; align-items:center;
+                justify-content:center; padding:40px 20px; box-sizing:border-box;">
+      <div id="lb-content" style="width:min(1200px,90vw); position:relative;">
+        <!-- Close hint -->
+        <p style="font-family:'Inter',sans-serif; font-size:11px; letter-spacing:0.12em;
+                  text-transform:uppercase; color:rgba(255,255,255,.35); text-align:right;
+                  margin:0 0 12px;">click anywhere or esc to close</p>
       </div>
-      <span id="lb-label"></span>
     </div>
   </div>
   <script is:inline>
-    function lbOpen(n) {
-      document.getElementById("lb-label").textContent = n;
-      document.getElementById("lb-bg").style.display  = "block";
-      var box = document.getElementById("lb-box");
-      box.style.display = "flex";
+    function lbOpen(html) {
+      var c = document.getElementById('lb-content');
+      // Keep the close hint, replace the rest
+      var hint = c.querySelector('p');
+      c.innerHTML = '';
+      if (hint) c.appendChild(hint);
+      var wrap = document.createElement('div');
+      wrap.innerHTML = html;
+      c.appendChild(wrap);
+      document.getElementById('lb-overlay').style.display = 'block';
+      document.body.style.overflow = 'hidden';
     }
     function lbClose() {
-      document.getElementById("lb-bg").style.display  = "none";
-      document.getElementById("lb-box").style.display = "none";
+      document.getElementById('lb-overlay').style.display = 'none';
+      document.body.style.overflow = '';
     }
-    document.addEventListener("keydown", function(e) {
-      if (e.key === "Escape") lbClose();
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') lbClose();
     });
-    document.addEventListener("DOMContentLoaded", function() {
-      document.querySelectorAll(".lb").forEach(function(el) {
-        el.style.cursor = "zoom-in";
-        el.addEventListener("click", function() {
-          var label = el.textContent.trim().split(/\s+/)[0] || "?";
-          lbOpen(label);
+    document.addEventListener('DOMContentLoaded', function() {
+      document.querySelectorAll('.lb').forEach(function(el) {
+        el.style.cursor = 'zoom-in';
+        el.addEventListener('click', function(e) {
+          e.stopPropagation();
+          // Check for a real image
+          var img = el.tagName === 'IMG' ? el
+                  : el.querySelector('img');
+          if (img && img.src && !img.src.endsWith('/')) {
+            lbOpen('<img src="' + img.src + '"'
+                 + ' style="width:100%; display:block; border-radius:8px;"'
+                 + ' alt="" />');
+          } else {
+            // Placeholder — show the number label
+            var label = el.innerText.trim().split('\n')[0].trim();
+            lbOpen('<div style="font-family:monospace; font-size:3.5rem; font-weight:700;'
+                 + ' color:#f5f0e8; text-align:center; padding:3rem 2rem;">'
+                 + label + '</div>');
+          }
         });
       });
     });
