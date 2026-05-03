@@ -147,7 +147,8 @@ const {
 
   <!-- GALLERY -->
   <section style="padding:80px 48px;">
-    <div style="max-width:1100px; margin:0 auto; display:grid; grid-template-columns:2fr 1fr; gap:16px; align-items:stretch;">
+    <div style="max-width:1100px; margin:0 auto; display:grid; grid-template-columns:2fr 1fr;
+        align-items: stretch; gap:16px; align-items:stretch;">
       <div class="lb" style="aspect-ratio:16/9; background:rgba(80,78,75,0.06); border:1px dashed var(--silver); border-radius:12px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px; cursor:zoom-in;">
         <p style="font-size:12px; font-weight:700; color:#cc00cc; font-family:'Inter',sans-serif; margin:0;">{imageStart + 4}. Gallery — Wide</p>
         <p style="font-size:10px; color:var(--silver); font-family:'Inter',sans-serif; margin:0; letter-spacing:0.12em; text-transform:uppercase;">Figma Export</p>
@@ -210,6 +211,45 @@ const {
     });
     document.addEventListener('keydown', function(e) {
       if (e.key === 'Escape') document.getElementById('lb-overlay').style.display = 'none';
+    });
+  </script>
+
+  <!-- ── Lightbox ──────────────────────────────────────────────── -->
+  <div id="lb-bg" onclick="lbClose()" style="display:none;position:fixed;inset:0;
+    background:rgba(0,0,0,.88);z-index:9000;cursor:zoom-out;"></div>
+  <div id="lb-box" style="display:none;position:fixed;inset:0;z-index:9001;
+    pointer-events:none;align-items:center;justify-content:center;">
+    <div style="background:#1c1a17;color:#f5f0e8;font-family:monospace;
+      font-size:5rem;font-weight:700;padding:3rem 5rem;border-radius:12px;
+      pointer-events:auto;box-shadow:0 24px 80px rgba(0,0,0,.7);text-align:center;">
+      <div style="font-size:1rem;font-weight:400;opacity:.6;margin-bottom:.5rem;">
+        Image placeholder
+      </div>
+      <span id="lb-label"></span>
+    </div>
+  </div>
+  <script is:inline>
+    function lbOpen(n) {
+      document.getElementById("lb-label").textContent = n;
+      document.getElementById("lb-bg").style.display  = "block";
+      var box = document.getElementById("lb-box");
+      box.style.display = "flex";
+    }
+    function lbClose() {
+      document.getElementById("lb-bg").style.display  = "none";
+      document.getElementById("lb-box").style.display = "none";
+    }
+    document.addEventListener("keydown", function(e) {
+      if (e.key === "Escape") lbClose();
+    });
+    document.addEventListener("DOMContentLoaded", function() {
+      document.querySelectorAll(".lb").forEach(function(el) {
+        el.style.cursor = "zoom-in";
+        el.addEventListener("click", function() {
+          var label = el.textContent.trim().split(/\s+/)[0] || "?";
+          lbOpen(label);
+        });
+      });
     });
   </script>
 
