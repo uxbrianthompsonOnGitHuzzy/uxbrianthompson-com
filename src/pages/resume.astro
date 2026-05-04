@@ -136,12 +136,13 @@ import Footer from '../components/Footer.astro';
     align-items: flex-start;
     justify-content: center;
   }
-  .employer-logo svg,
   .employer-logo img {
-    width: 48px;
-    height: 48px;
-    object-fit: contain;
-    opacity: 0.75;
+    width: auto;
+    height: auto;
+    max-width: 60px;
+    max-height: 44px;
+    opacity: 0.8;
+    display: block;
   }
 
   /* Text column — everything flows here */
@@ -210,8 +211,7 @@ import Footer from '../components/Footer.astro';
   @media (max-width: 720px) {
     .resume-page     { padding: 80px 24px 100px; }
     .employer        { grid-template-columns: 52px 1fr; gap: 0 20px; }
-    .employer-logo svg,
-    .employer-logo img { width: 36px; height: 36px; }
+    .employer-logo img { max-width: 44px; max-height: 32px; }
     .expertise-grid  { grid-template-columns: 1fr; }
     .impact-grid     { grid-template-columns: 1fr 1fr; }
     .r-header        { flex-direction: column; align-items: flex-start; gap: 24px; }
