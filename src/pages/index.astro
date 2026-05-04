@@ -8,8 +8,17 @@ import Nav from '../components/Nav.astro';
 >
   <Nav />
 
-  <section style="padding:40px 48px;">
-    <h1 class="font-display" style="font-size:clamp(3.5rem,9vw,8rem); line-height:0.93; letter-spacing:-0.01em; color:var(--text); margin:0 0 24px;">
+  <style>
+    .home-hero    { padding: 40px 48px; }
+    .home-grid    { padding: 0 48px 96px; }
+    @media (max-width: 700px) {
+      .home-hero  { padding: 28px 24px 20px; }
+      .home-grid  { padding: 0 24px 64px; }
+    }
+  </style>
+
+  <section class="home-hero">
+    <h1 class="font-display" style="font-size:clamp(3rem,9vw,8rem); line-height:0.93; letter-spacing:-0.01em; color:var(--text); margin:0 0 24px;">
       Designing the<br/>Intelligence<br/>Layer of Finance
     </h1>
     <p style="font-size:16px; color:var(--text-dim); max-width:520px; line-height:1.7; margin:0;">
@@ -18,7 +27,7 @@ import Nav from '../components/Nav.astro';
     </p>
   </section>
 
-  <section style="padding:0 48px 96px;">
+  <section class="home-grid">
 
     <!-- Featured label -->
     <p style="font-size:10px; letter-spacing:0.18em; text-transform:uppercase; color:var(--silver); margin:0 0 16px; font-family:'Inter',sans-serif;">Featured</p>
