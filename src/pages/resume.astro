@@ -3,129 +3,286 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 <BaseLayout
   title="Resume — Brian Thompson, Senior Product Designer"
-  description="Brian Thompson’s professional resume: Senior Product Designer specializing in Human–AI systems, agentic workflows, and decision intelligence. Salesforce, BofA, Google, Apple, Audi."
+  description="Brian Thompson's professional resume: Senior Product Designer specializing in Human–AI systems, agentic workflows, and decision intelligence. Salesforce, BofA, Google, Apple, Audi."
 >
 
-  <style is:global>
-    .r-section { padding:48px 0; border-top:1px solid var(--silver); }
-    .r-label   { font-size:10px; letter-spacing:0.18em; text-transform:uppercase;
-                 color:var(--silver); font-family:'Inter',sans-serif; margin:0 0 24px; }
-    .r-body    { font-size:0.95rem; line-height:1.75; color:var(--dim-grey);
-                 font-family:'Inter',sans-serif; margin:0 0 12px; }
-    .r-bullet  { font-size:0.92rem; line-height:1.7; color:var(--dim-grey);
-                 font-family:'Inter',sans-serif; margin:0 0 8px; padding-left:20px;
-                 position:relative; }
-    .r-bullet::before { content:'·'; position:absolute; left:6px; color:var(--silver); }
-    .r-co      { font-weight:700; color:var(--dark-warm); }
-    .r-role    { color:var(--dim-grey); }
-    .r-yr      { color:var(--silver); font-size:0.85rem; }
-  </style>
+<style>
+  /* ── Page shell ─────────────────────────────────────────────── */
+  .resume-page {
+    padding: 120px 48px 160px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
 
-  <div style="max-width:800px; margin:0 auto; padding:100px 40px 120px;">
+  /* ── Header ─────────────────────────────────────────────────── */
+  .r-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 32px;
+    padding-bottom: 56px;
+    border-bottom: 1px solid var(--silver);
+    flex-wrap: wrap;
+  }
+  .r-name {
+    font-size: clamp(2.4rem, 5vw, 3.6rem);
+    color: var(--dark-warm);
+    margin: 0 0 6px;
+    line-height: 1;
+  }
+  .r-title {
+    font-size: 0.9rem;
+    color: var(--dim-grey);
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    margin: 0 0 3px;
+    letter-spacing: 0.01em;
+  }
+  .r-subtitle {
+    font-size: 0.82rem;
+    color: var(--silver);
+    font-family: 'Inter', sans-serif;
+    margin: 0 0 14px;
+    letter-spacing: 0.02em;
+  }
+  .r-contact {
+    font-size: 0.82rem;
+    color: var(--dim-grey);
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+  }
+  .r-contact a {
+    color: var(--dim-grey);
+    text-decoration: none;
+    transition: color 0.18s;
+  }
+  .r-contact a:hover { color: var(--dark-warm); }
 
-    <!-- Header -->
-    <div style="display:flex; justify-content:space-between; align-items:flex-start;
-                margin:0 0 64px; gap:24px; flex-wrap:wrap;">
-      <div>
-        <h1 class="font-display" style="font-size:3rem; color:var(--dark-warm); margin:0 0 8px;">
-          Brian Thompson
-        </h1>
-        <p class="r-body" style="font-weight:600; margin:0 0 4px; color:var(--dark-warm);">
-          Senior Product Designer
-        </p>
-        <p class="r-body" style="margin:0; font-size:0.88rem;">
-          Human–AI Systems · Agentic Workflows · Decision Intelligence
-        </p>
-        <p class="r-body" style="margin:8px 0 0; font-size:0.85rem;">
-          <a href="mailto:uxbrianthompson@gmail.com"
-             style="color:var(--dim-grey); text-decoration:none;">
-            uxbrianthompson@gmail.com
-          </a>
-          &nbsp;·&nbsp;
-          <a href="https://linkedin.com/in/uxbrianthompson" target="_blank" rel="noopener"
-             style="color:var(--dim-grey); text-decoration:none;">
-            linkedin.com/in/uxbrianthompson
-          </a>
-        </p>
-      </div>
-      <a href="/Brian-Thompson-Resume.pdf" download
-         class="font-display"
-         style="font-size:0.85rem; color:var(--dark-warm); text-decoration:none;
-                border:1px solid var(--dark-warm); padding:10px 24px; border-radius:100px;
-                white-space:nowrap; transition:all 0.2s; flex-shrink:0;"
-         onmouseover="this.style.background='var(--dark-warm)';this.style.color='var(--cream)'"
-         onmouseout="this.style.background='transparent';this.style.color='var(--dark-warm)'">
-        ↓ Download PDF
-      </a>
-    </div>
+  .r-pdf-link {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.88rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--dark-warm);
+    text-decoration: none;
+    white-space: nowrap;
+    flex-shrink: 0;
+    transition: opacity 0.18s;
+    padding-bottom: 2px;
+    border-bottom: 1px solid var(--dark-warm);
+  }
+  .r-pdf-link:hover { opacity: 0.6; }
 
-    <!-- Summary -->
-    <div class="r-section">
-      <p class="r-label">Summary</p>
-      <p class="r-body">
-        Product Designer specializing in AI-native product design, with a focus on how intelligent
-        systems shape human reasoning, decision-making, and real-world outcomes.
+  /* ── Section wrapper ─────────────────────────────────────────── */
+  .r-section {
+    padding: 52px 0;
+    border-bottom: 1px solid var(--silver);
+  }
+  .r-section:last-child { border-bottom: none; }
+
+  /* ── Section label ───────────────────────────────────────────── */
+  .r-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--silver);
+    margin: 0 0 28px;
+  }
+
+  /* ── Body text / bullets ─────────────────────────────────────── */
+  .r-body {
+    font-size: 0.92rem;
+    line-height: 1.8;
+    color: var(--dim-grey);
+    font-family: 'Inter', sans-serif;
+    margin: 0 0 12px;
+  }
+  .r-body:last-child { margin: 0; }
+
+  .r-bullet {
+    font-size: 0.88rem;
+    line-height: 1.75;
+    color: var(--dim-grey);
+    font-family: 'Inter', sans-serif;
+    margin: 0 0 7px;
+    padding-left: 18px;
+    position: relative;
+  }
+  .r-bullet::before {
+    content: '·';
+    position: absolute;
+    left: 4px;
+    color: var(--silver);
+  }
+  .r-bullet:last-child { margin-bottom: 0; }
+
+  /* ── Two-column employer grid ────────────────────────────────── */
+  .employer {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 0 48px;
+    padding: 36px 0;
+    border-top: 1px solid rgba(104,103,99,0.15);
+  }
+  .employer:first-child { border-top: none; padding-top: 0; }
+
+  .employer-left {
+    padding-top: 3px;
+  }
+  .employer-co {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--dark-warm);
+    margin: 0 0 5px;
+    line-height: 1.2;
+  }
+  .employer-role {
+    font-size: 0.78rem;
+    line-height: 1.5;
+    color: var(--dim-grey);
+    font-family: 'Inter', sans-serif;
+    font-style: italic;
+    margin: 0 0 8px;
+  }
+  .employer-yr {
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    color: var(--silver);
+    font-family: 'Inter', sans-serif;
+    display: block;
+  }
+
+  /* ── Impact block ────────────────────────────────────────────── */
+  .impact-block {
+    margin: 20px 0 0;
+    padding: 20px 24px;
+    background: var(--soft-linen);
+    border-radius: 10px;
+  }
+  .impact-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--silver);
+    margin: 0 0 14px;
+  }
+  .impact-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  .impact-num {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--dark-warm);
+    margin: 0 0 4px;
+    line-height: 1;
+  }
+  .impact-desc {
+    font-size: 0.78rem;
+    line-height: 1.5;
+    color: var(--dim-grey);
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+  }
+
+  /* ── Expertise grid ──────────────────────────────────────────── */
+  .expertise-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+  }
+
+  /* ── Responsive ──────────────────────────────────────────────── */
+  @media (max-width: 720px) {
+    .resume-page  { padding: 80px 24px 100px; }
+    .employer     { grid-template-columns: 1fr; gap: 12px 0; }
+    .employer-left { padding-top: 0; }
+    .expertise-grid { grid-template-columns: 1fr; }
+    .impact-grid  { grid-template-columns: 1fr 1fr; }
+    .r-header     { flex-direction: column; align-items: flex-start; gap: 24px; }
+  }
+</style>
+
+<div class="resume-page">
+
+  <!-- ── Header ──────────────────────────────────────────────── -->
+  <header class="r-header">
+    <div>
+      <h1 class="r-name font-display">Brian Thompson</h1>
+      <p class="r-title">Senior Product Designer</p>
+      <p class="r-subtitle">Human–AI Systems · Agentic Workflows · Decision Intelligence</p>
+      <p class="r-contact">
+        <a href="mailto:uxbrianthompson@gmail.com">uxbrianthompson@gmail.com</a>
+        &nbsp;·&nbsp;
+        <a href="https://linkedin.com/in/uxbrianthompson" target="_blank" rel="noopener">
+          linkedin.com/in/uxbrianthompson
+        </a>
       </p>
-      <p class="r-body">
-        I design agentic and conversational AI systems that integrate foundation models, retrieval
-        systems, and structured data into workflows where model outputs directly influence user
-        behavior. My work emphasizes making AI systems interpretable, steerable, and trustworthy —
-        particularly in complex, high-stakes domains like financial services.
-      </p>
-      <p class="r-body" style="margin:0;">
-        I bring a systems-level approach that connects model behavior, interaction design, and human
-        cognition — partnering closely with product, engineering, and research to translate emerging
-        AI capabilities into usable, responsible products.
-      </p>
     </div>
+    <a href="/Brian-Thompson-Resume.pdf" download class="r-pdf-link">» Download PDF</a>
+  </header>
 
-    <!-- Core Expertise -->
-    <div class="r-section">
-      <p class="r-label">Core Expertise</p>
-      <div style="display:grid; grid-template-columns:1fr 1fr; gap:0;">
-        {[
-          "AI Product Design — foundation models, agentic systems, retrieval",
-          "Human–AI Interaction & Collaboration Design",
-          "Conversational & Multimodal UX",
-          "Interpretability, Trust, and AI Transparency",
-          "Decision System Design — high-stakes workflows",
-          "Systems Thinking & Experience Architecture",
-          "Rapid Prototyping — high-fidelity, interaction-rich",
-          "Cross-functional product strategy in ambiguous environments",
-        ].map(item => (
-          <p class="r-bullet">{item}</p>
-        ))}
-      </div>
-    </div>
+  <!-- ── Summary ─────────────────────────────────────────────── -->
+  <section class="r-section">
+    <p class="r-label">Summary</p>
+    <p class="r-body">
+      Product Designer specializing in AI-native product design, with a focus on how intelligent
+      systems shape human reasoning, decision-making, and real-world outcomes.
+    </p>
+    <p class="r-body">
+      I design agentic and conversational AI systems that integrate foundation models, retrieval
+      systems, and structured data into workflows where model outputs directly influence user
+      behavior. My work emphasizes making AI systems interpretable, steerable, and trustworthy —
+      particularly in complex, high-stakes domains like financial services.
+    </p>
+    <p class="r-body">
+      I bring a systems-level approach that connects model behavior, interaction design, and human
+      cognition — partnering closely with product, engineering, and research to translate emerging
+      AI capabilities into usable, responsible products.
+    </p>
+  </section>
 
-    <!-- Focus Areas -->
-    <div class="r-section">
-      <p class="r-label">Selected Focus Areas</p>
+  <!-- ── Core Expertise ──────────────────────────────────────── -->
+  <section class="r-section">
+    <p class="r-label">Core Expertise</p>
+    <div class="expertise-grid">
       {[
-        "Designing for appropriate reliance on AI systems",
-        "Representing model uncertainty, confidence, and tradeoffs",
-        "Structuring human–AI decision loops",
-        "Translating probabilistic outputs into clear mental models",
-        "Embedding AI into real-world workflows — not standalone tools",
+        "AI Product Design — foundation models, agentic systems, retrieval",
+        "Human–AI Interaction & Collaboration Design",
+        "Conversational & Multimodal UX",
+        "Interpretability, Trust, and AI Transparency",
+        "Decision System Design — high-stakes workflows",
+        "Systems Thinking & Experience Architecture",
+        "Rapid Prototyping — high-fidelity, interaction-rich",
+        "Cross-functional product strategy in ambiguous environments",
       ].map(item => (
         <p class="r-bullet">{item}</p>
       ))}
     </div>
+  </section>
 
-    <!-- Current Experience -->
-    <div class="r-section">
-      <p class="r-label">Professional Experience</p>
+  <!-- ── Professional Experience ─────────────────────────────── -->
+  <section class="r-section">
+    <p class="r-label">Professional Experience</p>
 
-      <!-- Salesforce -->
-      <div style="margin:0 0 48px;">
-        <div style="display:flex; justify-content:space-between; align-items:baseline;
-                    flex-wrap:wrap; gap:8px; margin:0 0 4px;">
-          <p style="margin:0; font-family:'Inter',sans-serif; font-size:0.95rem;">
-            <span class="r-co">Salesforce</span>
-            <span class="r-role">, Financial Services Cloud — Senior Product Designer, AI Experiences</span>
-          </p>
-          <span class="r-yr">2023 – Present</span>
-        </div>
+    <!-- Salesforce FSC -->
+    <div class="employer">
+      <div class="employer-left">
+        <p class="employer-co">Salesforce</p>
+        <p class="employer-role">Financial Services Cloud<br/>Sr. Product Designer, AI Experiences</p>
+        <span class="employer-yr">2023 – Present</span>
+      </div>
+      <div>
         <p class="r-body">
           Leading design of AI-assisted decision systems for financial advisors, bankers, and
           clients in complex, high-stakes workflows.
@@ -138,36 +295,36 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           "Developed context engineering strategies, response schemas, and feedback loops — evaluation signals, user corrections, iterative refinement",
           "Drove systems-level UX across proactive AI guidance surfaces, alerts, and monitoring systems",
         ].map(b => <p class="r-bullet">{b}</p>)}
-
-        <div style="margin:20px 0 0; padding:20px 24px; background:var(--soft-linen);
-                    border-radius:10px;">
-          <p class="r-label" style="margin:0 0 12px;">Impact</p>
-          <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:16px;">
+        <div class="impact-block">
+          <p class="impact-label">Impact</p>
+          <div class="impact-grid">
             {[
               ["56+", "features shipped, including 17 zero-to-one AI capabilities"],
-              ["32", "agentic insights and action systems deployed"],
-              ["11", "active pilot programs with Schwab, BofA/Merrill, TIAA, Northern Trust"],
+              ["32",  "agentic insights and action systems deployed"],
+              ["11",  "active pilot programs with Schwab, BofA/Merrill, TIAA, Northern Trust"],
             ].map(([n, label]) => (
               <div>
-                <p class="font-display" style="font-size:2rem; color:var(--dark-warm); margin:0 0 4px;">{n}</p>
-                <p style="font-size:0.82rem; line-height:1.5; color:var(--dim-grey);
-                   font-family:'Inter',sans-serif; margin:0;">{label}</p>
+                <p class="impact-num">{n}</p>
+                <p class="impact-desc">{label}</p>
               </div>
             ))}
           </div>
         </div>
       </div>
+    </div>
 
-      <!-- BofA -->
-      <div style="margin:0 0 36px;">
-        <div style="display:flex; justify-content:space-between; align-items:baseline;
-                    flex-wrap:wrap; gap:8px; margin:0 0 4px;">
-          <p style="margin:0; font-family:'Inter',sans-serif; font-size:0.95rem;">
-            <span class="r-co">Bank of America</span>
-            <span class="r-role">, Sr. Product Designer</span>
-          </p>
-        </div>
-        <p class="r-body">Led 0→1 design for AI-integrated banking experiences — how AI augments financial decision-making at scale.</p>
+    <!-- Bank of America -->
+    <div class="employer">
+      <div class="employer-left">
+        <p class="employer-co">Bank of America</p>
+        <p class="employer-role">Sr. Product Designer</p>
+        <span class="employer-yr">2022 – 2023</span>
+      </div>
+      <div>
+        <p class="r-body">
+          Led 0→1 design for AI-integrated banking experiences — how AI augments financial
+          decision-making at scale.
+        </p>
         {[
           "Designed AI-assisted experiences integrating Erica across global banking platforms",
           "Built interaction models connecting user intent, financial context, and AI-generated outputs",
@@ -175,34 +332,40 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           "Prototyped and tested AI recommendation systems, validation loops, and user feedback mechanisms",
         ].map(b => <p class="r-bullet">{b}</p>)}
       </div>
+    </div>
 
-      <!-- Google -->
-      <div style="margin:0 0 36px;">
-        <div style="display:flex; justify-content:space-between; align-items:baseline;
-                    flex-wrap:wrap; gap:8px; margin:0 0 4px;">
-          <p style="margin:0; font-family:'Inter',sans-serif; font-size:0.95rem;">
-            <span class="r-co">Google</span>
-            <span class="r-role">, Sr. Experience Designer (contract)</span>
-          </p>
-        </div>
-        <p class="r-body">Designed decision-support flows for global hardware launches — Pixel 7a, Pixel Fold, Pixel Tablet.</p>
+    <!-- Google -->
+    <div class="employer">
+      <div class="employer-left">
+        <p class="employer-co">Google</p>
+        <p class="employer-role">Sr. Experience Designer, contract</p>
+        <span class="employer-yr">2022</span>
+      </div>
+      <div>
+        <p class="r-body">
+          Designed decision-support flows for global hardware launches — Pixel 7a, Pixel Fold,
+          Pixel Tablet.
+        </p>
         {[
           "Structured complex product information to support decision-making under uncertainty",
           "Designed buy-flows that help users evaluate tradeoffs, configurations, and constraints",
           "Contributed to globally consistent experiences across 18+ markets",
         ].map(b => <p class="r-bullet">{b}</p>)}
       </div>
+    </div>
 
-      <!-- Crunchyroll -->
-      <div style="margin:0 0 36px;">
-        <div style="display:flex; justify-content:space-between; align-items:baseline;
-                    flex-wrap:wrap; gap:8px; margin:0 0 4px;">
-          <p style="margin:0; font-family:'Inter',sans-serif; font-size:0.95rem;">
-            <span class="r-co">Crunchyroll</span>
-            <span class="r-role">, Design Director</span>
-          </p>
-        </div>
-        <p class="r-body">Led UX across large-scale consumer platforms, shaping systems that influence user behavior at scale.</p>
+    <!-- Crunchyroll -->
+    <div class="employer">
+      <div class="employer-left">
+        <p class="employer-co">Crunchyroll</p>
+        <p class="employer-role">Design Director</p>
+        <span class="employer-yr">2020 – 2022</span>
+      </div>
+      <div>
+        <p class="r-body">
+          Led UX across large-scale consumer platforms, shaping systems that influence user
+          behavior at scale.
+        </p>
         {[
           "Directed experience design across streaming, commerce, and community ecosystems",
           "Designed FunimationCon — first-ever virtual anime convention, 63k+ attendees, 331k+ engagement hours",
@@ -210,51 +373,58 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           "Built and scaled teams, systems, and design infrastructure across the organization",
         ].map(b => <p class="r-bullet">{b}</p>)}
       </div>
+    </div>
 
-      <!-- Salesforce agency -->
-      <div style="margin:0 0 36px;">
-        <div style="display:flex; justify-content:space-between; align-items:baseline;
-                    flex-wrap:wrap; gap:8px; margin:0 0 4px;">
-          <p style="margin:0; font-family:'Inter',sans-serif; font-size:0.95rem;">
-            <span class="r-co">Salesforce</span>
-            <span class="r-role">, Group Creative Director via agency</span>
-          </p>
-          <span class="r-yr">2016–2018</span>
-        </div>
-        <p class="r-body">Led strategy, UX, and brand design for the Salesforce Customer 360° and Trailblazer Journey at Dreamforce.</p>
+    <!-- Salesforce agency -->
+    <div class="employer">
+      <div class="employer-left">
+        <p class="employer-co">Salesforce</p>
+        <p class="employer-role">Group Creative Director, via agency</p>
+        <span class="employer-yr">2016 – 2018</span>
+      </div>
+      <div>
+        <p class="r-body">
+          Led strategy, UX, and brand design for the Salesforce Customer 360° and Trailblazer
+          Journey at Dreamforce.
+        </p>
         {[
           "Connected 170k on-site attendees across 17 San Francisco locations and 10M+ online participants",
           "Designed the AI-guided super agenda builder — personalized by role, cloud, and goals",
           "Drove 163M social impressions and all-time high organic leads during the event window",
         ].map(b => <p class="r-bullet">{b}</p>)}
       </div>
+    </div>
 
-      <!-- Apple -->
-      <div style="margin:0 0 36px;">
-        <div style="display:flex; justify-content:space-between; align-items:baseline;
-                    flex-wrap:wrap; gap:8px; margin:0 0 4px;">
-          <p style="margin:0; font-family:'Inter',sans-serif; font-size:0.95rem;">
-            <span class="r-co">Apple</span>
-            <span class="r-role">, Associate Creative Director</span>
-          </p>
-        </div>
-        <p class="r-body">Led the Apple Watch launch and iPhone release across multiple channels.</p>
+    <!-- Apple -->
+    <div class="employer">
+      <div class="employer-left">
+        <p class="employer-co">Apple</p>
+        <p class="employer-role">Associate Creative Director, via agency</p>
+        <span class="employer-yr">2014 – 2015</span>
+      </div>
+      <div>
+        <p class="r-body">
+          Led the Apple Watch launch and iPhone release across multiple channels.
+        </p>
         {[
           "Defined and conceptualized in-store interactive and direct marketing experiences",
           "36MM units sold during the launch window (cited by CNET)",
         ].map(b => <p class="r-bullet">{b}</p>)}
       </div>
+    </div>
 
-      <!-- Audi -->
-      <div style="margin:0 0 0;">
-        <div style="display:flex; justify-content:space-between; align-items:baseline;
-                    flex-wrap:wrap; gap:8px; margin:0 0 4px;">
-          <p style="margin:0; font-family:'Inter',sans-serif; font-size:0.95rem;">
-            <span class="r-co">Audi</span>
-            <span class="r-role">, Associate Creative Director via agency</span>
-          </p>
-        </div>
-        <p class="r-body">Led UX and brand design for the FWA Award-winning AudiUSA.com redesign and myAudi platform.</p>
+    <!-- Audi -->
+    <div class="employer">
+      <div class="employer-left">
+        <p class="employer-co">Audi</p>
+        <p class="employer-role">Associate Creative Director, via agency</p>
+        <span class="employer-yr">2013 – 2014</span>
+      </div>
+      <div>
+        <p class="r-body">
+          Led UX and brand design for the FWA Award-winning AudiUSA.com redesign and myAudi
+          platform.
+        </p>
         {[
           "227% increase in car configurations · 675% increase in myAudi interactions",
           "2,763% increase in financing page visits · directly trackable sales at all-time high",
@@ -262,43 +432,45 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       </div>
     </div>
 
-    <!-- Design Philosophy -->
-    <div class="r-section">
-      <p class="r-label">Design Philosophy</p>
-      {[
-        "AI systems should be understandable before they are powerful",
-        "Trust emerges from legibility, not persuasion",
-        "Designing for AI requires shaping systems and behaviors, not just interfaces",
-        "The goal is not automation, but better human judgment",
-      ].map(p => <p class="r-bullet">{p}</p>)}
-    </div>
+  </section>
 
-    <!-- Tools -->
-    <div class="r-section">
-      <p class="r-label">Tools &amp; Methods</p>
-      <p class="r-body" style="margin:0;">
-        Figma (advanced prototyping) · Context engineering · Conversational flow design ·
-        Rapid validation · Systems mapping · Research synthesis ·
-        Agent behavior design · A whiteboard, markers, No.&nbsp;2 pencil with eraser, and my mind.
-      </p>
-    </div>
+  <!-- ── Design Philosophy ────────────────────────────────────── -->
+  <section class="r-section">
+    <p class="r-label">Design Philosophy</p>
+    {[
+      "AI systems should be understandable before they are powerful",
+      "Trust emerges from legibility, not persuasion",
+      "Designing for AI requires shaping systems and behaviors, not just interfaces",
+      "The goal is not automation, but better human judgment",
+    ].map(p => <p class="r-bullet">{p}</p>)}
+  </section>
 
-    <!-- Education -->
-    <div class="r-section" style="border-bottom:1px solid var(--silver); padding-bottom:48px;">
-      <p class="r-label">Education</p>
-      {[
-        "Agentblazer Certification — Salesforce Trailhead",
-        "TrailBlazer Certification — Salesforce Trailhead",
-        "UX/UI Design Boot Camp Certificate — UC Berkeley, CA",
-        "Google Foundations of UX Design Certificate",
-        "Wearable and Smart Device UX Design Certificate — SCU, CA",
-        "Mobile UX Design Certificate — UC San Francisco, CA",
-        "Art direction, design, and writing — Creative Circus, Atlanta, GA",
-        "Journalism with advertising emphasis — University of Minnesota",
-        "Studied Japanese and taught English — Tokyo, JP",
-      ].map(e => <p class="r-bullet">{e}</p>)}
-    </div>
+  <!-- ── Tools & Methods ──────────────────────────────────────── -->
+  <section class="r-section">
+    <p class="r-label">Tools &amp; Methods</p>
+    <p class="r-body">
+      Figma (advanced prototyping) · Context engineering · Conversational flow design ·
+      Rapid validation · Systems mapping · Research synthesis ·
+      Agent behavior design · A whiteboard, markers, No.&nbsp;2 pencil with eraser, and my mind.
+    </p>
+  </section>
 
-  </div>
+  <!-- ── Education ────────────────────────────────────────────── -->
+  <section class="r-section">
+    <p class="r-label">Education</p>
+    {[
+      "Agentblazer Certification — Salesforce Trailhead",
+      "TrailBlazer Certification — Salesforce Trailhead",
+      "UX/UI Design Boot Camp Certificate — UC Berkeley, CA",
+      "Google Foundations of UX Design Certificate",
+      "Wearable and Smart Device UX Design Certificate — SCU, CA",
+      "Mobile UX Design Certificate — UC San Francisco, CA",
+      "Art direction, design, and writing — Creative Circus, Atlanta, GA",
+      "Studied Japanese and taught English — Tokyo, JP",
+      "Journalism with advertising emphasis — University of Minnesota",
+    ].map(e => <p class="r-bullet">{e}</p>)}
+  </section>
+
+</div>
 
 </BaseLayout>
