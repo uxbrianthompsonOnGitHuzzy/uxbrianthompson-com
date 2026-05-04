@@ -1,10 +1,14 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
 ---
 <BaseLayout
   title="About — Brian Thompson, Senior Product Designer"
   description="The convergence of Experience Design, Agent Behavior Design, Systems Architecture, and Rapid Prototyping defines a new kind of practitioner. This is how I think about design."
 >
+
+  <Nav />
 
   <!-- Hero -->
   <section style="padding:120px 40px 80px; max-width:800px; margin:0 auto;">
@@ -184,5 +188,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       </a>
     </div>
   </section>
+
+  <Footer />
 
 </BaseLayout>

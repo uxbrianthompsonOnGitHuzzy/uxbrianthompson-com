@@ -1,5 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
 ---
 <BaseLayout
   title="Resume — Brian Thompson, Senior Product Designer"
@@ -216,14 +218,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   }
 </style>
 
-<!-- Logo SVGs as reusable snippets -->
-<!-- Salesforce cloud -->
-<svg style="display:none">
-  <symbol id="logo-salesforce" viewBox="0 0 100 67">
-    <path d="M41.6 7.7C45.2 3.5 50.5 1 56.4 1c8 0 14.9 4.6 18.4 11.3C77.8 10.5 81.6 9.5 85.6 9.5c12.4 0 22.4 10.1 22.4 22.6 0 12.5-10 22.6-22.4 22.6-.8 0-1.7-.1-2.5-.2-3.1 5.6-9 9.4-15.7 9.4-2.7 0-5.2-.6-7.5-1.8-3.2 6.9-10.2 11.7-18.3 11.7-7.7 0-14.5-4.3-18-10.8-1.3.3-2.7.4-4.1.4C8.9 63.4 1 55.4 1 45.7c0-6.3 3.3-11.9 8.3-15.1-1-2.3-1.5-4.8-1.5-7.5C7.8 12.9 16.3 4.5 26.8 4.5c5.5 0 10.5 2.2 14.1 5.8z" fill="currentColor"/>
-  </symbol>
-</svg>
-
+<Nav />
 <div class="resume-page">
 
   <!-- ── Header ──────────────────────────────────────────────── -->
@@ -289,10 +284,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     <!-- Salesforce FSC -->
     <div class="employer">
       <div class="employer-logo">
-        <!-- Salesforce cloud mark -->
-        <svg viewBox="0 0 56 40" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:48px;height:48px;opacity:0.7;">
-          <path d="M23.2 4.3C25.2 2 28.3.6 31.6.6c4.5 0 8.4 2.6 10.3 6.3 1.6-.9 3.5-1.4 5.5-1.4C54 5.5 59 10.6 59 16.9S54 28.3 47.4 28.3c-.5 0-.9 0-1.4-.1-1.7 3.1-5 5.2-8.8 5.2-1.5 0-2.9-.4-4.2-1-1.8 3.9-5.7 6.6-10.3 6.6-4.3 0-8.1-2.4-10.1-6-1 .2-1.5.2-2.3.2C4.7 33.2.3 28.7.3 23.2c0-3.5 1.8-6.7 4.6-8.5-.6-1.3-.8-2.7-.8-4.2C4.1 5 8.8.4 14.5.4c2.7 0 5.3 1 7.2 2.8" fill="currentColor"/>
-        </svg>
+        <img src="/images/logos/logo-salesforce.svg" alt="Salesforce" />
       </div>
       <div class="employer-body">
         <p class="employer-headline">
@@ -331,13 +323,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     <!-- Bank of America -->
     <div class="employer">
       <div class="employer-logo">
-        <!-- BofA flag mark -->
-        <svg viewBox="0 0 48 48" fill="currentColor" xmlns="http://www.w3.org/2000/svg" style="width:48px;height:48px;opacity:0.7;">
-          <rect x="4" y="8"  width="40" height="6" rx="1"/>
-          <rect x="4" y="18" width="40" height="6" rx="1"/>
-          <rect x="4" y="28" width="40" height="6" rx="1"/>
-          <rect x="4" y="38" width="40" height="4" rx="1"/>
-        </svg>
+        <img src="/images/logos/logo-bofa.svg" alt="Bank of America" />
       </div>
       <div class="employer-body">
         <p class="employer-headline">
@@ -359,14 +345,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     <!-- Google -->
     <div class="employer">
       <div class="employer-logo">
-        <!-- Google G -->
-        <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:48px;height:48px;opacity:0.7;">
-          <path d="M44 24.5c0-1.4-.1-2.8-.4-4H24v7.6h11.3c-.5 2.6-2 4.8-4.1 6.3v5.2h6.6C41.5 35.8 44 30.5 44 24.5z" fill="#4285F4"/>
-          <path d="M24 45c5.6 0 10.3-1.9 13.8-5l-6.6-5.2c-1.9 1.3-4.3 2-7.2 2-5.5 0-10.2-3.7-11.8-8.8H5.4v5.4C8.9 41.1 16 45 24 45z" fill="#34A853"/>
-          <path d="M12.2 28c-.4-1.3-.7-2.6-.7-4s.3-2.7.7-4v-5.4H5.4C3.9 17.6 3 20.7 3 24s.9 6.4 2.4 9.4l6.8-5.4z" fill="#FBBC05"/>
-          <path d="M24 11.2c3.1 0 5.9 1.1 8.1 3.2l6-6C34.3 4.9 29.5 3 24 3 16 3 8.9 6.9 5.4 14.6l6.8 5.4C13.8 14.9 18.5 11.2 24 11.2z" fill="#EA4335"/>
-          <path d="M24 24.5h10v-4H24v4z" fill="#4285F4"/>
-        </svg>
+        <img src="/images/logos/logo-google.svg" alt="Google" />
       </div>
       <div class="employer-body">
         <p class="employer-headline">
@@ -387,11 +366,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     <!-- Crunchyroll -->
     <div class="employer">
       <div class="employer-logo">
-        <!-- Crunchyroll crescent -->
-        <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:48px;height:48px;opacity:0.7;">
-          <circle cx="24" cy="24" r="20" stroke="currentColor" stroke-width="4"/>
-          <circle cx="30" cy="24" r="13" fill="var(--parchment)"/>
-        </svg>
+        <img src="/images/logos/logo-crunchyroll.svg" alt="Crunchyroll" />
       </div>
       <div class="employer-body">
         <p class="employer-headline">
@@ -413,9 +388,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     <!-- Salesforce agency -->
     <div class="employer">
       <div class="employer-logo">
-        <svg viewBox="0 0 56 40" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:48px;height:48px;opacity:0.7;">
-          <path d="M23.2 4.3C25.2 2 28.3.6 31.6.6c4.5 0 8.4 2.6 10.3 6.3 1.6-.9 3.5-1.4 5.5-1.4C54 5.5 59 10.6 59 16.9S54 28.3 47.4 28.3c-.5 0-.9 0-1.4-.1-1.7 3.1-5 5.2-8.8 5.2-1.5 0-2.9-.4-4.2-1-1.8 3.9-5.7 6.6-10.3 6.6-4.3 0-8.1-2.4-10.1-6-1 .2-1.5.2-2.3.2C4.7 33.2.3 28.7.3 23.2c0-3.5 1.8-6.7 4.6-8.5-.6-1.3-.8-2.7-.8-4.2C4.1 5 8.8.4 14.5.4c2.7 0 5.3 1 7.2 2.8" fill="currentColor"/>
-        </svg>
+        <img src="/images/logos/logo-salesforce.svg" alt="Salesforce" />
       </div>
       <div class="employer-body">
         <p class="employer-headline">
@@ -436,10 +409,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     <!-- Apple -->
     <div class="employer">
       <div class="employer-logo">
-        <!-- Apple mark -->
-        <svg viewBox="0 0 48 56" fill="currentColor" xmlns="http://www.w3.org/2000/svg" style="width:44px;height:48px;opacity:0.7;">
-          <path d="M39.6 29.4c-.1-7 5.7-10.4 6-10.6-3.3-4.8-8.4-5.4-10.2-5.5-4.3-.4-8.4 2.5-10.6 2.5-2.2 0-5.5-2.5-9.1-2.4-4.6.1-8.9 2.7-11.3 6.8-4.9 8.4-1.2 20.8 3.4 27.6 2.3 3.3 5 7 8.6 6.9 3.5-.1 4.8-2.2 9-2.2s5.4 2.2 9 2.1c3.7-.1 6.1-3.3 8.4-6.7 2.7-3.8 3.8-7.5 3.8-7.7-.1 0-7-2.7-7.1-10.8zm-6.7-19.8c1.9-2.3 3.1-5.4 2.8-8.6-2.7.1-6 1.8-7.9 4.1-1.7 2-3.2 5.2-2.8 8.3 3 .2 6.1-1.5 7.9-3.8z"/>
-        </svg>
+        <img src="/images/logos/logo-apple.svg" alt="Apple" />
       </div>
       <div class="employer-body">
         <p class="employer-headline">
@@ -458,13 +428,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     <!-- Audi -->
     <div class="employer">
       <div class="employer-logo">
-        <!-- Audi four rings -->
-        <svg viewBox="0 0 72 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:52px;height:20px;opacity:0.7;">
-          <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2.5"/>
-          <circle cx="28" cy="12" r="10" stroke="currentColor" stroke-width="2.5"/>
-          <circle cx="44" cy="12" r="10" stroke="currentColor" stroke-width="2.5"/>
-          <circle cx="60" cy="12" r="10" stroke="currentColor" stroke-width="2.5"/>
-        </svg>
+        <img src="/images/logos/logo-audi.svg" alt="Audi" />
       </div>
       <div class="employer-body">
         <p class="employer-headline">
@@ -521,5 +485,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   </section>
 
 </div>
+
+<Footer />
 
 </BaseLayout>
