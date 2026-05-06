@@ -9,12 +9,18 @@ import Footer from '../components/Footer.astro';
 >
 
 <style>
-  /* ── Page shell ─────────────────────────────────────────────── */
-  .resume-page {
-    padding: 120px 48px 160px;
+  /* ── Band system ─────────────────────────────────────────────── */
+  .r-band { width: 100%; }
+  .r-band--white { background: var(--cream); }
+  .r-band--linen { background: var(--soft-linen); }
+
+  .r-inner {
     max-width: 1100px;
     margin: 0 auto;
+    padding: 80px 48px;
   }
+  .r-inner--top { padding-top: 120px; }
+  .r-inner--bottom { padding-bottom: 120px; }
 
   /* ── Header ─────────────────────────────────────────────────── */
   .r-header {
@@ -22,8 +28,7 @@ import Footer from '../components/Footer.astro';
     justify-content: space-between;
     align-items: flex-end;
     gap: 32px;
-    padding-bottom: 56px;
-    border-bottom: 1px solid var(--silver);
+    padding-bottom: 64px;
     flex-wrap: wrap;
   }
   .r-name {
@@ -57,7 +62,6 @@ import Footer from '../components/Footer.astro';
     transition: color 0.18s;
   }
   .r-contact a:hover { color: var(--dark-warm); }
-
   .r-pdf-link {
     font-family: 'Barlow Condensed', sans-serif;
     font-size: 0.88rem;
@@ -74,14 +78,7 @@ import Footer from '../components/Footer.astro';
   }
   .r-pdf-link:hover { opacity: 0.6; }
 
-  /* ── Section wrapper ─────────────────────────────────────────── */
-  .r-section {
-    padding: 52px 0;
-    border-bottom: 1px solid var(--silver);
-  }
-  .r-section:last-child { border-bottom: none; }
-
-  /* ── Section label ───────────────────────────────────────────── */
+  /* ── Section labels ──────────────────────────────────────────── */
   .r-label {
     font-family: 'Barlow Condensed', sans-serif;
     font-size: 10px;
@@ -91,8 +88,17 @@ import Footer from '../components/Footer.astro';
     color: var(--silver);
     margin: 0 0 28px;
   }
+  .r-sublabel {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--silver);
+    margin: 56px 0 20px;
+  }
 
-  /* ── Body text / bullets ─────────────────────────────────────── */
+  /* ── Body text ──────────────────────────────────────────────── */
   .r-body {
     font-size: 0.92rem;
     line-height: 1.8;
@@ -102,6 +108,7 @@ import Footer from '../components/Footer.astro';
   }
   .r-body:last-child { margin: 0; }
 
+  /* ── Bullets ────────────────────────────────────────────────── */
   .r-bullet {
     font-size: 0.88rem;
     line-height: 1.75;
@@ -119,6 +126,13 @@ import Footer from '../components/Footer.astro';
   }
   .r-bullet:last-child { margin-bottom: 0; }
 
+  /* ── Two-column bullet grid ──────────────────────────────────── */
+  .r-grid-2col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+  }
+
   /* ── Employer: logo-left + all-text-right ────────────────────── */
   .employer {
     display: grid;
@@ -127,28 +141,23 @@ import Footer from '../components/Footer.astro';
     padding: 40px 0;
     border-top: 1px solid rgba(104,103,99,0.15);
   }
-  .employer:first-child { border-top: none; padding-top: 0; }
+  .employer:first-of-type { border-top: none; padding-top: 0; }
 
-  /* Logo column */
   .employer-logo {
     padding-top: 3px;
     display: flex;
     align-items: flex-start;
-    justify-content: center;
+    justify-content: flex-start;
   }
   .employer-logo img {
-    width: auto;
-    height: auto;
     max-width: 60px;
     max-height: 44px;
-    opacity: 0.8;
+    width: auto;
+    height: auto;
+    opacity: 0.75;
     display: block;
   }
 
-  /* Text column — everything flows here */
-  .employer-body {}
-
-  /* First line: COMPANY NAME, role, year — all inline */
   .employer-headline {
     font-size: 0.92rem;
     font-family: 'Inter', sans-serif;
@@ -163,83 +172,78 @@ import Footer from '../components/Footer.astro';
     letter-spacing: 0.03em;
   }
 
-  /* Impact block */
-  .impact-block {
-    margin: 20px 0 0;
-    padding: 20px 24px;
-    background: var(--soft-linen);
-    border-radius: 10px;
-  }
-  .impact-label {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 9px;
-    font-weight: 700;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: var(--silver);
-    margin: 0 0 14px;
-  }
-  .impact-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
-  }
-  .impact-num {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 2rem;
-    font-weight: 700;
-    color: var(--dark-warm);
-    margin: 0 0 4px;
-    line-height: 1;
-  }
-  .impact-desc {
-    font-size: 0.78rem;
-    line-height: 1.5;
-    color: var(--dim-grey);
-    font-family: 'Inter', sans-serif;
-    margin: 0;
-  }
-
-  /* ── Expertise grid ──────────────────────────────────────────── */
-  .expertise-grid {
+  /* ── Impact grid (no card wrapper — mirrors expertise) ───────── */
+  .r-impact-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 0;
+    margin-top: 20px;
+  }
+
+  /* ── Education + Tools side by side ─────────────────────────── */
+  .r-edu-tools {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 80px;
+    align-items: start;
+  }
+
+  /* ── Tools tags ─────────────────────────────────────────────── */
+  .r-tools-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .r-tool-tag {
+    font-size: 12px;
+    font-family: 'Inter', sans-serif;
+    color: var(--dim-grey);
+    background: var(--cream);
+    padding: 6px 14px;
+    border-radius: 100px;
+    border: 1px solid var(--silver);
+    white-space: nowrap;
   }
 
   /* ── Responsive ──────────────────────────────────────────────── */
   @media (max-width: 720px) {
-    .resume-page     { padding: 80px 24px 100px; }
-    .employer        { grid-template-columns: 52px 1fr; gap: 0 20px; }
+    .r-inner           { padding: 64px 24px; }
+    .r-inner--top      { padding-top: 96px; }
+    .r-inner--bottom   { padding-bottom: 96px; }
+    .r-header          { flex-direction: column; align-items: flex-start; gap: 24px; }
+    .r-grid-2col       { grid-template-columns: 1fr; }
+    .r-impact-grid     { grid-template-columns: 1fr; }
+    .r-edu-tools       { grid-template-columns: 1fr; gap: 48px 0; }
+    .employer          { grid-template-columns: 52px 1fr; gap: 0 20px; }
     .employer-logo img { max-width: 44px; max-height: 32px; }
-    .expertise-grid  { grid-template-columns: 1fr; }
-    .impact-grid     { grid-template-columns: 1fr 1fr; }
-    .r-header        { flex-direction: column; align-items: flex-start; gap: 24px; }
   }
 </style>
 
 <Nav />
-<div class="resume-page">
 
-  <!-- ── Header ──────────────────────────────────────────────── -->
-  <header class="r-header">
-    <div>
-      <h1 class="r-name font-display">Brian Thompson</h1>
-      <p class="r-title-line">Senior Product Designer</p>
-      <p class="r-subtitle-line">Human–AI Systems · Agentic Workflows · Decision Intelligence</p>
-      <p class="r-contact">
-        <a href="mailto:uxbrianthompson@gmail.com">uxbrianthompson@gmail.com</a>
-        &nbsp;·&nbsp;
-        <a href="https://linkedin.com/in/uxbrianthompson" target="_blank" rel="noopener">
-          linkedin.com/in/uxbrianthompson
-        </a>
-      </p>
-    </div>
-    <a href="/Brian-Thompson-Resume.pdf" download class="r-pdf-link">» Download PDF</a>
-  </header>
+<!-- ════════════════════════════════════════════════════════════ -->
+<!--  BAND 1 — WHITE — Header · Summary · Core Expertise         -->
+<!-- ════════════════════════════════════════════════════════════ -->
+<section class="r-band r-band--white">
+  <div class="r-inner r-inner--top">
 
-  <!-- ── Summary ─────────────────────────────────────────────── -->
-  <section class="r-section">
+    <header class="r-header">
+      <div>
+        <h1 class="r-name font-display">Brian Thompson</h1>
+        <p class="r-title-line">Senior Product Designer</p>
+        <p class="r-subtitle-line">Human–AI Systems · Agentic Workflows · Decision Intelligence</p>
+        <p class="r-contact">
+          <a href="mailto:uxbrianthompson@gmail.com">uxbrianthompson@gmail.com</a>
+          &nbsp;·&nbsp;
+          <a href="https://linkedin.com/in/uxbrianthompson" target="_blank" rel="noopener">
+            linkedin.com/in/uxbrianthompson
+          </a>
+        </p>
+      </div>
+      <a href="/Brian-Thompson-Resume.pdf" download class="r-pdf-link">» Download PDF</a>
+    </header>
+
+    <!-- Summary -->
     <p class="r-label">Summary</p>
     <p class="r-body">
       Product Designer specializing in AI-native product design, with a focus on how intelligent
@@ -251,17 +255,15 @@ import Footer from '../components/Footer.astro';
       behavior. My work emphasizes making AI systems interpretable, steerable, and trustworthy —
       particularly in complex, high-stakes domains like financial services.
     </p>
-    <p class="r-body">
+    <p class="r-body" style="margin-bottom:64px;">
       I bring a systems-level approach that connects model behavior, interaction design, and human
       cognition — partnering closely with product, engineering, and research to translate emerging
       AI capabilities into usable, responsible products.
     </p>
-  </section>
 
-  <!-- ── Core Expertise ──────────────────────────────────────── -->
-  <section class="r-section">
+    <!-- Core Expertise -->
     <p class="r-label">Core Expertise</p>
-    <div class="expertise-grid">
+    <div class="r-grid-2col">
       {[
         "AI Product Design — foundation models, agentic systems, retrieval",
         "Human–AI Interaction & Collaboration Design",
@@ -275,10 +277,16 @@ import Footer from '../components/Footer.astro';
         <p class="r-bullet">{item}</p>
       ))}
     </div>
-  </section>
 
-  <!-- ── Professional Experience ─────────────────────────────── -->
-  <section class="r-section">
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════ -->
+<!--  BAND 2 — LINEN — Salesforce · Impact · Selected Work · Philosophy -->
+<!-- ════════════════════════════════════════════════════════════ -->
+<section class="r-band r-band--linen">
+  <div class="r-inner">
+
     <p class="r-label">Professional Experience</p>
 
     <!-- Salesforce FSC -->
@@ -288,7 +296,7 @@ import Footer from '../components/Footer.astro';
       </div>
       <div class="employer-body">
         <p class="employer-headline">
-          <span class="employer-co">Salesforce</span>, Financial Services Cloud, Senior Product Designer, AI Experiences, 2023 – Present
+          <span class="employer-co">Salesforce</span>, Financial Services Cloud &nbsp;·&nbsp; Senior Product Designer, AI Experiences &nbsp;·&nbsp; 2023 – Present
         </p>
         <p class="r-body">
           Leading design of AI-assisted decision systems for financial advisors, bankers, and
@@ -302,23 +310,103 @@ import Footer from '../components/Footer.astro';
           "Developed context engineering strategies, response schemas, and feedback loops — evaluation signals, user corrections, iterative refinement",
           "Drove systems-level UX across proactive AI guidance surfaces, alerts, and monitoring systems",
         ].map(b => <p class="r-bullet">{b}</p>)}
-        <div class="impact-block">
-          <p class="impact-label">Impact</p>
-          <div class="impact-grid">
-            {[
-              ["56+", "features shipped, including 17 zero-to-one AI capabilities"],
-              ["32",  "agentic insights and action systems deployed"],
-              ["11",  "active pilot programs with Schwab, BofA/Merrill, TIAA, Northern Trust"],
-            ].map(([n, label]) => (
-              <div>
-                <p class="impact-num">{n}</p>
-                <p class="impact-desc">{label}</p>
-              </div>
-            ))}
-          </div>
-        </div>
       </div>
     </div>
+
+    <!-- Impact -->
+    <p class="r-sublabel">Impact</p>
+    <div class="r-impact-grid">
+      {[
+        "56+ features shipped, including 17 zero-to-one AI capabilities",
+        "32 agentic insights and action systems deployed across FSC surfaces",
+        "11 active enterprise pilot programs — Schwab, BofA/Merrill, TIAA, Northern Trust",
+        "Owned design from discovery to deployment across 8 FSC product surfaces",
+        "Led 40+ cross-functional alignment sessions spanning Product, Engineering, Data Science, Legal, and Compliance",
+        "Delivered 200+ design artifacts across agentic, conversational, and proactive AI patterns",
+      ].map(b => <p class="r-bullet">{b}</p>)}
+    </div>
+
+    <!-- Selected AI & Systems Design Work -->
+    <p class="r-sublabel">Selected AI &amp; Systems Design Work</p>
+    {[
+      "Run My Day — AI-driven daily briefing system synthesizing CRM data, calendar events, alerts, and market signals into a personalized advisor agenda with surfaced actions",
+      "Meeting 360 — Pre-meeting intelligence system aggregating client portfolio status, relationship history, open items, and AI-generated talking points in a single panel",
+      "Performance Analytics — Agentic analytics surface that detects anomalies, surfaces trends, and generates next-best actions across an advisor's full book of business",
+      "Advisor Anywhere — Mobile-first decision support giving advisors AI-curated client context, recommendations, and direct action capability away from their primary workspace",
+      "Integration Hub — Orchestration interface connecting external custodians, market data, and internal CRM to power real-time AI features across the FSC platform",
+      "Wealth Agents — Autonomous agentic workflow system enabling advisors to delegate complex, multi-step tasks to AI with full visibility, control, and auditability",
+    ].map(b => <p class="r-bullet">{b}</p>)}
+
+    <!-- Design Philosophy -->
+    <p class="r-sublabel">Design Philosophy</p>
+    {[
+      "AI systems should be understandable before they are powerful",
+      "Trust emerges from legibility, not persuasion",
+      "Designing for AI requires shaping systems and behaviors, not just interfaces",
+      "The goal is not automation, but better human judgment",
+    ].map(p => <p class="r-bullet">{p}</p>)}
+
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════ -->
+<!--  BAND 3 — WHITE — Education · Tools                          -->
+<!-- ════════════════════════════════════════════════════════════ -->
+<section class="r-band r-band--white">
+  <div class="r-inner">
+    <div class="r-edu-tools">
+
+      <!-- Education -->
+      <div>
+        <p class="r-label">Education</p>
+        <div class="r-grid-2col">
+          {[
+            "Agentblazer Certification — Salesforce Trailhead",
+            "Mobile UX Design Certificate — UC San Francisco, CA",
+            "TrailBlazer Certification — Salesforce Trailhead",
+            "Art direction, design, and writing — Creative Circus, Atlanta, GA",
+            "UX/UI Design Boot Camp Certificate — UC Berkeley, CA",
+            "Studied Japanese and taught English — Tokyo, JP",
+            "Google Foundations of UX Design Certificate",
+            "Journalism with advertising emphasis — University of Minnesota",
+            "Wearable and Smart Device UX Design Certificate — SCU, CA",
+            "",
+          ].map(e => e ? <p class="r-bullet">{e}</p> : <p></p>)}
+        </div>
+      </div>
+
+      <!-- Tools & Methods -->
+      <div>
+        <p class="r-label">Tools &amp; Methods</p>
+        <div class="r-tools-list">
+          {[
+            "Figma — advanced prototyping",
+            "Prompt design",
+            "Conversational flow design",
+            "Agent behavior design",
+            "AI interaction modeling",
+            "Systems mapping",
+            "Research synthesis",
+            "Rapid validation",
+            "Context engineering",
+          ].map(t => <span class="r-tool-tag">{t}</span>)}
+        </div>
+        <p class="r-body" style="margin-top:28px; font-style:italic; color:var(--silver); font-size:0.88rem;">
+          A whiteboard, markers, a No.&nbsp;2 pencil with eraser, and my mind.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════ -->
+<!--  BAND 4 — LINEN — Additional Experience                      -->
+<!-- ════════════════════════════════════════════════════════════ -->
+<section class="r-band r-band--linen">
+  <div class="r-inner r-inner--bottom">
+
+    <p class="r-label">Additional Experience</p>
 
     <!-- Bank of America -->
     <div class="employer">
@@ -327,7 +415,7 @@ import Footer from '../components/Footer.astro';
       </div>
       <div class="employer-body">
         <p class="employer-headline">
-          <span class="employer-co">Bank of America</span>, Sr. Product Designer, 2022 – 2023
+          <span class="employer-co">Bank of America</span> &nbsp;·&nbsp; Sr. Product Designer &nbsp;·&nbsp; 2022 – 2023
         </p>
         <p class="r-body">
           Led 0→1 design for AI-integrated banking experiences — how AI augments financial
@@ -349,7 +437,7 @@ import Footer from '../components/Footer.astro';
       </div>
       <div class="employer-body">
         <p class="employer-headline">
-          <span class="employer-co">Google</span>, Sr. Experience Designer, contract, 2022
+          <span class="employer-co">Google</span> &nbsp;·&nbsp; Sr. Experience Designer, contract &nbsp;·&nbsp; 2022
         </p>
         <p class="r-body">
           Designed decision-support flows for global hardware launches — Pixel 7a, Pixel Fold,
@@ -370,7 +458,7 @@ import Footer from '../components/Footer.astro';
       </div>
       <div class="employer-body">
         <p class="employer-headline">
-          <span class="employer-co">Crunchyroll</span>, Design Director, 2020 – 2022
+          <span class="employer-co">Crunchyroll</span> &nbsp;·&nbsp; Design Director &nbsp;·&nbsp; 2020 – 2022
         </p>
         <p class="r-body">
           Led UX across large-scale consumer platforms, shaping systems that influence user
@@ -392,7 +480,7 @@ import Footer from '../components/Footer.astro';
       </div>
       <div class="employer-body">
         <p class="employer-headline">
-          <span class="employer-co">Salesforce</span>, Group Creative Director, via agency, 2016 – 2018
+          <span class="employer-co">Salesforce</span> &nbsp;·&nbsp; Group Creative Director, via agency &nbsp;·&nbsp; 2016 – 2018
         </p>
         <p class="r-body">
           Led strategy, UX, and brand design for the Salesforce Customer 360° and Trailblazer
@@ -406,6 +494,22 @@ import Footer from '../components/Footer.astro';
       </div>
     </div>
 
+    <!-- Circusfreaks -->
+    <div class="employer">
+      <div class="employer-logo">
+        <img src="/images/logos/logo-circusfreaks.svg" alt="Circusfreaks" />
+      </div>
+      <div class="employer-body">
+        <p class="employer-headline">
+          <span class="employer-co">Circusfreaks</span> &nbsp;·&nbsp; Creative Director &amp; Co-founder
+        </p>
+        <p class="r-body">
+          Co-founded and led creative direction for an independent digital studio, building
+          award-winning interactive experiences for enterprise clients.
+        </p>
+      </div>
+    </div>
+
     <!-- Apple -->
     <div class="employer">
       <div class="employer-logo">
@@ -413,7 +517,7 @@ import Footer from '../components/Footer.astro';
       </div>
       <div class="employer-body">
         <p class="employer-headline">
-          <span class="employer-co">Apple</span>, Associate Creative Director, via agency, 2014 – 2015
+          <span class="employer-co">Apple</span> &nbsp;·&nbsp; Associate Creative Director, via agency &nbsp;·&nbsp; 2014 – 2015
         </p>
         <p class="r-body">
           Led the Apple Watch launch and iPhone release across multiple channels.
@@ -432,7 +536,7 @@ import Footer from '../components/Footer.astro';
       </div>
       <div class="employer-body">
         <p class="employer-headline">
-          <span class="employer-co">Audi</span>, Associate Creative Director, via agency, 2013 – 2014
+          <span class="employer-co">Audi</span> &nbsp;·&nbsp; Associate Creative Director, via agency &nbsp;·&nbsp; 2013 – 2014
         </p>
         <p class="r-body">
           Led UX and brand design for the FWA Award-winning AudiUSA.com redesign and myAudi
@@ -445,46 +549,8 @@ import Footer from '../components/Footer.astro';
       </div>
     </div>
 
-  </section>
-
-  <!-- ── Design Philosophy ────────────────────────────────────── -->
-  <section class="r-section">
-    <p class="r-label">Design Philosophy</p>
-    {[
-      "AI systems should be understandable before they are powerful",
-      "Trust emerges from legibility, not persuasion",
-      "Designing for AI requires shaping systems and behaviors, not just interfaces",
-      "The goal is not automation, but better human judgment",
-    ].map(p => <p class="r-bullet">{p}</p>)}
-  </section>
-
-  <!-- ── Tools & Methods ──────────────────────────────────────── -->
-  <section class="r-section">
-    <p class="r-label">Tools &amp; Methods</p>
-    <p class="r-body">
-      Figma (advanced prototyping) · Context engineering · Conversational flow design ·
-      Rapid validation · Systems mapping · Research synthesis ·
-      Agent behavior design · A whiteboard, markers, No.&nbsp;2 pencil with eraser, and my mind.
-    </p>
-  </section>
-
-  <!-- ── Education ────────────────────────────────────────────── -->
-  <section class="r-section">
-    <p class="r-label">Education</p>
-    {[
-      "Agentblazer Certification — Salesforce Trailhead",
-      "TrailBlazer Certification — Salesforce Trailhead",
-      "UX/UI Design Boot Camp Certificate — UC Berkeley, CA",
-      "Google Foundations of UX Design Certificate",
-      "Wearable and Smart Device UX Design Certificate — SCU, CA",
-      "Mobile UX Design Certificate — UC San Francisco, CA",
-      "Art direction, design, and writing — Creative Circus, Atlanta, GA",
-      "Studied Japanese and taught English — Tokyo, JP",
-      "Journalism with advertising emphasis — University of Minnesota",
-    ].map(e => <p class="r-bullet">{e}</p>)}
-  </section>
-
-</div>
+  </div>
+</section>
 
 <Footer />
 
