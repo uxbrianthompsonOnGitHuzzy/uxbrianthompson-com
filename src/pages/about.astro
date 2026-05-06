@@ -59,7 +59,7 @@ import PrevNext from '../components/PrevNext.astro';
          "The measure of a good AI system isn't how much it replaces. It's how much better the person at the center makes decisions."],
       ].map(([principle, commentary]) => (
         <div style="display:grid; grid-template-columns:1fr 1fr; gap:48px;
-                    padding:36px 0; border-top:1px solid var(--silver);">
+                    padding:36px 0; border-top:1px solid rgba(104,103,99,0.15);">
           <p class="font-display" style="font-size:1.25rem; color:var(--dark-warm);
              line-height:1.35; margin:0;">
             {principle}
@@ -89,15 +89,14 @@ import PrevNext from '../components/PrevNext.astro';
     </p>
 
     <div style="border-radius:16px; overflow:hidden; margin:0 0 48px;">
-      <div style="display:grid; grid-template-columns:repeat(2,1fr); gap:1px;
-                  background:var(--dim-grey);">
+      <div style="display:grid; grid-template-columns:repeat(2,1fr); gap:0;">
         {[
           ["Experience Design",     "How people encounter, navigate, and make sense of systems"],
           ["Agent Behavior Design", "How AI systems are prompted, constrained, and evaluated"],
           ["Systems Architecture",  "How data, state, and logic connect across surfaces"],
           ["Rapid Prototyping",     "How ideas become testable things fast enough to matter"],
         ].map(([name, desc]) => (
-          <div style="background:var(--silver); padding:36px;">
+          <div style="background:var(--soft-linen); padding:36px;">
             <p class="font-display" style="font-size:1.05rem; color:var(--dark-warm);
                margin:0 0 10px; line-height:1.2;">{name}</p>
             <p style="font-size:0.9rem; line-height:1.65; color:var(--dark-warm);
