@@ -203,10 +203,12 @@ const {
     <div class="cs-nav-grid">
       <a href={prevCase.href} class="cs-nav-card">
         <p class="cs-nav-dir">← Previous</p>
+        <p class="cs-nav-eyebrow">{prevCase.eyebrow}</p>
         <h3 class="font-display cs-nav-title">{prevCase.title}</h3>
       </a>
       <a href={nextCase.href} class="cs-nav-card cs-nav-card-right">
         <p class="cs-nav-dir">Next →</p>
+        <p class="cs-nav-eyebrow">{nextCase.eyebrow}</p>
         <h3 class="font-display cs-nav-title">{nextCase.title}</h3>
       </a>
     </div>
@@ -365,7 +367,7 @@ const {
   .cs-nav-card:hover    { transform: translateY(-3px); }
   .cs-nav-card-right    { text-align: right; }
   .cs-nav-dir           { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--silver); margin: 0 0 4px; font-family: 'Inter', sans-serif; }
-
+  .cs-nav-eyebrow       { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--silver); margin: 0 0 8px; font-family: 'Inter', sans-serif; }
   .cs-nav-title         { font-size: 1.8rem; color: var(--ink); margin: 0; text-transform: uppercase; }
 
   /* ── Mobile ─────────────────────────────────────────────────── */

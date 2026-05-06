@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
+import PrevNext from '../components/PrevNext.astro';
 ---
 <BaseLayout
   title="Resume — Brian Thompson, Senior Product Designer"
@@ -209,10 +210,10 @@ import Footer from '../components/Footer.astro';
     font-family: 'Inter', sans-serif;
     font-weight: 500;
     color: var(--cream);
-    background: var(--dark-warm);
+    background: var(--dim-grey);
     padding: 6px 14px;
     border-radius: 100px;
-    border: 1px solid var(--dark-warm);
+    border: 1px solid var(--dim-grey);
     white-space: nowrap;
   }
 
@@ -576,6 +577,8 @@ import Footer from '../components/Footer.astro';
 
   </div>
 </section>
+
+<PrevNext prevTitle="Home" prevHref="/" nextTitle="About" nextHref="/about" />
 
 <Footer />
 

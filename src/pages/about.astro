@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
+import PrevNext from '../components/PrevNext.astro';
 ---
 <BaseLayout
   title="About — Brian Thompson, Senior Product Designer"
@@ -188,6 +189,8 @@ import Footer from '../components/Footer.astro';
       </a>
     </div>
   </section>
+
+  <PrevNext prevTitle="Resume" prevHref="/resume" nextTitle="Home" nextHref="/" />
 
   <Footer />
 

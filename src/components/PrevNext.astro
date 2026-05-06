@@ -1,0 +1,49 @@
+---
+interface Props {
+  prevTitle: string;
+  prevHref: string;
+  nextTitle: string;
+  nextHref: string;
+}
+const { prevTitle, prevHref, nextTitle, nextHref } = Astro.props;
+---
+
+<section style="padding: 0 48px 80px; background: var(--cream);">
+  <div style="max-width: 1100px; margin: 0 auto;">
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+
+      <a href={prevHref}
+         style="display:block; background:var(--soft-linen); border-radius:14px;
+                padding:28px; text-decoration:none; transition:transform 0.2s;"
+         onmouseover="this.style.transform='translateY(-3px)'"
+         onmouseout="this.style.transform='translateY(0)'">
+        <p style="font-size:10px; letter-spacing:0.12em; text-transform:uppercase;
+                  color:var(--silver); margin:0 0 10px; font-family:'Inter',sans-serif;">← Previous</p>
+        <h3 class="font-display"
+            style="font-size:1.8rem; color:var(--dark-warm); margin:0;
+                   text-transform:uppercase; line-height:1;">{prevTitle}</h3>
+      </a>
+
+      <a href={nextHref}
+         style="display:block; background:var(--soft-linen); border-radius:14px;
+                padding:28px; text-decoration:none; transition:transform 0.2s; text-align:right;"
+         onmouseover="this.style.transform='translateY(-3px)'"
+         onmouseout="this.style.transform='translateY(0)'">
+        <p style="font-size:10px; letter-spacing:0.12em; text-transform:uppercase;
+                  color:var(--silver); margin:0 0 10px; font-family:'Inter',sans-serif;">Next →</p>
+        <h3 class="font-display"
+            style="font-size:1.8rem; color:var(--dark-warm); margin:0;
+                   text-transform:uppercase; line-height:1;">{nextTitle}</h3>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<style>
+  @media (max-width: 700px) {
+    section { padding: 0 24px 64px; }
+    div > div { grid-template-columns: 1fr; }
+    a:last-child { text-align: left; }
+  }
+</style>
