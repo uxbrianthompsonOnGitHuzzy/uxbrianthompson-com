@@ -88,21 +88,23 @@ import PrevNext from '../components/PrevNext.astro';
       four disciplines that have never really talked to each other.
     </p>
 
-    <div style="display:grid; grid-template-columns:repeat(2,1fr); gap:2px;
-                margin:0 0 48px; background:var(--silver);">
-      {[
-        ["Experience Design",     "How people encounter, navigate, and make sense of systems"],
-        ["Agent Behavior Design", "How AI systems are prompted, constrained, and evaluated"],
-        ["Systems Architecture",  "How data, state, and logic connect across surfaces"],
-        ["Rapid Prototyping",     "How ideas become testable things fast enough to matter"],
-      ].map(([name, desc]) => (
-        <div style="background:var(--cream); padding:32px;">
-          <p class="font-display" style="font-size:1.05rem; color:var(--dark-warm);
-             margin:0 0 10px; line-height:1.2;">{name}</p>
-          <p style="font-size:0.9rem; line-height:1.65; color:var(--dim-grey);
-             margin:0; font-family:'Inter',sans-serif;">{desc}</p>
-        </div>
-      ))}
+    <div style="border-radius:16px; overflow:hidden; margin:0 0 48px;">
+      <div style="display:grid; grid-template-columns:repeat(2,1fr); gap:1px;
+                  background:var(--dim-grey);">
+        {[
+          ["Experience Design",     "How people encounter, navigate, and make sense of systems"],
+          ["Agent Behavior Design", "How AI systems are prompted, constrained, and evaluated"],
+          ["Systems Architecture",  "How data, state, and logic connect across surfaces"],
+          ["Rapid Prototyping",     "How ideas become testable things fast enough to matter"],
+        ].map(([name, desc]) => (
+          <div style="background:var(--silver); padding:36px;">
+            <p class="font-display" style="font-size:1.05rem; color:var(--dark-warm);
+               margin:0 0 10px; line-height:1.2;">{name}</p>
+            <p style="font-size:0.9rem; line-height:1.65; color:var(--dark-warm);
+               margin:0; font-family:'Inter',sans-serif; opacity:0.6;">{desc}</p>
+          </div>
+        ))}
+      </div>
     </div>
 
     <p style="font-size:1.05rem; line-height:1.8; color:var(--dim-grey); max-width:620px;
@@ -139,54 +141,6 @@ import PrevNext from '../components/PrevNext.astro';
         The problem scales. The discipline stays the same.
       </p>
 
-    </div>
-  </section>
-
-  <!-- Tools -->
-  <section style="padding:80px 48px; max-width:1100px; margin:0 auto;">
-
-    <p style="font-size:11px; letter-spacing:0.18em; text-transform:uppercase;
-       color:var(--silver); margin:0 0 32px; font-family:'Inter',sans-serif;">
-      Tools &amp; Methods
-    </p>
-
-    <div style="display:flex; flex-wrap:wrap; gap:10px; margin:0 0 48px;">
-      {[
-        "Figma (advanced prototyping)","Prompt design","Conversational flow design",
-        "Rapid validation","Systems mapping","Research synthesis",
-        "Agent behavior design","AI interaction modeling",
-      ].map(t => (
-        <span style="font-size:13px; font-family:'Inter',sans-serif; color:var(--dim-grey);
-               background:var(--soft-linen); padding:8px 18px; border-radius:100px;
-               border:1px solid var(--silver);">{t}</span>
-      ))}
-    </div>
-
-    <p class="font-display" style="font-size:1.05rem; color:var(--silver); line-height:1.5;
-       margin:0; font-style:italic;">
-      A whiteboard, markers, a No.&nbsp;2 pencil with eraser, and my mind.
-    </p>
-
-  </section>
-
-  <!-- CTA -->
-  <section style="padding:60px 48px 120px; text-align:center;">
-    <div style="display:flex; align-items:center; justify-content:center; gap:24px; flex-wrap:wrap;">
-      <a href="/resume" class="font-display"
-         style="font-size:1rem; color:var(--dark-warm); text-decoration:none;
-                border:1px solid var(--dark-warm); padding:14px 32px; border-radius:100px;
-                transition:all 0.2s;"
-         onmouseover="this.style.background='var(--dark-warm)';this.style.color='var(--cream)'"
-         onmouseout="this.style.background='transparent';this.style.color='var(--dark-warm)'">
-        View Resume
-      </a>
-      <a href="/" class="font-display"
-         style="font-size:1rem; color:var(--dim-grey); text-decoration:none; padding:14px 32px;
-                transition:color 0.2s;"
-         onmouseover="this.style.color='var(--dark-warm)'"
-         onmouseout="this.style.color='var(--dim-grey)'">
-        See the Work →
-      </a>
     </div>
   </section>
 
