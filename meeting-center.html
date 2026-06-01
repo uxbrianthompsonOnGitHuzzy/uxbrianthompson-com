@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meeting Center — Brian Thompson</title>
+<style>
+:root {
+  --bg: #07090f; --panel: #0d1119; --border: rgba(167,139,250,0.12);
+  --border-hover: rgba(167,139,250,0.3);
+  --text: #f1f4fa; --text-dim: #8b95ab; --text-faint: #4a5268;
+  --p0: #a78bfa; --p1: #5eead4; --p2: #38bdf8; --p3: #f472b6;
+  --grad-hero: linear-gradient(135deg, #a78bfa 0%, #5eead4 40%, #f472b6 100%);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg); color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", system-ui, sans-serif;
+  font-size: 16px; line-height: 1.5; -webkit-font-smoothing: antialiased; overflow-x: hidden;
+}
+body::before {
+  content: ''; position: fixed; inset: 0; pointer-events: none;
+  background:
+    radial-gradient(ellipse 80% 60% at 15% 0%, rgba(167,139,250,0.10), transparent 50%),
+    radial-gradient(ellipse 60% 50% at 85% 15%, rgba(94,234,212,0.06), transparent 50%);
+}
+a { color: inherit; text-decoration: none; }
+.grad { background: var(--grad-hero); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; height: 64px; display: flex; align-items: center; justify-content: space-between; padding: 0 64px; background: rgba(7,9,15,0.8); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid rgba(167,139,250,0.06); }
+.nav-brand { font-weight: 600; font-size: 14px; color: var(--text-dim); }
+.nav-brand strong { color: var(--text); font-weight: 700; }
+.nav-back { font-size: 14px; color: var(--text-faint); transition: color 0.2s; }
+.nav-back:hover { color: var(--text); }
+section { max-width: 1100px; margin: 0 auto; padding: 100px 64px; }
+.section-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: var(--p0); margin-bottom: 24px; display: block; }
+.eyebrow { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: var(--p0); margin-bottom: 16px; display: block; }
+h2 { font-size: clamp(32px, 4vw, 48px); font-weight: 700; line-height: 1.1; letter-spacing: -1px; margin-bottom: 16px; }
+p { font-size: 18px; line-height: 1.8; color: var(--text-dim); font-weight: 300; }
+p + p { margin-top: 12px; }
+.divider { border: none; height: 1px; background: linear-gradient(90deg, transparent, rgba(167,139,250,0.15), transparent); margin: 0 64px; max-width: 1100px; margin-left: auto; margin-right: auto; }
+.points { list-style: none; margin-top: 20px; display: flex; flex-direction: column; gap: 12px; }
+.points li { font-size: 16px; color: var(--text-dim); padding-left: 18px; position: relative; line-height: 1.6; font-weight: 300; }
+.points li::before { content: ''; position: absolute; left: 0; top: 10px; width: 5px; height: 5px; border-radius: 50%; background: var(--p0); }
+.points li strong { color: var(--text); font-weight: 600; }
+.card-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; margin-top: 32px; border: 1px solid var(--border); border-radius: 14px; overflow: hidden; background: var(--panel); }
+.card { padding: 28px; border-right: 1px solid var(--border); }
+.card:last-child { border-right: none; }
+.card h4 { font-size: 18px; font-weight: 700; margin-bottom: 6px; }
+.card .card-sub { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text-faint); margin-bottom: 16px; }
+.card p { font-size: 14px; color: var(--text-faint); line-height: 1.5; }
+.carousel { position: relative; max-width: 1920px; margin: 0 auto; padding: 40px 64px; }
+.carousel-caption { text-align: center; font-size: 17px; color: var(--text); margin-bottom: 16px; min-height: 24px; max-width: 1900px; margin-left: auto; margin-right: auto; font-weight: 300; }
+.carousel-caption strong { font-weight: 600; }
+.carousel-frame { display: flex; align-items: center; gap: 16px; }
+.carousel-track { position: relative; overflow: hidden; border-radius: 14px; border: 1px solid var(--border); box-shadow: 0 8px 40px rgba(0,0,0,0.4); display: inline-flex; align-items: center; justify-content: center; }
+.carousel-frame { display: flex; align-items: center; justify-content: center; gap: 16px; }
+.carousel-slide { display: none; }
+.carousel-slide.active { display: block; }
+.carousel-slide img { max-height: 840px; width: auto; max-width: 100%; object-fit: contain; display: block; margin: 0 auto; }
+.carousel-track { display: flex; align-items: center; justify-content: center; }
+.carousel-btn { width: 48px; height: 48px; border-radius: 50%; background: #fff; border: none; cursor: pointer; flex-shrink: 0; display: flex; align-items: center; justify-content: center; transition: transform 0.2s, box-shadow 0.2s; box-shadow: 0 2px 8px rgba(0,0,0,0.2); }
+.carousel-btn:hover { transform: scale(1.08); box-shadow: 0 4px 16px rgba(0,0,0,0.3); }
+.carousel-btn svg { width: 20px; height: 20px; }
+#prev-btn svg { transform: rotate(180deg); }
+.carousel-dots { display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 20px; }
+.carousel-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--text-faint); opacity: 0.4; transition: opacity 0.3s, background 0.3s, transform 0.3s; cursor: pointer; }
+.carousel-dot.active { opacity: 1; background: var(--p0); transform: scale(1.4); }
+.results-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 28px; }
+.result-card { background: var(--panel); border: 1px solid var(--border); border-radius: 10px; padding: 20px; position: relative; overflow: hidden; transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s; }
+.result-card::after { content: ''; position: absolute; inset: -1px; border-radius: 11px; background: linear-gradient(135deg, rgba(140,100,255,0.22), rgba(40,210,190,0.14), rgba(230,80,160,0.18)); opacity: 0; transition: opacity 0.3s; z-index: -1; mix-blend-mode: screen; }
+.result-card:hover { transform: translateY(-2px); border-color: rgba(167,139,250,0.25); box-shadow: 0 8px 24px rgba(167,139,250,0.08); }
+.result-card:hover::after { opacity: 1; }
+.result-card h4 { font-size: 16px; font-weight: 700; margin-bottom: 4px; }
+.result-card p { font-size: 13px; color: var(--text-faint); line-height: 1.4; transition: color 0.3s; }
+.result-card:hover p { color: var(--text-dim); }
+.case-nav { display: flex; justify-content: space-between; align-items: center; max-width: 1100px; margin: 0 auto; padding: 60px 64px 0; }
+.case-nav-btn { font-size: 15px; font-weight: 500; color: var(--text-dim); padding: 8px 18px; border-radius: 8px; border: 1px solid var(--border); transition: border-color 0.2s, color 0.2s; }
+.case-nav-btn:hover { border-color: var(--border-hover); color: var(--text); }
+footer { text-align: center; padding: 60px 64px; color: var(--text-faint); font-size: 14px; }
+footer a { color: var(--p0); transition: color 0.2s; }
+footer a:hover { color: var(--text); }
+.fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.fade-in.visible { opacity: 1; transform: translateY(0); }
+@media (max-width: 768px) { nav, section, .carousel, .case-nav { padding-left: 24px; padding-right: 24px; } .card-row, .results-grid { grid-template-columns: 1fr; } .card { border-right: none; border-bottom: 1px solid var(--border); } .card:last-child { border-bottom: none; } }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-brand"><strong>Brian Thompson</strong> &ndash; AI Product Design</a>
+  <a href="index.html" class="nav-back">&larr; Ecosystem</a>
+</nav>
+
+<div style="background: url('images/hero-cinematic-meeting.png') no-repeat center center; background-size: cover; height: 40vh; min-height: 280px; margin-top: 64px;"></div>
+
+<section style="text-align:center; padding: 80px 64px 60px; max-width: 1100px; margin: 0 auto;">
+  <span class="eyebrow">FSC Agentic Wealth Experience</span>
+  <h2 style="font-size:clamp(40px,6vw,64px); letter-spacing:-1.5px; line-height:1.0;"><span class="grad">Meeting Center.</span></h2>
+  <p style="margin:20px auto 0; max-width:580px; font-size:20px; font-weight:300; line-height:1.6;">Intelligence that knows when to speak, when to disappear, and when to ask.</p>
+</section>
+
+<hr class="divider">
+
+<section class="fade-in">
+  <span class="section-label">Challenge</span>
+  <h2>The meeting lifecycle is broken at <span class="grad">every stage.</span></h2>
+  <p>Pre-meeting: advisors manually search for client context across 5+ screens. During meeting: technology interrupts rather than supports the conversation. Post-meeting: 30+ minutes of admin to document what happened. No connection between meeting outcomes and active alerts.</p>
+</section>
+
+<hr class="divider">
+
+<section class="fade-in">
+  <span class="section-label">What We Built</span>
+  <h2><span class="grad">AI-orchestrated</span> pre, during, and post-meeting intelligence.</h2>
+  <p>Meeting Center transforms the entire meeting lifecycle. Before: auto-loaded prep with confidence-labeled talking points. During: restrained AI that captures silently. After: structured extraction with one-tap approval and auto-drafted follow-ups.</p>
+  <div class="card-row">
+    <div class="card">
+      <h4 style="color:var(--p0)">Pre-Meeting</h4>
+      <div class="card-sub">Time-adaptive prep</div>
+      <p>24hr = full context. 10 min = top 3 bullets. Walking in = single key insight. Each talking point shows source + confidence.</p>
+    </div>
+    <div class="card">
+      <h4 style="color:var(--p3)">During Meeting</h4>
+      <div class="card-sub">Restrained AI</div>
+      <p>UI strips to capture-only. Timer + minimal notes. No sidebar, no suggestions. Voice capture runs silently.</p>
+    </div>
+    <div class="card">
+      <h4 style="color:var(--p1)">Post-Meeting</h4>
+      <div class="card-sub">Structured extraction</div>
+      <p>Action items + sentiment + topics. Each field shows confidence. Draft follow-up auto-generated. One-tap approval.</p>
+    </div>
+  </div>
+</section>
+
+<div class="carousel" id="carousel">
+  <div class="carousel-caption" id="carousel-caption"></div>
+  <div class="carousel-frame">
+  <button class="carousel-btn" id="prev-btn"><svg viewBox="0 0 24 24" fill="none" stroke="#1B5BBF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+  <div class="carousel-track">
+    <div class="carousel-slide" data-caption="<strong>Meeting Prep.</strong> Client summary, prep tasks, AI-generated brief, Slack channel, documents, and attendees"><img src="images/meeting-center/01.png" alt="Meeting Prep"></div>
+    <div class="carousel-slide" data-caption="<strong>Document Summary.</strong> AI-generated portfolio performance synopsis with takeaway, suggested actions, and inline AI chat"><img src="images/meeting-center/02.png" alt="Document Summary"></div>
+    <div class="carousel-slide" data-caption="<strong>Discussion Guide.</strong> AI-crafted agenda with goals, portfolio overview, talk tracks, and editable structure"><img src="images/meeting-center/03.png" alt="Discussion Guide"></div>
+    <div class="carousel-slide" data-caption="<strong>Meeting Session.</strong> Capture the moment — video call, notes, voice recording, with AI suggestions and document references"><img src="images/meeting-center/04.png" alt="Meeting Session"></div>
+    <div class="carousel-slide" data-caption="<strong>Live AI Suggestions.</strong> Real-time guidance topics during the meeting — financial goals, estate planning, cash flow"><img src="images/meeting-center/05.png" alt="Live Suggestions"></div>
+    <div class="carousel-slide" data-caption="<strong>Topic Drill-Down.</strong> Expanded guidance with estate planning actions, gifting strategies, and related Salesforce records"><img src="images/meeting-center/06.png" alt="Topic Drill-Down"></div>
+    <div class="carousel-slide" data-caption="<strong>Meeting Follow-Up.</strong> Internal notes, Agentforce Actions (email, portfolio, referral, life event), and follow-up task list"><img src="images/meeting-center/07.png" alt="Follow-Up"></div>
+    <div class="carousel-slide" data-caption="<strong>Meeting Center.</strong> Upcoming and previous meetings with conversation summaries and AI-generated meeting type tags"><img src="images/meeting-center/lib-01.png" alt="Meeting Center Library"></div>
+    <div class="carousel-slide" data-caption="<strong>Meeting Library.</strong> Full history view with chronological meeting records and conversation context"><img src="images/meeting-center/lib-02.png" alt="Meeting Library"></div>
+    <div class="carousel-slide" data-caption="<strong>Meeting Templates.</strong> Configurable meeting types with pre-built agendas and Agentforce action mappings"><img src="images/meeting-center/lib-03.png" alt="Meeting Templates"></div>
+  </div>
+  <button class="carousel-btn" id="next-btn"><svg viewBox="0 0 24 24" fill="none" stroke="#1B5BBF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+  </div>
+  <div class="carousel-dots" id="carousel-dots"></div>
+</div>
+
+<hr class="divider">
+
+<section class="fade-in">
+  <span class="section-label">Key Decisions</span>
+  <h2>Design choices that <span class="grad">defined the experience.</span></h2>
+  <ul class="points">
+    <li><strong>Time-adaptive intelligence:</strong> The closer to the meeting, the more focused the prep — from full dossier to single key insight</li>
+    <li><strong>Restrained AI during meetings:</strong> The most important design choice is knowing when to disappear — no suggestions, no interruptions</li>
+    <li><strong>Structured extraction over freeform:</strong> Post-meeting notes are parsed into relationship, financial goals, and action items — not a wall of text</li>
+    <li><strong>Agentforce-native actions:</strong> Every follow-up creates real Salesforce records — cases, life events, tasks, emails — not just notes</li>
+  </ul>
+</section>
+
+<hr class="divider">
+
+<section class="fade-in">
+  <span class="section-label">Results</span>
+  <h2>Impact.</h2>
+  <div class="results-grid">
+    <div class="result-card"><h4>World Tour NYC</h4><p>Featured as 'AI-orchestrated client meetings,' Spring 2026</p></div>
+    <div class="result-card"><h4>3 min target</h4><p>3 minutes of post-meeting admin for 30 minutes of conversation</p></div>
+    <div class="result-card"><h4>Field SE enablement</h4><p>Shipping to demo sandboxes, May 2026</p></div>
+    <div class="result-card"><h4>Loop closure</h4><p>Meeting outcomes auto-resolve Command Center alerts</p></div>
+    <div class="result-card"><h4>SLDS 2 native</h4><p>Built with design tokens, LWC, and Agentforce actions</p></div>
+    <div class="result-card"><h4>23 screens</h4><p>Full lifecycle coverage — every state, error, and edge case</p></div>
+  </div>
+</section>
+
+<div class="case-nav">
+  <a href="run-my-day.html" class="case-nav-btn">&larr; Previous</a>
+  <a href="client-360.html" class="case-nav-btn">Next &rarr;</a>
+</div>
+
+<footer>
+  <a href="index.html">&larr; Ecosystem</a>
+</footer>
+
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.08 });
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+const slides = document.querySelectorAll('.carousel-slide');
+const caption = document.getElementById('carousel-caption');
+const dotsContainer = document.getElementById('carousel-dots');
+let current = 0;
+const total = slides.length;
+for (let i = 0; i < total; i++) {
+  const dot = document.createElement('span');
+  dot.className = 'carousel-dot';
+  dot.addEventListener('click', () => showSlide(i));
+  dotsContainer.appendChild(dot);
+}
+const dots = document.querySelectorAll('.carousel-dot');
+function showSlide(n) {
+  current = (n + total) % total;
+  slides.forEach(s => s.classList.remove('active'));
+  slides[current].classList.add('active');
+  dots.forEach(d => d.classList.remove('active'));
+  dots[current].classList.add('active');
+  caption.replaceChildren();
+  const template = document.createElement('template');
+  template.innerHTML = slides[current].dataset.caption;
+  caption.appendChild(template.content);
+}
+document.getElementById('prev-btn').addEventListener('click', () => showSlide(current - 1));
+document.getElementById('next-btn').addEventListener('click', () => showSlide(current + 1));
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowLeft') showSlide(current - 1);
+  if (e.key === 'ArrowRight') showSlide(current + 1);
+});
+showSlide(0);
+</script>
+</body>
+</html>

@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brian Thompson — AI Product Design</title>
+<style>
+:root {
+  --bg: #07090f;
+  --panel: #0d1119;
+  --border: rgba(167,139,250,0.12);
+  --border-hover: rgba(167,139,250,0.3);
+  --text: #f1f4fa;
+  --text-dim: #8b95ab;
+  --text-faint: #4a5268;
+  --p0: #a78bfa;
+  --p1: #5eead4;
+  --p2: #38bdf8;
+  --p4: #60a5fa;
+  --p3: #f472b6;
+  --grad-hero: linear-gradient(135deg, #a78bfa 0%, #5eead4 40%, #f472b6 100%);
+  --grad-border: linear-gradient(135deg, rgba(167,139,250,0.25), rgba(94,234,212,0.15), rgba(244,114,182,0.2));
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg); color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", system-ui, sans-serif;
+  font-size: 16px; line-height: 1.5; -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+body::before {
+  content: ''; position: fixed; inset: 0; pointer-events: none;
+  background:
+    radial-gradient(ellipse 80% 60% at 15% 0%, rgba(167,139,250,0.10), transparent 50%),
+    radial-gradient(ellipse 60% 50% at 85% 15%, rgba(94,234,212,0.06), transparent 50%),
+    radial-gradient(ellipse 50% 40% at 50% 100%, rgba(244,114,182,0.05), transparent 50%);
+}
+a { color: inherit; text-decoration: none; }
+
+/* Nav */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100; height: 64px;
+  display: flex; align-items: center; justify-content: space-between; padding: 0 64px;
+  background: rgba(7,9,15,0.8); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(167,139,250,0.06);
+}
+.nav-brand { font-weight: 600; font-size: 14px; color: var(--text-dim); }
+.nav-brand strong { color: var(--text); font-weight: 700; }
+.nav-links { display: flex; gap: 36px; }
+.nav-links a { font-size: 14px; color: var(--text-faint); transition: color 0.2s; }
+.nav-links a:hover { color: var(--text); }
+
+/* Hero */
+.hero {
+  min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center;
+  text-align: center; padding: 140px 64px 100px; position: relative;
+  background: url('images/hero-cinematic-main.png') no-repeat center center;
+  background-size: cover;
+}
+.hero-img {
+  width: 100%; max-width: 900px; border-radius: 16px; margin-bottom: 48px;
+  box-shadow: 0 20px 80px rgba(167,139,250,0.1), 0 4px 20px rgba(0,0,0,0.4);
+}
+.hero h1 {
+  font-size: clamp(48px, 7vw, 80px); font-weight: 700; line-height: 0.95;
+  letter-spacing: -2px; max-width: 1000px;
+}
+.grad {
+  background: var(--grad-hero); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.hero .subtitle {
+  font-size: 21px; color: var(--text-dim); margin-top: 28px;
+  max-width: 620px; line-height: 1.6; font-weight: 300;
+}
+.hero .badge {
+  display: inline-block; margin-top: 32px; padding: 8px 20px;
+  border-radius: 24px; font-size: 11px; font-weight: 600;
+  background: rgba(94,234,212,0.06); color: var(--p1);
+  letter-spacing: 0.8px; border: 1px solid rgba(94,234,212,0.15);
+}
+
+/* Sections */
+section { max-width: 1100px; margin: 0 auto; padding: 120px 64px; }
+.divider { border: none; height: 1px; background: linear-gradient(90deg, transparent, rgba(167,139,250,0.15), transparent); margin: 0 64px; max-width: 1100px; margin-left: auto; margin-right: auto; }
+.eyebrow { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: var(--p0); margin-bottom: 24px; display: block; }
+h2 { font-size: clamp(32px, 4vw, 48px); font-weight: 700; line-height: 1.1; letter-spacing: -1px; margin-bottom: 20px; }
+p { font-size: 18px; line-height: 1.8; color: var(--text-dim); font-weight: 300; max-width: none; }
+p + p { margin-top: 16px; }
+
+/* Stats — condensed side-by-side */
+.stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 40px; }
+.stat-card {
+  background: var(--panel); border-radius: 10px; padding: 16px 20px;
+  border: 1px solid var(--border); position: relative; overflow: hidden;
+  display: flex; align-items: center; gap: 14px;
+  transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+}
+.stat-card:hover { border-color: var(--border-hover); transform: translateY(-2px); box-shadow: 0 4px 20px rgba(167,139,250,0.08); }
+.stat-card .num { font-size: 28px; font-weight: 700; letter-spacing: -1px; flex-shrink: 0; }
+.stat-card .label { font-size: 13px; color: var(--text-faint); line-height: 1.4; }
+
+/* Pulse fill on first hover */
+.stat-card .pulse-ring {
+  position: absolute; top: 50%; left: 28px; width: 6px; height: 6px;
+  transform: translate(-50%, -50%); pointer-events: none;
+}
+.stat-card .pulse-ring::before,
+.stat-card .pulse-ring::after {
+  content: ''; position: absolute; inset: -4px; border-radius: 50%;
+  background: currentColor; opacity: 0;
+}
+.stat-card:hover .pulse-ring::before {
+  animation: pulseFill 0.7s ease-out forwards;
+}
+.stat-card:hover .pulse-ring::after {
+  animation: pulseFill 0.7s ease-out 0.12s forwards;
+}
+@keyframes pulseFill {
+  0% { transform: scale(0.4); opacity: 0.35; }
+  100% { transform: scale(2); opacity: 0; }
+}
+
+/* Principles */
+.principles { margin-top: 36px; display: flex; flex-direction: column; gap: 18px; }
+.principle { display: flex; gap: 16px; align-items: flex-start; }
+.principle .num { font-size: 11px; font-weight: 700; color: var(--p0); flex-shrink: 0; width: 22px; padding-top: 4px; letter-spacing: 0.5px; }
+.principle .text { font-size: 17px; color: var(--text-dim); line-height: 1.6; font-weight: 300; }
+.principle strong { color: var(--text); font-weight: 600; }
+
+/* Project Cards — gradient border glow on hover */
+.projects-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin-top: 36px; }
+.project-card {
+  position: relative; border-radius: 16px; padding: 0;
+  background: var(--panel); cursor: pointer;
+  border: 1px solid var(--border);
+  transition: transform 0.3s cubic-bezier(.22,.6,.36,1), box-shadow 0.3s, border-color 0.3s;
+  overflow: hidden;
+}
+.project-card .card-hero {
+  width: 100%; height: 160px; object-fit: cover; display: block;
+}
+.project-card .card-body { padding: 24px 28px 28px; }
+.project-card::after {
+  content: ''; position: absolute; inset: -1px; border-radius: 17px;
+  background: linear-gradient(135deg, rgba(140,100,255,0.22), rgba(40,210,190,0.14), rgba(230,80,160,0.18));
+  opacity: 0; transition: opacity 0.3s; z-index: -1;
+  filter: blur(1px);
+  mix-blend-mode: screen;
+}
+.project-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(167,139,250,0.08); border-color: rgba(167,139,250,0.25); }
+.project-card:hover::after { opacity: 1; }
+.project-card:hover p { color: var(--text-dim); }
+.project-card h4 { font-size: 22px; font-weight: 700; margin-bottom: 10px; letter-spacing: -0.3px; }
+.project-card h4.p0 { color: var(--p0); }
+.project-card h4.p1 { color: var(--p1); }
+.project-card h4.p2 { color: var(--p2); }
+.project-card h4.p3 { color: var(--p3); }
+.project-card h4.p4 { color: var(--p4); }
+.project-card p { font-size: 15px; color: var(--text-faint); line-height: 1.6; font-weight: 300; transition: color 0.3s; }
+.project-card .tag {
+  display: inline-block; margin-top: 16px; font-size: 11px; font-weight: 600;
+  color: var(--p1); text-transform: uppercase; letter-spacing: 0.8px;
+}
+.project-card .view-pill {
+  position: absolute; top: 172px; right: 20px;
+  font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.8px;
+  color: var(--text-faint); padding: 5px 12px; border-radius: 20px;
+  border: 1px solid var(--border); background: var(--panel);
+  transition: color 0.3s, border-color 0.3s;
+}
+.project-card:hover .view-pill { color: var(--text-dim); border-color: var(--border-hover); }
+
+/* Role cards — 3-column like UXR */
+.role-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; margin-top: 36px; border: 1px solid var(--border); border-radius: 14px; overflow: hidden; background: var(--panel); }
+.role-card { padding: 32px; border-right: 1px solid var(--border); }
+.role-card:last-child { border-right: none; }
+.role-card h4 { font-size: 18px; font-weight: 700; margin-bottom: 6px; }
+.role-card h4.p0 { color: var(--p0); }
+.role-card h4.p1 { color: var(--p1); }
+.role-card h4.p2 { color: var(--p2); }
+.role-card .role-sub { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text-faint); margin-bottom: 20px; }
+.role-card ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.role-card li { font-size: 14px; color: var(--text-dim); line-height: 1.5; padding-left: 14px; position: relative; }
+.role-card li::before { content: ''; position: absolute; left: 0; top: 8px; width: 4px; height: 4px; border-radius: 50%; background: var(--text-faint); }
+
+/* Callout banner */
+.callout {
+  max-width: 1100px; margin: 0 auto; padding: 0 64px;
+}
+.callout-inner {
+  background: linear-gradient(135deg, rgba(167,139,250,0.06), rgba(94,234,212,0.04), rgba(244,114,182,0.05));
+  border: 1px solid rgba(167,139,250,0.12); border-radius: 14px;
+  padding: 24px 32px; display: flex; align-items: center; gap: 20px;
+}
+.callout-label { font-size: 14px; font-weight: 700; color: var(--p1); flex-shrink: 0; }
+.callout-text { font-size: 15px; color: var(--text-dim); line-height: 1.5; border-left: 1px solid rgba(94,234,212,0.2); padding-left: 20px; }
+
+/* Role */
+.role { margin-top: 28px; }
+.role p { font-size: 16px; color: var(--text-faint); line-height: 1.8; font-weight: 300; }
+.role strong { color: var(--text); font-weight: 600; }
+
+/* Previous Work card */
+.prev-work-card {
+  display: flex; align-items: center; gap: 20px;
+  background: var(--panel); border: 1px solid var(--border); border-radius: 14px;
+  padding: 24px 32px; position: relative; overflow: hidden;
+  transition: transform 0.3s cubic-bezier(.22,.6,.36,1), box-shadow 0.3s, border-color 0.3s;
+}
+.prev-work-card::after {
+  content: ''; position: absolute; inset: -1px; border-radius: 15px;
+  background: linear-gradient(135deg, rgba(140,100,255,0.22), rgba(40,210,190,0.14), rgba(230,80,160,0.18));
+  opacity: 0; transition: opacity 0.3s; z-index: -1; mix-blend-mode: screen;
+}
+.prev-work-card:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(167,139,250,0.08); border-color: rgba(167,139,250,0.25); }
+.prev-work-card:hover::after { opacity: 1; }
+.prev-work-label { font-size: 15px; font-weight: 700; color: var(--p3); flex-shrink: 0; }
+.prev-work-text { font-size: 15px; color: var(--text-dim); border-left: 1px solid rgba(244,114,182,0.25); padding-left: 20px; line-height: 1.5; }
+
+footer { text-align: center; padding: 80px 64px; color: var(--text-faint); font-size: 13px; }
+
+/* Scroll animations */
+.fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.fade-in.visible { opacity: 1; transform: translateY(0); }
+
+@media (max-width: 768px) {
+  nav, .hero, section, .callout { padding-left: 24px; padding-right: 24px; }
+  .stats-grid, .projects-grid { grid-template-columns: 1fr; }
+  .hero h1 { font-size: 40px; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-brand"><strong>Brian Thompson</strong> &ndash; AI Product Design</a>
+  <div class="nav-links">
+    <a href="#work">Work</a>
+    <a href="#about">About</a>
+    <a href="resume.html">Resume</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <h1>FSC <span class="grad">Agentic Wealth</span> Experience.</h1>
+  <p class="subtitle">An intelligent ecosystem transforms how financial advisors cultivate, manage, and extend client relationships &mdash; at scale and with trust.</p>
+</div>
+
+<section id="work" class="fade-in">
+  <span class="eyebrow">Ecosystem</span>
+  <h2>Four experiences, one <span class="grad">connected loop.</span></h2>
+  <div class="projects-grid">
+    <a href="run-my-day.html" class="project-card">
+      <img class="card-hero" src="images/hero-cinematic-rmd.png" alt="">
+      <div class="card-body">
+        <h4 class="p0">Run My Day</h4>
+        <p>The daily command center. Detect, analyze, recommend, and enable &mdash; decision-ready intelligence in under 5&nbsp;minutes.</p>
+        <span class="tag">GA &middot; Detect &amp; Enable</span>
+      </div>
+      <span class="view-pill">View</span>
+    </a>
+    <a href="meeting-center.html" class="project-card">
+      <img class="card-hero" src="images/hero-cinematic-meeting.png" alt="">
+      <div class="card-body">
+        <h4 class="p1">Meeting Center</h4>
+        <p>The AI-powered meeting lifecycle. Prep, conduct, and follow through &mdash; intelligence that knows when to disappear.</p>
+        <span class="tag">GA &middot; Intelligent Engagement</span>
+      </div>
+      <span class="view-pill">View</span>
+    </a>
+    <a href="client-360.html" class="project-card">
+      <img class="card-hero" src="images/hero-cinematic-client360.png" alt="">
+      <div class="card-body">
+        <h4 class="p0">Client 360</h4>
+        <p>Global context awareness. AI-generated narrative summaries, life events, plans, goals, and relationship graphs.</p>
+        <span class="tag">GA &middot; Context Engine</span>
+      </div>
+      <span class="view-pill">View</span>
+    </a>
+    <a href="performance-analytics.html" class="project-card">
+      <img class="card-hero" src="images/hero-cinematic-performance.png" alt="">
+      <div class="card-body">
+        <h4 class="p1">Performance Analytics</h4>
+        <p>Real-time portfolio visualization, asset allocation analysis, and financial planning roll-ups for every conversation.</p>
+        <span class="tag">GA &middot; Portfolio Intelligence</span>
+      </div>
+      <span class="view-pill">View</span>
+    </a>
+    <a href="anywhere-advisor.html" class="project-card">
+      <img class="card-hero" src="images/hero-cinematic-slack.png" alt="">
+      <div class="card-body">
+        <h4 class="p4">Anywhere Advisor</h4>
+        <p>Slack-first agentic surface. Full action capability from mobile &mdash; zero CRM login required.</p>
+        <span class="tag">Beta &middot; Slack-Native</span>
+      </div>
+      <span class="view-pill">View</span>
+    </a>
+    <a href="setup.html" class="project-card">
+      <img class="card-hero" src="images/hero-cinematic-setup.png" alt="">
+      <div class="card-body">
+        <h4 class="p4">Universal Setup</h4>
+        <p>Self-service admin configuration. 3-step wizard, visual builder, under 30 minutes &mdash; no Professional Services.</p>
+        <span class="tag">GA &middot; Admin Experience</span>
+      </div>
+      <span class="view-pill">View</span>
+    </a>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section class="fade-in">
+  <span class="eyebrow">Impact</span>
+  <div class="stats-grid">
+    <div class="stat-card"><span class="pulse-ring" style="color:var(--p0)"></span><div class="num" style="color:var(--p0)">56</div><div class="label">Features and enhancements shipped</div></div>
+    <div class="stat-card"><span class="pulse-ring" style="color:var(--p1)"></span><div class="num" style="color:var(--p1)">17</div><div class="label">Zero-to-one AI innovations</div></div>
+    <div class="stat-card"><span class="pulse-ring" style="color:var(--p3)"></span><div class="num" style="color:var(--p3)">32</div><div class="label">Agentic contextual insights and actions</div></div>
+    <div class="stat-card"><span class="pulse-ring" style="color:var(--p2)"></span><div class="num" style="color:var(--p2)">11</div><div class="label">Customer pilot validation programs</div></div>
+    <div class="stat-card"><span class="pulse-ring" style="color:var(--p1)"></span><div class="num" style="color:var(--p1)">100%</div><div class="label">Adoption desire among pilot interviewees</div></div>
+    <div class="stat-card"><span class="pulse-ring" style="color:var(--p0)"></span><div class="num" style="color:var(--p0)">$2M</div><div class="label">Closed ACV influenced by demo org</div></div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section class="fade-in">
+  <span class="eyebrow">Purpose</span>
+  <h2>Unlock trapped data. Automate routine tasks. Preserve <span class="grad">human connection.</span></h2>
+  <p>A wealth advisor managing 150+ clients and $700M in assets faces a daily paradox: the more clients they serve, the less personal attention each receives. Critical signals get buried. Meeting prep is manual. Follow-through falls off.</p>
+  <p>The FSC Agentic Wealth Experience is the answer &mdash; four interconnected experiences forming one intelligent digital ecosystem that gives advisors back their time, their insight, and their confidence.</p>
+</section>
+
+<hr class="divider">
+
+<section class="fade-in">
+  <span class="eyebrow">Design Principles</span>
+  <h2>How we think.</h2>
+  <div class="principles">
+    <div class="principle"><span class="num">01</span><span class="text"><strong>Ambient awareness over forced navigation</strong> &mdash; urgency is visible but never coercive. The advisor always chooses.</span></div>
+    <div class="principle"><span class="num">02</span><span class="text"><strong>Intelligence, not information</strong> &mdash; don&rsquo;t reprint data. Provide insight with implications and benefits.</span></div>
+    <div class="principle"><span class="num">03</span><span class="text"><strong>Zero-config for advisors, full control for admins</strong> &mdash; separate the experience from the configuration.</span></div>
+    <div class="principle"><span class="num">04</span><span class="text"><strong>Connected by design</strong> &mdash; each experience feeds the others. Meeting notes become signals. Signals become actions. Actions become follow-ups.</span></div>
+    <div class="principle"><span class="num">05</span><span class="text"><strong>Advisor-authorized autonomy</strong> &mdash; AI acts on behalf of the advisor, never on behalf of itself.</span></div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section id="about" class="fade-in">
+  <span class="eyebrow">My Role</span>
+  <h2>Senior Product Designer, <span class="grad">AI Experiences.</span></h2>
+  <p>Salesforce Financial Services Cloud &mdash; end-to-end design ownership across all four experiences.</p>
+  <div class="role-grid">
+    <div class="role-card">
+      <h4 class="p0">Design &amp; Strategy</h4>
+      <div class="role-sub">Shaping what we build</div>
+      <ul>
+        <li>Co-defined business objectives and product strategy with PM</li>
+        <li>Agent behavior design &mdash; instructions, topics, actions, guardrails</li>
+        <li>System-level architecture connecting all four experiences</li>
+      </ul>
+    </div>
+    <div class="role-card">
+      <h4 class="p1">Prototyping &amp; Code</h4>
+      <div class="role-sub">Building what we ship</div>
+      <ul>
+        <li>Prototyping in code (LWC + SLDS 2) alongside Figma</li>
+        <li>Demo-ready sandboxes that sell &mdash; not just mockups</li>
+        <li>AI as part of the design workflow &mdash; iterating daily with Claude</li>
+      </ul>
+    </div>
+    <div class="role-card">
+      <h4 class="p3">Cross-functional</h4>
+      <div class="role-sub">Collaborating at scale</div>
+      <ul>
+        <li>PM, Engineering, Research, and customer collaboration</li>
+        <li>11 customer pilot validation programs</li>
+        <li>World Tour NYC + Gartner Magic Quadrant demo delivery</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<div style="max-width: 1100px; margin: 0 auto; padding: 0 64px 60px;">
+  <a href="https://uxbrianthompson.myportfolio.com" target="_blank" class="prev-work-card">
+    <span class="prev-work-label">Previous Work</span>
+    <span class="prev-work-text">To view additional work, check out my archive portfolio. uxbrianthompson.myportfolio.com</span>
+  </a>
+</div>
+
+<footer>Brian Thompson &middot; AI Product Design &middot; 2026</footer>
+
+<script>
+// Scroll fade-in
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
