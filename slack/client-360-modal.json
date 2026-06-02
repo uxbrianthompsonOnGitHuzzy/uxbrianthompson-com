@@ -1,0 +1,101 @@
+{
+  "type": "modal",
+  "title": {
+    "type": "plain_text",
+    "text": "Miyazaki Household"
+  },
+  "close": {
+    "type": "plain_text",
+    "text": "Close"
+  },
+  "blocks": [
+    {
+      "type": "section",
+      "fields": [
+        {"type": "mrkdwn", "text": "*Total Net Worth*\n$7.2M"},
+        {"type": "mrkdwn", "text": "*Available Cash*\n$485K"}
+      ]
+    },
+    {
+      "type": "section",
+      "fields": [
+        {"type": "mrkdwn", "text": "*Risk Profile*\nAggressive Growth"},
+        {"type": "mrkdwn", "text": "*Segment*\nHigh Net Worth"}
+      ]
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "header",
+      "text": {"type": "plain_text", "text": "✦ Agentforce Assessment"}
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "The Miyazaki family is in an early accumulation phase with young children. Key life events include college planning, career growth, and potential home upgrade.\n\n`High Confidence · 4 supporting signals`"
+      }
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "*Recent Context*"
+      }
+    },
+    {
+      "type": "context",
+      "elements": [
+        {"type": "mrkdwn", "text": "🔴 $185K wire transfer — 280% above avg · May 20"},
+        {"type": "mrkdwn", "text": "🔴 Life Event: 529 Plan Contribution · May 14"},
+        {"type": "mrkdwn", "text": "🟡 Meeting: Education Savings Strategy · May 10"},
+        {"type": "mrkdwn", "text": "🔵 Upcoming: Quarterly Review · May 28"}
+      ]
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "*Asset Allocation*\n• US Equity: 41% | Intl Equity: 30%\n• Fixed Income: 15% | Alternatives: 8%\n• Cash: 6%\n\n_Drift: Equity overweight by 4% vs. target_"
+      }
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "*Recommended Next Step*\n📋 Discuss at Quarterly Review (May 28) — confirm 529 superfunding, discuss portfolio rebalancing, review estate documentation."
+      }
+    },
+    {
+      "type": "actions",
+      "elements": [
+        {
+          "type": "button",
+          "text": {"type": "plain_text", "text": "Schedule Meeting"},
+          "style": "primary",
+          "value": "schedule"
+        },
+        {
+          "type": "button",
+          "text": {"type": "plain_text", "text": "Send Email"},
+          "value": "email"
+        },
+        {
+          "type": "button",
+          "text": {"type": "plain_text", "text": "Open in Salesforce"},
+          "value": "open_sf"
+        }
+      ]
+    }
+  ]
+}

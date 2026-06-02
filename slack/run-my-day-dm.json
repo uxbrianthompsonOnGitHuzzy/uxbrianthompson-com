@@ -1,0 +1,129 @@
+{
+  "blocks": [
+    {
+      "type": "header",
+      "text": {
+        "type": "plain_text",
+        "text": "☀️ Good morning, Jennifer"
+      }
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "I've pulled together your key updates — *5 meetings*, *8 insights*, market movements, and tasks that could impact your clients today."
+      }
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "🔴 *Priority 1: Anomalous Transaction*\n*Miyazaki Household* — $185K wire transfer, 280% above 12-month average\n`High Confidence · 4 supporting signals`"
+      },
+      "accessory": {
+        "type": "overflow",
+        "options": [
+          {"text": {"type": "plain_text", "text": "View Client"}, "value": "view_client"},
+          {"text": {"type": "plain_text", "text": "Dismiss"}, "value": "dismiss"},
+          {"text": {"type": "plain_text", "text": "Snooze 7 days"}, "value": "snooze_7"}
+        ]
+      }
+    },
+    {
+      "type": "actions",
+      "elements": [
+        {
+          "type": "button",
+          "text": {"type": "plain_text", "text": "View Details"},
+          "style": "primary",
+          "value": "view_miyazaki"
+        },
+        {
+          "type": "button",
+          "text": {"type": "plain_text", "text": "Acknowledge"},
+          "value": "ack_miyazaki"
+        },
+        {
+          "type": "button",
+          "text": {"type": "plain_text", "text": "Schedule Meeting"},
+          "value": "schedule_miyazaki"
+        }
+      ]
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "🟡 *Priority 2: High Churn Risk*\n*Marcus Whitfield* — Risk Score 91, AUM declined 18% over 6 months, no advisor contact in 92 days\n`Critical · 2 open service cases`"
+      },
+      "accessory": {
+        "type": "overflow",
+        "options": [
+          {"text": {"type": "plain_text", "text": "View Client"}, "value": "view_client"},
+          {"text": {"type": "plain_text", "text": "Dismiss"}, "value": "dismiss"},
+          {"text": {"type": "plain_text", "text": "Snooze"}, "value": "snooze"}
+        ]
+      }
+    },
+    {
+      "type": "actions",
+      "elements": [
+        {
+          "type": "button",
+          "text": {"type": "plain_text", "text": "View Details"},
+          "style": "primary",
+          "value": "view_whitfield"
+        },
+        {
+          "type": "button",
+          "text": {"type": "plain_text", "text": "Send Outreach"},
+          "value": "outreach_whitfield"
+        }
+      ]
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "🟢 *Priority 3: Growth Opportunity*\n*Centers of Influence* — Sandra Obi has 4 confirmed referrals this year. Co-host estate planning workshop?\n`High Confidence · $14.2M network value`"
+      }
+    },
+    {
+      "type": "actions",
+      "elements": [
+        {
+          "type": "button",
+          "text": {"type": "plain_text", "text": "Co-Host Workshop"},
+          "style": "primary",
+          "value": "workshop_obi"
+        },
+        {
+          "type": "button",
+          "text": {"type": "plain_text", "text": "View Network"},
+          "value": "view_obi"
+        }
+      ]
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "context",
+      "elements": [
+        {
+          "type": "mrkdwn",
+          "text": "✦ *Agentforce* · Run My Day · Retain: 13 | Grow: 12 | Service: 3 | Comply: 3"
+        }
+      ]
+    }
+  ]
+}

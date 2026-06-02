@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anywhere Advisor — Slack Mockups</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; background: #1a1d21; color: #d1d2d3; font-size: 15px; line-height: 1.46; padding: 40px; }
+h1 { font-size: 28px; font-weight: 700; margin-bottom: 8px; color: #f0f0f0; }
+.page-sub { font-size: 15px; color: #9a9b9d; margin-bottom: 40px; }
+
+.slack-section { margin-bottom: 60px; }
+.slack-label { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: #9a9b9d; margin-bottom: 16px; }
+
+/* Slack message container */
+.slack-msg {
+  max-width: 720px; background: #222529; border-radius: 8px;
+  border: 1px solid #383a3d; padding: 16px 20px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+
+/* Slack modal container */
+.slack-modal {
+  max-width: 560px; background: #222529; border-radius: 12px;
+  border: 1px solid #383a3d; overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+}
+.slack-modal-header {
+  padding: 16px 24px; border-bottom: 1px solid #383a3d;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.slack-modal-header h3 { font-size: 18px; font-weight: 700; color: #f0f0f0; }
+.slack-modal-close { font-size: 13px; color: #9a9b9d; cursor: pointer; padding: 6px 12px; border: 1px solid #383a3d; border-radius: 4px; background: #2c2d30; }
+.slack-modal-body { padding: 20px 24px; }
+
+/* Bot identity */
+.bot-row { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; }
+.bot-avatar { width: 36px; height: 36px; border-radius: 4px; background: linear-gradient(135deg, #667eea, #764ba2); display: flex; align-items: center; justify-content: center; color: #fff; font-size: 14px; font-weight: 700; }
+.bot-name { font-weight: 700; font-size: 15px; color: #f0f0f0; }
+.bot-badge { font-size: 10px; background: #383a3d; color: #9a9b9d; padding: 2px 6px; border-radius: 3px; font-weight: 600; margin-left: 6px; }
+.bot-time { font-size: 12px; color: #6b6c6e; margin-left: 8px; }
+
+/* Block elements */
+.s-header { font-size: 18px; font-weight: 700; margin: 16px 0 8px; color: #f0f0f0; }
+.s-text { margin: 8px 0; line-height: 1.5; color: #d1d2d3; }
+.s-text strong { font-weight: 700; color: #f0f0f0; }
+.s-text code { background: #383a3d; padding: 2px 5px; border-radius: 3px; font-size: 12px; color: #9a9b9d; font-family: 'SF Mono', Monaco, monospace; }
+.s-divider { border: none; border-top: 1px solid #383a3d; margin: 12px 0; }
+.s-fields { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 8px 0; }
+.s-field label { font-size: 12px; font-weight: 700; color: #9a9b9d; display: block; }
+.s-field span { font-size: 15px; font-weight: 700; color: #f0f0f0; }
+.s-context { font-size: 12px; color: #9a9b9d; margin: 8px 0; line-height: 1.5; }
+.s-actions { display: flex; gap: 8px; margin: 12px 0; flex-wrap: wrap; }
+.s-btn { padding: 6px 12px; border-radius: 4px; font-size: 13px; font-weight: 700; border: 1px solid #383a3d; background: #2c2d30; color: #d1d2d3; cursor: pointer; }
+.s-btn-primary { background: #007a5a; color: #fff; border-color: #007a5a; }
+.s-priority { display: flex; align-items: flex-start; gap: 4px; }
+.s-dot-red { color: #e01e5a; }
+.s-dot-yellow { color: #ecb22e; }
+.s-dot-green { color: #2eb67d; }
+</style>
+</head>
+<body>
+
+<h1>Anywhere Advisor — Slack Mockups</h1>
+<p class="page-sub">Light mode message content for portfolio presentation. JSON source files available for Block Kit Builder.</p>
+
+<!-- RUN MY DAY DM -->
+<div class="slack-section">
+  <div class="slack-label">Run My Day — Morning DM</div>
+  <div class="slack-msg">
+    <div class="bot-row">
+      <div class="bot-avatar">✦</div>
+      <span class="bot-name">Agentforce</span><span class="bot-badge">APP</span>
+      <span class="bot-time">7:02 AM</span>
+    </div>
+
+    <div class="s-header">☀️ Good morning, Jennifer</div>
+    <p class="s-text">I've pulled together your key updates — <strong>5 meetings</strong>, <strong>8 insights</strong>, market movements, and tasks that could impact your clients today.</p>
+
+    <hr class="s-divider">
+
+    <p class="s-text"><span class="s-dot-red">🔴</span> <strong>Priority 1: Anomalous Transaction</strong><br><strong>Miyazaki Household</strong> — $185K wire transfer, 280% above 12-month average<br><code>High Confidence · 4 supporting signals</code></p>
+    <div class="s-actions">
+      <button class="s-btn s-btn-primary">View Details</button>
+      <button class="s-btn">Acknowledge</button>
+      <button class="s-btn">Schedule Meeting</button>
+    </div>
+
+    <hr class="s-divider">
+
+    <p class="s-text"><span class="s-dot-yellow">🟡</span> <strong>Priority 2: High Churn Risk</strong><br><strong>Marcus Whitfield</strong> — Risk Score 91, AUM declined 18% over 6 months, no advisor contact in 92 days<br><code>Critical · 2 open service cases</code></p>
+    <div class="s-actions">
+      <button class="s-btn s-btn-primary">View Details</button>
+      <button class="s-btn">Send Outreach</button>
+    </div>
+
+    <hr class="s-divider">
+
+    <p class="s-text"><span class="s-dot-green">🟢</span> <strong>Priority 3: Growth Opportunity</strong><br><strong>Centers of Influence</strong> — Sandra Obi has 4 confirmed referrals this year. Co-host estate planning workshop?<br><code>High Confidence · $14.2M network value</code></p>
+    <div class="s-actions">
+      <button class="s-btn s-btn-primary">Co-Host Workshop</button>
+      <button class="s-btn">View Network</button>
+    </div>
+
+    <hr class="s-divider">
+    <p class="s-context">✦ <strong>Agentforce</strong> · Run My Day · Retain: 13 | Grow: 12 | Service: 3 | Comply: 3</p>
+  </div>
+</div>
+
+<!-- CLIENT 360 MODAL -->
+<div class="slack-section">
+  <div class="slack-label">Client 360 — Alert Drill-Down Modal</div>
+  <div class="slack-modal">
+    <div class="slack-modal-header">
+      <h3>Miyazaki Household</h3>
+      <button class="slack-modal-close">Close</button>
+    </div>
+    <div class="slack-modal-body">
+      <div class="s-fields">
+        <div class="s-field"><label>Total Net Worth</label><span>$7.2M</span></div>
+        <div class="s-field"><label>Available Cash</label><span>$485K</span></div>
+        <div class="s-field"><label>Risk Profile</label><span>Aggressive Growth</span></div>
+        <div class="s-field"><label>Segment</label><span>High Net Worth</span></div>
+      </div>
+
+      <hr class="s-divider">
+      <div class="s-header">✦ Agentforce Assessment</div>
+      <p class="s-text">The Miyazaki family is in an early accumulation phase with young children. Key life events include college planning, career growth, and potential home upgrade.</p>
+      <p class="s-text"><code>High Confidence · 4 supporting signals</code></p>
+
+      <hr class="s-divider">
+      <p class="s-text"><strong>Recent Context</strong></p>
+      <p class="s-context">🔴 $185K wire transfer — 280% above avg · May 20<br>🔴 Life Event: 529 Plan Contribution · May 14<br>🟡 Meeting: Education Savings Strategy · May 10<br>🔵 Upcoming: Quarterly Review · May 28</p>
+
+      <hr class="s-divider">
+      <p class="s-text"><strong>Asset Allocation</strong><br>• US Equity: 41% | Intl Equity: 30%<br>• Fixed Income: 15% | Alternatives: 8%<br>• Cash: 6%<br><em>Drift: Equity overweight by 4% vs. target</em></p>
+
+      <hr class="s-divider">
+      <p class="s-text"><strong>Recommended Next Step</strong><br>📋 Discuss at Quarterly Review (May 28) — confirm 529 superfunding, discuss portfolio rebalancing, review estate documentation.</p>
+
+      <div class="s-actions">
+        <button class="s-btn s-btn-primary">Schedule Meeting</button>
+        <button class="s-btn">Send Email</button>
+        <button class="s-btn">Open in Salesforce</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MEETING CENTER — PRE -->
+<div class="slack-section">
+  <div class="slack-label">Meeting Center — Pre-Meeting Brief (Channel)</div>
+  <div class="slack-msg">
+    <div class="bot-row">
+      <div class="bot-avatar">✦</div>
+      <span class="bot-name">Agentforce</span><span class="bot-badge">APP</span>
+      <span class="bot-time">8:45 AM</span>
+    </div>
+
+    <div class="s-header">📋 Miyazaki Annual Review — Pre-Meeting Brief</div>
+    <p class="s-text"><strong>Client:</strong> Eriko Miyazaki | <strong>Date:</strong> March 18, 2026 | <strong>AUM:</strong> $4.8M<br><strong>Risk:</strong> Moderate Growth | <strong>Last Meeting:</strong> Sept 2025</p>
+
+    <hr class="s-divider">
+
+    <p class="s-text"><strong>Relationship Snapshot</strong><br>• Goals: Retire at 60 with ~$7M, fund daughter's college in 4 years<br>• Recent: Promotion with higher income, RSU vesting upcoming<br>• Expressed frustration about perceived slow response during market volatility<br>• Focus: Acknowledge feedback. Present clear communication cadence.</p>
+
+    <hr class="s-divider">
+
+    <p class="s-text"><strong>Today's Agenda</strong><br>1. Goals & Alignment — retirement, college, vacation home<br>2. Portfolio & Risk — allocation, concentration, rebalancing<br>3. Communication Reset — acknowledge, set cadence<br>4. Decisions & Next Steps</p>
+
+    <p class="s-text"><strong>Agentforce Pre-Check</strong> ✅<br>• Portfolio Risk Check — completed<br>• Tax Efficiency Scan — completed<br>• Compliance Review — clear</p>
+
+    <div class="s-actions">
+      <button class="s-btn s-btn-primary">Start Meeting Recording</button>
+      <button class="s-btn">Open Discussion Guide</button>
+    </div>
+  </div>
+</div>
+
+<!-- MEETING CENTER — POST -->
+<div class="slack-section">
+  <div class="slack-label">Meeting Center — Post-Meeting Wrap-Up (Channel)</div>
+  <div class="slack-msg">
+    <div class="bot-row">
+      <div class="bot-avatar">✦</div>
+      <span class="bot-name">Agentforce</span><span class="bot-badge">APP</span>
+      <span class="bot-time">9:34 AM</span>
+    </div>
+
+    <div class="s-header">✅ Miyazaki Annual Review — Meeting Complete</div>
+    <p class="s-context">Duration: 32 min · Attendees: Jennifer Chen, Eriko Miyazaki, Sandra Obi (JD)</p>
+
+    <hr class="s-divider">
+
+    <p class="s-text"><strong>Key Topics</strong><br>• Retirement target $7M unchanged — wants higher confidence<br>• College funding priority — 529 front-loading confirmed<br>• Vacation home exploratory, not near-term<br>• Communication: monthly check-ins agreed</p>
+
+    <hr class="s-divider">
+
+    <p class="s-text"><strong>Decisions Made</strong><br>✅ Rebalance portfolio: reduce equity overweight by 4%<br>✅ Increase 529 contribution to $35K/year<br>✅ Schedule quarterly reviews (vs. semi-annual)<br>✅ Set up monthly email update cadence</p>
+
+    <hr class="s-divider">
+
+    <p class="s-text"><strong>Agentforce Follow-Up Actions</strong><br>📧 Draft follow-up email — ready for review<br>📋 Create rebalancing task — assigned to Shelly Taylor<br>🏠 Log life event: Education Savings Strategy<br>📅 Schedule next quarterly review — May 28</p>
+
+    <p class="s-text"><strong>Sentiment:</strong> Positive, engaged. Prior frustration resolved — acknowledged and addressed with new cadence.</p>
+
+    <div class="s-actions">
+      <button class="s-btn s-btn-primary">Commit to Salesforce</button>
+      <button class="s-btn">Review Email Draft</button>
+      <button class="s-btn">Edit Summary</button>
+    </div>
+
+    <p class="s-context">✦ <strong>Agentforce</strong> · Meeting Center · Auto-generated from voice capture + notes · <code>Medium Confidence</code></p>
+  </div>
+</div>
+
+<!-- PERFORMANCE ANALYTICS -->
+<div class="slack-section">
+  <div class="slack-label">Performance Analytics — Weekly Snapshot DM</div>
+  <div class="slack-msg">
+    <div class="bot-row">
+      <div class="bot-avatar">✦</div>
+      <span class="bot-name">Agentforce</span><span class="bot-badge">APP</span>
+      <span class="bot-time">Mon 7:00 AM</span>
+    </div>
+
+    <div class="s-header">📊 Weekly Practice Snapshot</div>
+    <p class="s-context">Week of May 26, 2026 · Generated by Agentforce</p>
+
+    <hr class="s-divider">
+
+    <div class="s-fields">
+      <div class="s-field"><label>Total AUM</label><span>$722,376,775</span></div>
+      <div class="s-field"><label>Households</label><span>144</span></div>
+      <div class="s-field"><label>Assets Held Away</label><span>$17,883,668</span></div>
+      <div class="s-field"><label>Wallet Share</label><span>42% ↑2%</span></div>
+    </div>
+
+    <hr class="s-divider">
+
+    <p class="s-text"><strong>⚠️ Alerts This Week</strong></p>
+    <p class="s-context">🔴 <strong>Asset Allocation Drift</strong> — 3 clients exceed 5% tolerance<br>🟡 <strong>At Risk Clients</strong> — 5 clients with churn score >75/100<br>🟢 <strong>Lead Opportunity</strong> — 13 new leads, 4 high-priority</p>
+
+    <hr class="s-divider">
+
+    <p class="s-text"><strong>Projected NNA</strong><br>Tracking 12% below target. Agentforce recommends: prioritize the 4 high-priority leads from Sandra Obi's referral network — combined potential AUM of $14.2M.</p>
+
+    <div class="s-actions">
+      <button class="s-btn s-btn-primary">View Full Dashboard</button>
+      <button class="s-btn">View At-Risk Clients</button>
+      <button class="s-btn">View Leads</button>
+    </div>
+
+    <p class="s-context">✦ <strong>Agentforce</strong> · Performance Analytics · Data via BridgeFT + Data Cloud</p>
+  </div>
+</div>
+
+</body>
+</html>

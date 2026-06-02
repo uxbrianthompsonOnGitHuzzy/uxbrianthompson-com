@@ -1,0 +1,78 @@
+{
+  "blocks": [
+    {
+      "type": "header",
+      "text": {"type": "plain_text", "text": "✅ Miyazaki Annual Review — Meeting Complete"}
+    },
+    {
+      "type": "context",
+      "elements": [
+        {"type": "mrkdwn", "text": "Duration: 32 min · Attendees: Jennifer Chen, Eriko Miyazaki, Sandra Obi (JD)"}
+      ]
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "*Key Topics Discussed*\n• Retirement target $7M unchanged — wants higher confidence level\n• College funding priority — 529 front-loading confirmed\n• Vacation home exploratory, not near-term\n• Communication cadence: monthly check-ins agreed"
+      }
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "*Decisions Made*\n✅ Rebalance portfolio: reduce equity overweight by 4%\n✅ Increase 529 contribution to $35K/year\n✅ Schedule quarterly reviews (vs. semi-annual)\n✅ Set up monthly email update cadence"
+      }
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "*Agentforce Follow-Up Actions*\n📧 Draft follow-up email — ready for review\n📋 Create rebalancing task — assigned to Shelly Taylor\n🏠 Log life event: Education Savings Strategy\n📅 Schedule next quarterly review — May 28"
+      }
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "*Sentiment:* Positive, engaged. Frustration from last meeting resolved — acknowledged and addressed with new cadence."
+      }
+    },
+    {
+      "type": "actions",
+      "elements": [
+        {
+          "type": "button",
+          "text": {"type": "plain_text", "text": "Commit to Salesforce"},
+          "style": "primary",
+          "value": "commit_sf"
+        },
+        {
+          "type": "button",
+          "text": {"type": "plain_text", "text": "Review Email Draft"},
+          "value": "review_email"
+        },
+        {
+          "type": "button",
+          "text": {"type": "plain_text", "text": "Edit Summary"},
+          "value": "edit_summary"
+        }
+      ]
+    },
+    {
+      "type": "context",
+      "elements": [
+        {"type": "mrkdwn", "text": "✦ *Agentforce* · Meeting Center · Auto-generated from voice capture + notes · `Medium Confidence`"}
+      ]
+    }
+  ]
+}

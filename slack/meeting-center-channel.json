@@ -1,0 +1,58 @@
+{
+  "blocks": [
+    {
+      "type": "header",
+      "text": {"type": "plain_text", "text": "📋 Miyazaki Annual Review — Pre-Meeting Brief"}
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "*Client:* Eriko Miyazaki | *Date:* March 18, 2026 | *AUM:* $4.8M\n*Risk:* Moderate Growth | *Last Meeting:* Sept 2025"
+      }
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "*Relationship Snapshot*\n• Goals: Retire at 60 with ~$7M savings, fund daughter's college in 4 years\n• Recent events: Promotion with higher income, RSU vesting upcoming\n• Expressed frustration in last two meetings about perceived slow response during market volatility\n• Focus: Open meeting by acknowledging feedback. Present clear communication cadence."
+      }
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "*Today's Agenda*\n1. Goals & Alignment — retirement target, college funding, vacation home\n2. Portfolio & Risk — allocation review, concentration risk, rebalancing\n3. Communication Reset — acknowledge feedback, set new cadence\n4. Decisions & Next Steps"
+      }
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "*Agentforce Pre-Check* ✅\n• Portfolio Risk Check — completed\n• Tax Efficiency Scan — completed\n• Compliance Review — clear"
+      }
+    },
+    {
+      "type": "actions",
+      "elements": [
+        {
+          "type": "button",
+          "text": {"type": "plain_text", "text": "Start Meeting Recording"},
+          "style": "primary",
+          "value": "start_recording"
+        },
+        {
+          "type": "button",
+          "text": {"type": "plain_text", "text": "Open Discussion Guide"},
+          "value": "open_guide"
+        }
+      ]
+    }
+  ]
+}
