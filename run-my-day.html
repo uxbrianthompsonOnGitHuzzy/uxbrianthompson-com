@@ -135,11 +135,12 @@ p { font-size: 18px; line-height: 1.8; color: var(--text-dim); font-weight: 300;
 }
 .carousel-caption strong { font-weight: 600; }
 .carousel-frame {
-  display: flex; align-items: center; gap: 16px;
+  display: flex; align-items: center; justify-content: center; gap: 16px;
 }
 .carousel-track {
-  flex: 1; position: relative; overflow: hidden; border-radius: 14px;
+  position: relative; overflow: hidden; border-radius: 14px;
   border: 1px solid var(--border); box-shadow: 0 8px 40px rgba(0,0,0,0.4);
+  display: inline-flex; align-items: center; justify-content: center;
 }
 .carousel-slide {
   display: none;
@@ -150,8 +151,6 @@ p { font-size: 18px; line-height: 1.8; color: var(--text-dim); font-weight: 300;
 .carousel-slide img {
   max-height: 840px; width: auto; max-width: 100%; object-fit: contain; display: block; margin: 0 auto;
 }
-.carousel-track { display: inline-flex; align-items: center; justify-content: center; }
-.carousel-frame { justify-content: center; }
 .carousel-btn {
   width: 48px; height: 48px; border-radius: 50%;
   background: #fff;
@@ -266,6 +265,7 @@ footer a:hover { color: var(--text); }
   <div class="carousel-frame">
   <button class="carousel-btn" id="prev-btn"><svg viewBox="0 0 24 24" fill="none" stroke="#1B5BBF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
   <div class="carousel-track">
+    <div class="carousel-slide active" data-caption="<strong>Run My Day.</strong> Detect, Analyze, Recommend, Enable — decision-ready intelligence in under 5&nbsp;minutes."><img src="images/run-my-day/cover.png" alt="Run My Day cover"></div>
     <div class="carousel-slide" data-caption="<strong>Morning workspace.</strong> Personalized greeting, today's meetings, and intent-based groups (Retain, Grow, Service, Comply)"><img src="images/run-my-day/1.png" alt="Dashboard"></div>
     <div class="carousel-slide" data-caption="<strong>Retain group selected.</strong> Retention Alerts surface Anomalous Transactions (8) and High Churn Risk (5)"><img src="images/run-my-day/2.png" alt="Retain group"></div>
     <div class="carousel-slide" data-caption="<strong>Anomalous Transactions.</strong> Clients with activity 130–280% above 12-month patterns, ranked by deviation"><img src="images/run-my-day/3.png" alt="Anomalous Transactions"></div>

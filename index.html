@@ -55,9 +55,22 @@ nav {
 /* Hero */
 .hero {
   min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center;
-  text-align: center; padding: 140px 64px 100px; position: relative;
+  text-align: center; padding: 120px 64px 80px; position: relative;
   background: url('images/hero-cinematic-main.png') no-repeat center center;
   background-size: cover;
+}
+.hero-content {
+  display: flex; flex-direction: column; align-items: center; gap: 48px;
+}
+.hero-top {
+  display: flex; flex-direction: column; align-items: center;
+}
+.hero-bottom {
+  display: flex; flex-direction: column; align-items: flex-start;
+  width: 100%; max-width: 1100px;
+}
+@media (max-width: 768px) {
+  .hero-bottom { align-items: center; }
 }
 .hero-img {
   width: 100%; max-width: 900px; border-radius: 16px; margin-bottom: 48px;
@@ -100,12 +113,15 @@ p + p { margin-top: 16px; }
 }
 .stat-card:hover { border-color: var(--border-hover); transform: translateY(-2px); box-shadow: 0 4px 20px rgba(167,139,250,0.08); }
 .stat-card .num { font-size: 28px; font-weight: 700; letter-spacing: -1px; flex-shrink: 0; }
-.stat-card .label { font-size: 13px; color: var(--text-faint); line-height: 1.4; }
+.stat-card .label { font-size: 13px; color: var(--text-faint); line-height: 1.4; text-align: left; white-space: nowrap; }
+.problem-stats .stat-card { padding: 20px 24px; align-items: center; }
+.problem-stats .stat-card .label { white-space: normal; }
 
 /* Pulse fill on first hover */
+.stat-card .num { position: relative; }
 .stat-card .pulse-ring {
-  position: absolute; top: 50%; left: 28px; width: 6px; height: 6px;
-  transform: translate(-50%, -50%); pointer-events: none;
+  position: absolute; top: 50%; left: 50%; width: 6px; height: 6px;
+  transform: translate(-50%, -50%); pointer-events: none; z-index: 0;
 }
 .stat-card .pulse-ring::before,
 .stat-card .pulse-ring::after {
@@ -120,7 +136,7 @@ p + p { margin-top: 16px; }
 }
 @keyframes pulseFill {
   0% { transform: scale(0.4); opacity: 0.35; }
-  100% { transform: scale(2); opacity: 0; }
+  100% { transform: scale(2.66); opacity: 0; }
 }
 
 /* Principles */
@@ -245,9 +261,40 @@ footer { text-align: center; padding: 80px 64px; color: var(--text-faint); font-
 </nav>
 
 <div class="hero">
-  <h1>FSC <span class="grad">Agentic Wealth</span> Experience.</h1>
-  <p class="subtitle">An intelligent ecosystem transforms how financial advisors cultivate, manage, and extend client relationships &mdash; at scale and with trust.</p>
+  <div class="hero-content">
+  <div class="hero-top">
+    <h1>FSC <span class="grad">Agentic Wealth</span> Experience.</h1>
+    <p class="subtitle">An intelligent ecosystem transforms how financial advisors cultivate, manage, and extend client relationships &mdash; at scale and with trust.</p>
+  </div>
+  <div class="hero-bottom">
+    <span class="eyebrow" style="margin-bottom:0;">Impact</span>
+    <div class="stats-grid" style="margin-top:32px;">
+      <div class="stat-card"><div class="num" style="color:var(--p0)"><span class="pulse-ring" style="color:var(--p0)"></span>56</div><div class="label">Features and enhancements shipped</div></div>
+      <div class="stat-card"><div class="num" style="color:var(--p1)"><span class="pulse-ring" style="color:var(--p1)"></span>17</div><div class="label">Zero-to-one AI innovations</div></div>
+      <div class="stat-card"><div class="num" style="color:var(--p3)"><span class="pulse-ring" style="color:var(--p3)"></span>32</div><div class="label">Agentic contextual insights and actions</div></div>
+      <div class="stat-card"><div class="num" style="color:var(--p2)"><span class="pulse-ring" style="color:var(--p2)"></span>11</div><div class="label">Customer pilot validation programs</div></div>
+      <div class="stat-card"><div class="num" style="color:var(--p1)"><span class="pulse-ring" style="color:var(--p1)"></span>100%</div><div class="label">Adoption among pilot interviewees</div></div>
+      <div class="stat-card"><div class="num" style="color:var(--p0)"><span class="pulse-ring" style="color:var(--p0)"></span>$2M</div><div class="label">Closed ACV influenced by demo org</div></div>
+    </div>
+  </div>
+  </div>
 </div>
+
+<hr class="divider">
+
+<section class="fade-in">
+  <span class="eyebrow">Problem</span>
+  <h2>Markets don&rsquo;t lose clients. <span class="grad">Silence does.</span></h2>
+  <p>The value isn&rsquo;t just managing money. It&rsquo;s managing the moment before a client makes the wrong move &mdash; or worse, walks away without saying a word.</p>
+  <div class="stats-grid problem-stats" style="margin-top:36px;">
+    <div class="stat-card"><div class="num" style="color:var(--p3)"><span class="pulse-ring" style="color:var(--p3)"></span>8.48</div><div class="label">Points the average equity investor trailed the S&amp;P 500 in 2024 <span style="display:block;margin-top:6px;font-size:11px;color:var(--text-faint);">&mdash; Dalbar QAIB</span></div></div>
+    <div class="stat-card"><div class="num" style="color:var(--p0)"><span class="pulse-ring" style="color:var(--p0)"></span>1.1%</div><div class="label">Annual returns lost to poor timing decisions over 10 years <span style="display:block;margin-top:6px;font-size:11px;color:var(--text-faint);">&mdash; Morningstar Mind the Gap</span></div></div>
+    <div class="stat-card"><div class="num" style="color:var(--p1)"><span class="pulse-ring" style="color:var(--p1)"></span>3%+</div><div class="label">Net returns advisors can add through planning, rebalancing, and behavioral coaching <span style="display:block;margin-top:6px;font-size:11px;color:var(--text-faint);">&mdash; Vanguard Advisor&rsquo;s Alpha</span></div></div>
+  </div>
+  <p style="margin-top:32px;">FSC gives advisors an intelligent operating layer to monitor relationship risk, surface client anxiety, prioritize outreach, and turn uncertainty into confidence &mdash; at scale.</p>
+</section>
+
+<hr class="divider">
 
 <section id="work" class="fade-in">
   <span class="eyebrow">Ecosystem</span>
@@ -307,20 +354,6 @@ footer { text-align: center; padding: 80px 64px; color: var(--text-faint); font-
       </div>
       <span class="view-pill">View</span>
     </a>
-  </div>
-</section>
-
-<hr class="divider">
-
-<section class="fade-in">
-  <span class="eyebrow">Impact</span>
-  <div class="stats-grid">
-    <div class="stat-card"><span class="pulse-ring" style="color:var(--p0)"></span><div class="num" style="color:var(--p0)">56</div><div class="label">Features and enhancements shipped</div></div>
-    <div class="stat-card"><span class="pulse-ring" style="color:var(--p1)"></span><div class="num" style="color:var(--p1)">17</div><div class="label">Zero-to-one AI innovations</div></div>
-    <div class="stat-card"><span class="pulse-ring" style="color:var(--p3)"></span><div class="num" style="color:var(--p3)">32</div><div class="label">Agentic contextual insights and actions</div></div>
-    <div class="stat-card"><span class="pulse-ring" style="color:var(--p2)"></span><div class="num" style="color:var(--p2)">11</div><div class="label">Customer pilot validation programs</div></div>
-    <div class="stat-card"><span class="pulse-ring" style="color:var(--p1)"></span><div class="num" style="color:var(--p1)">100%</div><div class="label">Adoption desire among pilot interviewees</div></div>
-    <div class="stat-card"><span class="pulse-ring" style="color:var(--p0)"></span><div class="num" style="color:var(--p0)">$2M</div><div class="label">Closed ACV influenced by demo org</div></div>
   </div>
 </section>
 
