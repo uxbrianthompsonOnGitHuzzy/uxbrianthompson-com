@@ -137,25 +137,54 @@ footer a:hover { color: var(--text); }
 .lightbox {
   display: none; position: fixed; inset: 0; z-index: 9999;
   background: rgba(0,0,0,0.95); align-items: center; justify-content: center;
-  padding: 20px; cursor: zoom-out;
+  padding: 20px;
 }
 .lightbox.active { display: flex; }
 .lightbox img {
   max-width: 100%; max-height: 100%; object-fit: contain; border-radius: 8px;
+  pointer-events: none;
 }
 .lightbox-close {
   position: absolute; top: 16px; right: 16px; width: 36px; height: 36px;
   border-radius: 50%; background: rgba(255,255,255,0.1); border: none;
   color: #fff; font-size: 20px; cursor: pointer; display: flex; align-items: center; justify-content: center;
+  z-index: 10001;
 }
+.lightbox-close:hover { background: rgba(255,255,255,0.2); }
+.lightbox-nav {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  width: 48px; height: 48px; border-radius: 50%; border: none;
+  background: transparent; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  z-index: 10001;
+}
+.lightbox-nav svg { width: 24px; height: 24px; }
+.lightbox-nav:hover svg { opacity: 0.9; }
+.lightbox-prev { left: 16px; }
+.lightbox-next { right: 16px; }
+
+/* Carousel overlay arrows */
+.carousel-nav-overlay {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  width: 44px; height: 44px; border-radius: 50%; border: none;
+  background: transparent; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  z-index: 10;
+}
+.carousel-nav-overlay svg { width: 20px; height: 20px; }
+.carousel-nav-overlay:hover svg { opacity: 0.9; }
+.carousel-nav-prev { left: 12px; }
+.carousel-nav-next { right: 12px; }
 
 @media (max-width: 768px) {
   nav, .hero, section, .gallery-item, .phase-divider { padding-left: 24px; padding-right: 24px; }
   .card-row, .results-grid { grid-template-columns: 1fr; gap: 12px; border: none; background: none; }
   .card { border-right: none; border-bottom: none; border: 1px solid var(--border); border-radius: 14px; background: var(--panel); }
   .card:last-child { border-bottom: none; }
-  /* Carousel: full-width, hide buttons */
+  /* Carousel: full-width, hide old buttons, show overlay arrows */
   button.carousel-btn, #prev-btn, #next-btn { display: none !important; }
   .carousel-slide img { max-height: none !important; width: 100% !important; max-width: 100% !important; cursor: zoom-in; }
   [id="carousel"] { padding: 20px 0 !important; }
+  .carousel-nav-overlay { width: 36px; height: 36px; }
+  .carousel-nav-overlay svg { width: 16px; height: 16px; }
 }
