@@ -135,7 +135,7 @@ footer a:hover { color: var(--text); }
 
 @media (max-width: 768px) {
   nav, .hero, section, .gallery-item, .phase-divider { padding-left: 24px; padding-right: 24px; }
-  .card-row, .results-grid { grid-template-columns: 1fr; }
-  .card { border-right: none; border-bottom: 1px solid var(--border); }
+  .card-row, .results-grid { grid-template-columns: 1fr; gap: 12px; border: none; background: none; }
+  .card { border-right: none; border-bottom: none; border: 1px solid var(--border); border-radius: 14px; background: var(--panel); }
   .card:last-child { border-bottom: none; }
 }
