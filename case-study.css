@@ -184,9 +184,11 @@ footer a:hover { color: var(--text); }
   .card { border-right: none; border-bottom: none; border: 1px solid var(--border); border-radius: 14px; background: var(--panel); }
   .card:last-child { border-bottom: none; }
   /* Carousel: full-width, hide old buttons, show overlay arrows */
-  button.carousel-btn, #prev-btn, #next-btn { display: none !important; }
-  .carousel-slide img { max-height: none !important; width: 100% !important; max-width: 100% !important; cursor: zoom-in; }
+  button[id="prev-btn"], button[id="next-btn"] { display: none !important; width: 0 !important; height: 0 !important; overflow: hidden !important; padding: 0 !important; border: none !important; }
+  .carousel-slide img { max-height: none !important; width: 100% !important; max-width: 100% !important; height: auto !important; cursor: zoom-in; }
   [id="carousel"] { padding: 20px 0 !important; }
   .carousel-nav-overlay { width: 36px; height: 36px; }
   .carousel-nav-overlay svg { width: 16px; height: 16px; }
+  div[style*="display:flex"][style*="gap:16px"] { flex-wrap: wrap; justify-content: center; }
+  div[style*="overflow:hidden"][style*="border-radius:14px"] { width: 100% !important; }
 }
