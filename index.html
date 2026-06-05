@@ -249,12 +249,22 @@ footer { text-align: center; padding: 80px 64px; color: var(--text-faint); font-
 .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
 .fade-in.visible { opacity: 1; transform: translateY(0); }
 
+/* Previous Work button (mobile only) */
+.prev-work-btn {
+  display: none; padding: 14px 24px; border-radius: 8px; font-size: 15px; font-weight: 700;
+  color: var(--p3); border: 1px solid rgba(244,114,182,0.25); text-align: center;
+  transition: background 0.2s, border-color 0.2s;
+}
+.prev-work-btn:hover { background: rgba(244,114,182,0.06); border-color: rgba(244,114,182,0.4); }
+
 @media (max-width: 768px) {
   nav, .hero, section, .callout { padding-left: 24px; padding-right: 24px; }
   .stats-grid, .projects-grid { grid-template-columns: 1fr; }
   .hero h1 { font-size: 40px; }
   .role-grid { grid-template-columns: 1fr; gap: 12px; border: none; background: none; }
   .role-card { border-right: none; border: 1px solid var(--border); border-radius: 14px; background: var(--panel); }
+  .prev-work-card { display: none; }
+  .prev-work-btn { display: block; }
 }
 </style>
 </head>
@@ -451,6 +461,7 @@ footer { text-align: center; padding: 80px 64px; color: var(--text-faint); font-
     <span class="prev-work-label">Previous Work</span>
     <span class="prev-work-text">To view additional work, check out my archive portfolio. uxbrianthompson.myportfolio.com</span>
   </a>
+  <a href="https://uxbrianthompson.myportfolio.com" target="_blank" class="prev-work-btn">View Previous Work &rarr;</a>
 </div>
 
 <footer>Brian Thompson &middot; AI Product Design &middot; 2026</footer>

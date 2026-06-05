@@ -366,7 +366,36 @@ document.addEventListener('keydown', e => {
 });
 
 showSlide(0);
+
+// Swipe support (mobile)
+let touchStartX = 0;
+const carousel = document.getElementById('carousel');
+carousel.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
+carousel.addEventListener('touchend', e => {
+  const diff = touchStartX - e.changedTouches[0].clientX;
+  if (Math.abs(diff) > 50) { diff > 0 ? showSlide(current + 1) : showSlide(current - 1); }
+});
+
+// Lightbox (tap image to fullscreen)
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = document.getElementById('lightbox-img');
+document.querySelectorAll('.carousel-slide img').forEach(img => {
+  img.addEventListener('click', () => {
+    lightboxImg.src = img.src;
+    lightbox.classList.add('active');
+  });
+});
+lightbox.addEventListener('click', () => lightbox.classList.remove('active'));
+document.querySelector('.lightbox-close').addEventListener('click', () => lightbox.classList.remove('active'));
+
 </script>
+
+
+<\!-- Lightbox -->
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close">&times;</button>
+  <img id="lightbox-img" src="" alt="">
+</div>
 
 </body>
 </html>
