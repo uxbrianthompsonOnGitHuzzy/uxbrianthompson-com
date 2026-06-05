@@ -93,10 +93,6 @@ footer a:hover { color: var(--text); }
 </nav>
 
 <div style="background: url('images/hero-cinematic-meeting.png') no-repeat center center; background-size: cover; height: 40vh; min-height: 280px; margin-top: 64px;"></div>
-    <button class="carousel-nav-overlay carousel-nav-prev" id="overlay-prev"><svg viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></button>
-    <button class="carousel-nav-overlay carousel-nav-next" id="overlay-next"><svg viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
-
-
 <section style="text-align:center; padding: 80px 64px 60px; max-width: 1100px; margin: 0 auto;">
   <span class="eyebrow">FSC Agentic Wealth Experience</span>
   <h2 style="font-size:clamp(40px,6vw,64px); letter-spacing:-1.5px; line-height:1.0;"><span class="grad">Meeting Center.</span></h2>
@@ -155,6 +151,9 @@ footer a:hover { color: var(--text); }
   </div>
   <button class="carousel-btn" id="next-btn"><svg viewBox="0 0 24 24" fill="none" stroke="#1B5BBF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
   </div>
+    <button class="carousel-nav-overlay carousel-nav-prev" id="overlay-prev"><svg viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></button>
+    <button class="carousel-nav-overlay carousel-nav-next" id="overlay-next"><svg viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+
   <div class="carousel-dots" id="carousel-dots"></div>
 </div>
 
@@ -196,11 +195,7 @@ footer a:hover { color: var(--text); }
 </footer>
 
 <\!-- Lightbox -->
-<div class="lightbox" id="lightbox">
-  <button class="lightbox-close">&times;</button>
-  <img id="lightbox-img" src="" alt="">
-</div>
-
+<\!-- Lightbox -->
 <\!-- Lightbox -->
 <div class="lightbox" id="lightbox">
   <button class="lightbox-close">&times;</button>
@@ -246,15 +241,29 @@ document.addEventListener('keydown', e => {
 });
 showSlide(0);
 
-
 document.querySelector('.lightbox-close').addEventListener('click', () => lightbox.classList.remove('active'));
 
 
-// Swipe support (mobile)
+// Overlay carousel arrows
+const overlayPrev = document.getElementById('overlay-prev');
+const overlayNext = document.getElementById('overlay-next');
+if (overlayPrev) overlayPrev.addEventListener('click', () => showSlide(current - 1));
+if (overlayNext) overlayNext.addEventListener('click', () => showSlide(current + 1));
+
+// Swipe support (mobile) - prevent page scroll during carousel swipe
 let touchStartX = 0;
-const carousel = document.getElementById('carousel');
-carousel.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
-carousel.addEventListener('touchend', e => {
+let touchStartY = 0;
+const carouselEl = document.getElementById('carousel');
+carouselEl.addEventListener('touchstart', e => {
+  touchStartX = e.touches[0].clientX;
+  touchStartY = e.touches[0].clientY;
+}, { passive: true });
+carouselEl.addEventListener('touchmove', e => {
+  const dx = Math.abs(e.touches[0].clientX - touchStartX);
+  const dy = Math.abs(e.touches[0].clientY - touchStartY);
+  if (dx > dy) e.preventDefault();
+}, { passive: false });
+carouselEl.addEventListener('touchend', e => {
   const diff = touchStartX - e.changedTouches[0].clientX;
   if (Math.abs(diff) > 50) { diff > 0 ? showSlide(current + 1) : showSlide(current - 1); }
 });
@@ -285,18 +294,11 @@ document.querySelector('.lightbox-close').addEventListener('click', () => lightb
 
 // Lightbox swipe
 let lbTouchX = 0;
-lightbox.addEventListener('touchstart', e => { lbTouchX = e.touches[0].clientX; }, { passive: true });
-lightbox.addEventListener('touchend', e => {
+lightboxImg.parentElement.addEventListener('touchstart', e => { lbTouchX = e.touches[0].clientX; }, { passive: true });
+lightboxImg.parentElement.addEventListener('touchend', e => {
   const diff = lbTouchX - e.changedTouches[0].clientX;
   if (Math.abs(diff) > 50) { diff > 0 ? lbNav(1) : lbNav(-1); }
 });
-
-
-// Overlay carousel arrows
-const overlayPrev = document.getElementById('overlay-prev');
-const overlayNext = document.getElementById('overlay-next');
-if (overlayPrev) overlayPrev.addEventListener('click', () => showSlide(current - 1));
-if (overlayNext) overlayNext.addEventListener('click', () => showSlide(current + 1));
 
 </script>
 </body>
