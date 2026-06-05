@@ -155,6 +155,7 @@ footer a:hover { color: var(--text); }
   .card { border-right: none; border-bottom: none; border: 1px solid var(--border); border-radius: 14px; background: var(--panel); }
   .card:last-child { border-bottom: none; }
   /* Carousel: full-width, hide buttons */
-  .carousel-btn { display: none !important; }
-  .carousel-slide img { max-height: none !important; width: 100% !important; cursor: zoom-in; }
+  button.carousel-btn, #prev-btn, #next-btn { display: none !important; }
+  .carousel-slide img { max-height: none !important; width: 100% !important; max-width: 100% !important; cursor: zoom-in; }
+  [id="carousel"] { padding: 20px 0 !important; }
 }

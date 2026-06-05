@@ -121,6 +121,12 @@
   <a href="index.html">&larr; Ecosystem</a>
 </footer>
 
+<\!-- Lightbox -->
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close">&times;</button>
+  <img id="lightbox-img" src="" alt="">
+</div>
+
 <script>
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
@@ -183,13 +189,6 @@ lightbox.addEventListener('click', () => lightbox.classList.remove('active'));
 document.querySelector('.lightbox-close').addEventListener('click', () => lightbox.classList.remove('active'));
 
 </script>
-
-
-<\!-- Lightbox -->
-<div class="lightbox" id="lightbox">
-  <button class="lightbox-close">&times;</button>
-  <img id="lightbox-img" src="" alt="">
-</div>
 
 </body>
 </html>
