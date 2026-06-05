@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About — Brian Thompson</title>
+<style>
+:root {
+  --bg: #07090f; --panel: #0d1119; --border: rgba(167,139,250,0.12);
+  --border-hover: rgba(167,139,250,0.3);
+  --text: #f1f4fa; --text-dim: #8b95ab; --text-faint: #4a5268;
+  --p0: #a78bfa; --p1: #5eead4; --p2: #38bdf8; --p3: #f472b6;
+  --grad-hero: linear-gradient(135deg, #a78bfa 0%, #5eead4 40%, #f472b6 100%);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg); color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", system-ui, sans-serif;
+  font-size: 16px; line-height: 1.5; -webkit-font-smoothing: antialiased; overflow-x: hidden;
+}
+body::before {
+  content: ''; position: fixed; inset: 0; pointer-events: none;
+  background:
+    radial-gradient(ellipse 80% 60% at 15% 0%, rgba(167,139,250,0.10), transparent 50%),
+    radial-gradient(ellipse 60% 50% at 85% 15%, rgba(94,234,212,0.06), transparent 50%);
+}
+a { color: inherit; text-decoration: none; }
+.grad { background: var(--grad-hero); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+
+/* Nav — identical to index.html */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100; height: 64px;
+  display: flex; align-items: center; justify-content: space-between; padding: 0 64px;
+  background: rgba(7,9,15,0.8); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(167,139,250,0.06);
+}
+.nav-brand { font-weight: 600; font-size: 14px; color: var(--text-dim); }
+.nav-brand strong { color: var(--text); font-weight: 700; }
+.nav-links { display: flex; gap: 36px; }
+.nav-links a { font-size: 14px; color: var(--text-faint); transition: color 0.2s; }
+.nav-links a:hover { color: var(--text); }
+
+/* Hero */
+.about-hero {
+  width: 100%; height: 25vh; min-height: 160px; margin-top: 64px;
+  background: url('images/about/00-hero.png') no-repeat center center;
+  background-size: cover;
+}
+
+/* Body */
+.about-body { max-width: 1100px; margin: 0 auto; padding: 80px 64px; }
+
+/* Labels & headings */
+.section-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: var(--p0); margin-bottom: 24px; display: block; }
+h1 { font-size: clamp(40px, 6vw, 64px); font-weight: 700; line-height: 1.0; letter-spacing: -1.5px; margin-bottom: 24px; }
+h2 { font-size: clamp(28px, 4vw, 40px); font-weight: 700; line-height: 1.1; letter-spacing: -0.5px; margin-bottom: 16px; }
+p { font-size: 18px; line-height: 1.8; color: var(--text-dim); font-weight: 300; margin-bottom: 16px; }
+
+/* Sections */
+.about-section { margin-top: 64px; }
+
+/* Results cards */
+.results-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 12px; margin-top: 24px;
+}
+.result-card {
+  background: var(--panel); border: 1px solid var(--border); border-radius: 10px;
+  padding: 20px 24px; display: flex; align-items: center; gap: 16px;
+  transition: border-color 0.3s, transform 0.3s;
+}
+.result-card:hover { border-color: var(--border-hover); transform: translateY(-2px); }
+.result-card .metric { font-size: 24px; font-weight: 700; flex-shrink: 0; letter-spacing: -0.5px; white-space: nowrap; }
+.result-card .desc { font-size: 14px; color: var(--text-faint); line-height: 1.4; }
+
+/* Skills pills */
+.hats-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 12px; margin-top: 24px;
+}
+.hat-pill {
+  padding: 10px 16px; border-radius: 8px; font-size: 14px; font-weight: 600;
+  background: var(--panel); border: 1px solid var(--border); color: var(--text-dim);
+  text-align: center;
+}
+
+/* Lists */
+.bullet-list { list-style: none; margin-top: 16px; display: flex; flex-direction: column; gap: 10px; }
+.bullet-list li { font-size: 16px; color: var(--text-dim); padding-left: 18px; position: relative; line-height: 1.6; font-weight: 300; }
+.bullet-list li::before { content: ''; position: absolute; left: 0; top: 10px; width: 5px; height: 5px; border-radius: 50%; background: var(--p0); }
+
+/* Full-width images */
+.full-img { width: 100%; border-radius: 12px; margin: 32px 0; display: block; }
+
+/* Caption */
+.img-caption { font-size: 14px; color: var(--text-faint); font-style: italic; text-align: center; margin-top: -16px; margin-bottom: 32px; }
+
+/* Divider */
+.divider { border: none; height: 1px; background: linear-gradient(90deg, transparent, rgba(167,139,250,0.15), transparent); margin: 64px 0; }
+
+/* Footer nav */
+.case-nav { display: flex; justify-content: space-between; max-width: 1100px; margin: 0 auto; padding: 40px 64px 80px; }
+.case-nav-btn { font-size: 14px; color: var(--text-faint); transition: color 0.2s; }
+.case-nav-btn:hover { color: var(--text); }
+footer { text-align: center; padding: 40px 64px 80px; color: var(--text-faint); font-size: 13px; }
+
+@media (max-width: 768px) {
+  nav, .about-body, .case-nav { padding-left: 24px; padding-right: 24px; }
+  .results-grid { grid-template-columns: 1fr; }
+  .hats-grid { grid-template-columns: 1fr 1fr; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-brand"><strong>Brian Thompson</strong> &ndash; AI Product Design</a>
+  <div class="nav-links">
+    <a href="index.html#work">Work</a>
+    <a href="resume.html">Resume</a>
+    <a href="about.html">About</a>
+  </div>
+</nav>
+
+<!-- 1. Full bleed hero -->
+<div class="about-hero"></div>
+
+<div class="about-body">
+
+  <!-- 2. Main headline -->
+  <span class="section-label">About</span>
+  <h1><span class="grad">Senior Product Designer,</span><br>AI &amp; Intelligent&nbsp;Systems</h1>
+
+  <!-- 3. First paragraph -->
+  <p>Hello. I&rsquo;m Brian, and my design leadership spans UX strategy, human-centered design, AI/ML integration, and execution. I orchestrate user experience, system design, and intelligent technology to help people and companies collaborate effectively. Oh yeah, all that and I&rsquo;m also a nice person. Go&nbsp;figure.</p>
+
+  <hr class="divider">
+
+  <!-- 4. Nutshell + skills pills -->
+  <div class="about-section">
+    <h2>In a nutshell.</h2>
+    <p>I&rsquo;ve worn many hats &mdash; strategist, writer, designer, art director, emerging technologist, creative director, storyteller, and experience designer. At my core, I&rsquo;m a curious, tenacious, creative problem solver across interaction, branding, research, experiential, and product&nbsp;design.</p>
+    <div class="hats-grid">
+      <div class="hat-pill">UX Strategy</div>
+      <div class="hat-pill">AI/ML Integration</div>
+      <div class="hat-pill">Product Design</div>
+      <div class="hat-pill">System Design</div>
+      <div class="hat-pill">Interaction Design</div>
+      <div class="hat-pill">Creative Direction</div>
+      <div class="hat-pill">Design Engineering</div>
+      <div class="hat-pill">Storytelling</div>
+    </div>
+  </div>
+
+  <!-- 5. Design Journey image -->
+  <img class="full-img" src="images/about/02-design-journey.png" alt="Design Journey">
+
+  <hr class="divider">
+
+  <!-- 6. My Approach -->
+  <div class="about-section">
+    <h2>My Approach.</h2>
+    <p>I amplify the languages of user experience, system design, and AI/ML integration to help people and companies accomplish amazing things together. I understand and anticipate how people will perceive, interpret, and respond to these cues, then create avenues for engagement &mdash; without forgetting where I came&nbsp;from.</p>
+  </div>
+
+  <!-- 7. Accomplished image -->
+  <img class="full-img" src="images/about/03-accomplished.jpeg" alt="A few things I've accomplished">
+
+  <!-- 8. Brands image -->
+  <img class="full-img" src="images/about/04-brands.jpeg" alt="A few brands I've helped build">
+
+  <hr class="divider">
+
+  <!-- 9. Results driven -->
+  <div class="about-section">
+    <h2>Results driven.</h2>
+    <div class="results-grid">
+      <div class="result-card"><span class="metric" style="color:var(--p0)">2,763%</span><span class="desc">Increase in financing page visits and record sales for Audi&nbsp;USA</span></div>
+      <div class="result-card"><span class="metric" style="color:var(--p1)">+97% WoW</span><span class="desc">AVOD growth at Crunchyroll with +125% WoW SVOD&nbsp;increases</span></div>
+      <div class="result-card"><span class="metric" style="color:var(--p3)">$2M ACV</span><span class="desc">Closed deals influenced by demo org at Salesforce&nbsp;FSC</span></div>
+      <div class="result-card"><span class="metric" style="color:var(--p0)">17</span><span class="desc">Zero-to-one AI innovations shipped across agentic&nbsp;systems</span></div>
+      <div class="result-card"><span class="metric" style="color:var(--p1)">100%</span><span class="desc">Adoption among customer pilot validation&nbsp;interviewees</span></div>
+      <div class="result-card"><span class="metric" style="color:var(--p2)">56</span><span class="desc">Features and enhancements shipped to&nbsp;production</span></div>
+    </div>
+  </div>
+
+  <!-- 10. Awards image -->
+  <img class="full-img" src="images/about/05-awards.png" alt="Awards">
+
+  <hr class="divider">
+
+  <!-- 11. Collaboration and Leadership -->
+  <div class="about-section">
+    <h2>Collaboration and Leadership.</h2>
+    <p>I have built, evolved, and deepened relationships with cross-functional teams, including developers, product managers, and&nbsp;stakeholders.</p>
+    <ul class="bullet-list">
+      <li>Conducted 1:1 cross-functional and C-level interviews to identify and implement new collaboration&nbsp;efforts</li>
+      <li>Developed and implemented my &ldquo;octopus&rdquo; model of embedding UX and brand SMEs within each business&nbsp;unit</li>
+      <li>Identified and established a career ladder system and role definition for UX, brand, creative ops, and&nbsp;production</li>
+    </ul>
+  </div>
+
+  <!-- 12. Thunder/proverb image -->
+  <img class="full-img" src="images/about/06-thunder.jpeg" alt="It is better to have less thunder in the mouth, and more lightning in the hand">
+
+  <hr class="divider">
+
+  <!-- 13. Continuous learning -->
+  <div class="about-section">
+    <h2>Continuous learning.</h2>
+    <ul class="bullet-list">
+      <li>UX/UI Design Boot Camp &mdash; UC Berkeley</li>
+      <li>Google Foundations of UX Design</li>
+      <li>Wearable/Smart Device UX Design &mdash; Santa Clara University</li>
+      <li>Mobile UX Design &mdash; UC San Francisco</li>
+    </ul>
+  </div>
+
+  <!-- 14. Musings image -->
+  <img class="full-img" src="images/about/07-musings.jpeg" alt="Strategic Thinking, Doodles and Musings">
+
+  <hr class="divider">
+
+  <!-- 15. Mission -->
+  <div class="about-section">
+    <h2>Mission.</h2>
+    <p>My focus is on creating user-centric designs based on user research, usability testing, and feedback. My ability to empathize with people, understand their needs, then design experiences that provide seamless and delightful&nbsp;engagement.</p>
+    <p>I&rsquo;m a creative problem solver and leader who conceptualizes, designs, writes, and launches end-to-end revenue-driving experiences across different surfaces, allowing people to flow seamlessly from one medium to&nbsp;another.</p>
+    <p>I tirelessly leverage all the passion I have for being at the forefront of product design. Helping companies shape the future of industries, and hopefully cultures, through experience design is precisely the type of challenge that complements and fuels my professional&nbsp;ambitions.</p>
+    <p>My design thinking experience across E2E, E2C, and C2C provides a unique, empathetic, and intelligent combination of transferable skills. I&rsquo;ve collected a select number of examples that showcase my experience design work across several industries and companies. And have more upon&nbsp;request.</p>
+    <p><strong style="color:var(--text);">Interested?</strong></p>
+  </div>
+
+  <!-- 16. Hockey image + caption -->
+  <img class="full-img" src="images/about/08-hockey.png" alt="We're number 4!">
+  <p class="img-caption">&ldquo;Even though the rest of my team was holding up #1s, I opted for four &mdash; I guess I&rsquo;ve always looked at the big&nbsp;picture.&rdquo;</p>
+
+</div>
+
+<div class="case-nav">
+  <a href="index.html" class="case-nav-btn">&larr; Work</a>
+  <a href="resume.html" class="case-nav-btn">Resume &rarr;</a>
+</div>
+
+<footer>Brian Thompson &middot; AI Product Design &middot; 2026</footer>
+
+</body>
+</html>
