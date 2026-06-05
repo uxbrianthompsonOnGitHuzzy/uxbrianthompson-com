@@ -280,13 +280,13 @@ footer a:hover { color: var(--text); }
     <div class="carousel-slide" data-caption="<strong>Market Volatility Response.</strong> Opportunity/risk framing with contributing clients and recommended action"><img src="images/run-my-day/8.png" alt="Market Volatility"></div>
     <div class="carousel-slide" data-caption="<strong>Grow group.</strong> Growth Opportunities: Centers of Influence, Pattern Discovery, Uninvested Cash"><img src="images/run-my-day/9.png" alt="Grow"></div>
     <div class="carousel-slide" data-caption="<strong>Centers of Influence.</strong> Referral potential, $14.2M network value, connected insights, recommended action"><img src="images/run-my-day/10.png" alt="Influence"></div>
+      <button class="carousel-nav-overlay carousel-nav-prev" id="overlay-prev"><svg viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></button>
+    <button class="carousel-nav-overlay carousel-nav-next" id="overlay-next"><svg viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
   </div>
   <button class="carousel-btn" id="next-btn"><svg viewBox="0 0 24 24" fill="none" stroke="#1B5BBF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
   </div>
-    <button class="carousel-nav-overlay carousel-nav-prev" id="overlay-prev"><svg viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></button>
-    <button class="carousel-nav-overlay carousel-nav-next" id="overlay-next"><svg viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
 
-  <div class="carousel-dots" id="carousel-dots"></div>
+    <div class="carousel-dots" id="carousel-dots"></div>
 </div>
 
 <hr class="divider">
@@ -330,9 +330,6 @@ footer a:hover { color: var(--text); }
   <a href="index.html">&larr; Ecosystem</a>
 </footer>
 
-<\!-- Lightbox -->
-<\!-- Lightbox -->
-<\!-- Lightbox -->
 <div class="lightbox" id="lightbox">
   <button class="lightbox-close">&times;</button>
   <button class="lightbox-nav lightbox-prev" id="lb-prev"><svg viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></button>
@@ -384,9 +381,6 @@ document.addEventListener('keydown', e => {
 
 showSlide(0);
 
-document.querySelector('.lightbox-close').addEventListener('click', () => lightbox.classList.remove('active'));
-
-
 // Overlay carousel arrows
 const overlayPrev = document.getElementById('overlay-prev');
 const overlayNext = document.getElementById('overlay-next');
@@ -433,7 +427,6 @@ allImgs.forEach((img, i) => {
 document.getElementById('lb-prev').addEventListener('click', (e) => { e.stopPropagation(); lbNav(-1); });
 document.getElementById('lb-next').addEventListener('click', (e) => { e.stopPropagation(); lbNav(1); });
 lightbox.addEventListener('click', (e) => { if (e.target === lightbox) lightbox.classList.remove('active'); });
-document.querySelector('.lightbox-close').addEventListener('click', () => lightbox.classList.remove('active'));
 
 // Lightbox swipe
 let lbTouchX = 0;

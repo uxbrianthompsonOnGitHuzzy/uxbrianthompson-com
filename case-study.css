@@ -165,7 +165,7 @@ footer a:hover { color: var(--text); }
 /* Carousel layout */
 .carousel, [id="carousel"] { position: relative; }
 .carousel-frame { display: flex; align-items: center; justify-content: center; gap: 16px; }
-.carousel-track { overflow: hidden; border-radius: 14px; border: 1px solid var(--border); box-shadow: 0 8px 40px rgba(0,0,0,0.4); display: inline-flex; align-items: center; justify-content: center; }
+.carousel-track { overflow: hidden; border-radius: 14px; border: 1px solid var(--border); box-shadow: 0 8px 40px rgba(0,0,0,0.4); display: inline-flex; align-items: center; justify-content: center; position: relative; }
 .carousel-btn { width: 48px; height: 48px; border-radius: 50%; background: #fff; border: none; cursor: pointer; flex-shrink: 0; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(0,0,0,0.2); }
 .carousel-slide img { max-height: 840px; width: auto; max-width: 100%; object-fit: contain; display: block; margin: 0 auto; }
 
