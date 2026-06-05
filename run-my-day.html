@@ -197,9 +197,14 @@ footer a:hover { color: var(--text); }
 
 @media (max-width: 768px) {
   nav, .hero, section, .gallery-item, .phase-divider { padding-left: 24px; padding-right: 24px; }
-  .card-row, .results-grid { grid-template-columns: 1fr; }
-  .card { border-right: none; border-bottom: 1px solid var(--border); }
+  .card-row, .results-grid { grid-template-columns: 1fr; gap: 12px; border: none; background: none; }
+  .card { border-right: none; border-bottom: none; border: 1px solid rgba(167,139,250,0.12); border-radius: 14px; background: #0d1119; }
   .card:last-child { border-bottom: none; }
+  .carousel-btn { display: none; }
+  .carousel-frame { gap: 0; }
+  .carousel-track { width: 100%; border-radius: 8px; }
+  .carousel-slide img { max-height: none; width: 100%; max-width: 100%; height: auto; cursor: zoom-in; }
+  .carousel { padding: 20px 0; }
 }
 </style>
 </head>
