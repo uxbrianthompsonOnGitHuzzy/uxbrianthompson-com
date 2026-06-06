@@ -73,9 +73,9 @@
   transition: transform 0.3s cubic-bezier(.22,.6,.36,1), box-shadow 0.3s, border-color 0.3s;
 }
 .prev-work-card::after {
-  content: ''; position: absolute; inset: -1px; border-radius: 15px;
-  background: linear-gradient(135deg, rgba(140,100,255,0.22), rgba(40,210,190,0.14), rgba(230,80,160,0.18));
-  opacity: 0; transition: opacity 0.3s; z-index: -1; mix-blend-mode: screen;
+  content: ''; position: absolute; inset: 0; border-radius: 14px;
+  background: linear-gradient(135deg, rgba(140,100,255,0.08), rgba(40,210,190,0.05), rgba(230,80,160,0.08));
+  opacity: 0; transition: opacity 0.3s; z-index: 1; pointer-events: none;
 }
 .prev-work-card:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(167,139,250,0.08); border-color: rgba(167,139,250,0.25); }
 .prev-work-card:hover::after { opacity: 1; }
