@@ -135,7 +135,7 @@ p { font-size: 18px; line-height: 1.8; color: var(--text-dim); font-weight: 300;
 }
 .carousel-caption strong { font-weight: 600; }
 .carousel-frame {
-  display: flex; align-items: center; justify-content: center; gap: 16px;
+  display: flex; align-items: center; justify-content: center; gap: 16px; position: relative;
 }
 .carousel-track {
   position: relative; overflow: hidden; border-radius: 14px;
@@ -151,17 +151,18 @@ p { font-size: 18px; line-height: 1.8; color: var(--text-dim); font-weight: 300;
 .carousel-slide img {
   max-height: 840px; width: auto; max-width: 100%; object-fit: contain; display: block; margin: 0 auto;
 }
-.carousel-btn {
-  width: 48px; height: 48px; border-radius: 50%;
-  background: #fff;
-  border: none; cursor: pointer; flex-shrink: 0;
+.carousel-btn { display: none; }
+.carousel-nav-overlay {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  width: 44px; height: 44px; border-radius: 50%; border: none;
+  background: transparent; cursor: pointer;
   display: flex; align-items: center; justify-content: center;
-  transition: transform 0.2s, box-shadow 0.2s;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  z-index: 10;
 }
-.carousel-btn:hover { transform: scale(1.08); box-shadow: 0 4px 16px rgba(0,0,0,0.3); }
-.carousel-btn svg { width: 20px; height: 20px; }
-#prev-btn svg { transform: rotate(180deg); }
+.carousel-nav-overlay svg { width: 20px; height: 20px; }
+.carousel-nav-overlay:hover svg { opacity: 0.9; }
+.carousel-nav-prev { left: 16px; }
+.carousel-nav-next { right: 16px; }
 .carousel-dots {
   display: flex; align-items: center; justify-content: center; gap: 8px;
   margin-top: 20px;
@@ -195,16 +196,41 @@ footer a:hover { color: var(--text); }
 .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
 .fade-in.visible { opacity: 1; transform: translateY(0); }
 
+/* Lightbox */
+.lightbox {
+  display: none; position: fixed; inset: 0; z-index: 9999;
+  background: rgba(0,0,0,0.95); align-items: center; justify-content: center; padding: 20px;
+}
+.lightbox.active { display: flex; }
+.lightbox img { max-width: 100%; max-height: 100%; object-fit: contain; border-radius: 8px; }
+.lightbox-close {
+  position: absolute; top: 16px; right: 16px; width: 36px; height: 36px;
+  border-radius: 50%; background: rgba(255,255,255,0.1); border: none;
+  color: #fff; font-size: 20px; cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 10001;
+}
+.lightbox-close:hover { background: rgba(255,255,255,0.2); }
+.lightbox-nav {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  width: 48px; height: 48px; border-radius: 50%; border: none;
+  background: transparent; cursor: pointer;
+  display: flex; align-items: center; justify-content: center; z-index: 10001;
+}
+.lightbox-nav svg { width: 24px; height: 24px; }
+.lightbox-nav:hover svg { opacity: 0.9; }
+.lightbox-prev { left: 16px; }
+.lightbox-next { right: 16px; }
+
 @media (max-width: 768px) {
   nav, .hero, section, .gallery-item, .phase-divider { padding-left: 24px; padding-right: 24px; }
   .card-row, .results-grid { grid-template-columns: 1fr; gap: 12px; border: none; background: none; }
   .card { border-right: none; border-bottom: none; border: 1px solid rgba(167,139,250,0.12); border-radius: 14px; background: #0d1119; }
   .card:last-child { border-bottom: none; }
-  .carousel-btn { display: none; }
   .carousel-frame { gap: 0; }
   .carousel-track { width: 100%; border-radius: 8px; }
   .carousel-slide img { max-height: none; width: 100%; max-width: 100%; height: auto; cursor: zoom-in; }
   .carousel { padding: 20px 0; }
+  .carousel-nav-overlay { width: 36px; height: 36px; }
+  .carousel-nav-overlay svg { width: 16px; height: 16px; }
 }
 </style>
 </head>
@@ -267,7 +293,6 @@ footer a:hover { color: var(--text); }
 <div class="carousel" id="carousel">
   <div class="carousel-caption" id="carousel-caption"></div>
   <div class="carousel-frame">
-  <button class="carousel-btn" id="prev-btn"><svg viewBox="0 0 24 24" fill="none" stroke="#1B5BBF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
   <div class="carousel-track">
     <div class="carousel-slide active" data-caption="<strong>Run My Day.</strong> Detect, Analyze, Recommend, Enable — decision-ready intelligence in under 5&nbsp;minutes."><img src="images/run-my-day/cover.png" alt="Run My Day cover"></div>
     <div class="carousel-slide" data-caption="<strong>Morning workspace.</strong> Personalized greeting, today's meetings, and intent-based groups (Retain, Grow, Service, Comply)"><img src="images/run-my-day/1.png" alt="Dashboard"></div>
@@ -281,11 +306,9 @@ footer a:hover { color: var(--text); }
     <div class="carousel-slide" data-caption="<strong>Grow group.</strong> Growth Opportunities: Centers of Influence, Pattern Discovery, Uninvested Cash"><img src="images/run-my-day/9.png" alt="Grow"></div>
     <div class="carousel-slide" data-caption="<strong>Centers of Influence.</strong> Referral potential, $14.2M network value, connected insights, recommended action"><img src="images/run-my-day/10.png" alt="Influence"></div>
   </div>
-  <button class="carousel-btn" id="next-btn"><svg viewBox="0 0 24 24" fill="none" stroke="#1B5BBF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
-  </div>
-
-      <button class="carousel-nav-overlay carousel-nav-prev" id="overlay-prev"><svg viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></button>
+  <button class="carousel-nav-overlay carousel-nav-prev" id="overlay-prev"><svg viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></button>
   <button class="carousel-nav-overlay carousel-nav-next" id="overlay-next"><svg viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+  </div>
   <div class="carousel-dots" id="carousel-dots"></div>
 </div>
 
@@ -372,8 +395,6 @@ function showSlide(n) {
   caption.appendChild(template.content);
 }
 
-document.getElementById('prev-btn').addEventListener('click', () => showSlide(current - 1));
-document.getElementById('next-btn').addEventListener('click', () => showSlide(current + 1));
 document.addEventListener('keydown', e => {
   if (e.key === 'ArrowLeft') showSlide(current - 1);
   if (e.key === 'ArrowRight') showSlide(current + 1);

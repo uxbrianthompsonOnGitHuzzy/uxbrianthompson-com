@@ -62,7 +62,6 @@
 <div class="carousel" id="carousel" style="max-width:1920px; margin:0 auto; padding:40px 64px;">
   <div class="carousel-caption" id="carousel-caption" style="text-align:center; font-size:17px; color:var(--text); margin-bottom:16px; font-weight:300;"></div>
   <div class="carousel-frame">
-  <button class="carousel-btn" id="prev-btn"><svg viewBox="0 0 24 24" fill="none" stroke="#1B5BBF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width:20px;height:20px;transform:rotate(180deg)"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
   <div class="carousel-track">
     <div class="carousel-slide active" data-caption="<strong>Agentic Experience.</strong> Context Aware Intelligence Evolution — global awareness across every client relationship."><img src="images/client-360/cover.jpg" alt="Client 360 cover"></div>
     <div class="carousel-slide" data-caption="<strong>Client 360.</strong> Miyazaki Household record page — $7.2M AUM, relationship graph, Global Context 360 AI narrative, life events"><img src="images/client-360/09-FSC Wealth Global Context 360-01.png" alt="Client 360"></div>
@@ -71,10 +70,9 @@
     <div class="carousel-slide" data-caption="<strong>Full network view.</strong> Extended relationship graph showing life events, plans, goals, and financial connections across the household"><img src="images/client-360/12-FSC Wealth Global Context 360-04.png" alt="Network"></div>
     <div class="carousel-slide" data-caption="<strong>Contextual actions.</strong> Agentforce menu with Global Context advising actions — portfolio review, rebalancing, estate planning"><img src="images/client-360/12-FSC Wealth Global Context 360-05.png" alt="Actions"></div>
     <div class="carousel-slide" data-caption="<strong>Deep context view.</strong> Full Plans &amp; Goals relationship map with financial strategies and milestone tracking"><img src="images/client-360/13-FSC Wealth Global Context 360-05.png" alt="Deep context"></div>
-      <button class="carousel-nav-overlay carousel-nav-prev" id="overlay-prev"><svg viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></button>
-    <button class="carousel-nav-overlay carousel-nav-next" id="overlay-next"><svg viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
   </div>
-  <button class="carousel-btn" id="next-btn"><svg viewBox="0 0 24 24" fill="none" stroke="#1B5BBF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width:20px;height:20px;"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+  <button class="carousel-nav-overlay carousel-nav-prev" id="overlay-prev"><svg viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></button>
+  <button class="carousel-nav-overlay carousel-nav-next" id="overlay-next"><svg viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
   </div>
 
     <div class="carousel-dots" id="carousel-dots" style="display:flex;align-items:center;justify-content:center;gap:8px;margin-top:20px;"></div>
@@ -157,8 +155,6 @@ function showSlide(n) {
   template.innerHTML = slides[current].dataset.caption;
   caption.appendChild(template.content);
 }
-document.getElementById('prev-btn').addEventListener('click', () => showSlide(current - 1));
-document.getElementById('next-btn').addEventListener('click', () => showSlide(current + 1));
 document.addEventListener('keydown', e => {
   if (e.key === 'ArrowLeft') showSlide(current - 1);
   if (e.key === 'ArrowRight') showSlide(current + 1);

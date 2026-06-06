@@ -54,15 +54,23 @@ p + p { margin-top: 12px; }
 .carousel-caption strong { font-weight: 600; }
 .carousel-frame { display: flex; align-items: center; gap: 16px; }
 .carousel-track { position: relative; overflow: hidden; border-radius: 14px; border: 1px solid var(--border); box-shadow: 0 8px 40px rgba(0,0,0,0.4); display: inline-flex; align-items: center; justify-content: center; }
-.carousel-frame { display: flex; align-items: center; justify-content: center; gap: 16px; }
+.carousel-frame { display: flex; align-items: center; justify-content: center; gap: 16px; position: relative; }
 .carousel-slide { display: none; }
 .carousel-slide.active { display: block; }
 .carousel-slide img { max-height: 840px; width: auto; max-width: 100%; object-fit: contain; display: block; margin: 0 auto; }
 .carousel-track { display: flex; align-items: center; justify-content: center; }
-.carousel-btn { width: 48px; height: 48px; border-radius: 50%; background: #fff; border: none; cursor: pointer; flex-shrink: 0; display: flex; align-items: center; justify-content: center; transition: transform 0.2s, box-shadow 0.2s; box-shadow: 0 2px 8px rgba(0,0,0,0.2); }
-.carousel-btn:hover { transform: scale(1.08); box-shadow: 0 4px 16px rgba(0,0,0,0.3); }
-.carousel-btn svg { width: 20px; height: 20px; }
-#prev-btn svg { transform: rotate(180deg); }
+.carousel-btn { display: none; }
+.carousel-nav-overlay {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  width: 44px; height: 44px; border-radius: 50%; border: none;
+  background: transparent; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  z-index: 10;
+}
+.carousel-nav-overlay svg { width: 20px; height: 20px; }
+.carousel-nav-overlay:hover svg { opacity: 0.9; }
+.carousel-nav-prev { left: 16px; }
+.carousel-nav-next { right: 16px; }
 .carousel-dots { display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 20px; }
 .carousel-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--text-faint); opacity: 0.4; transition: opacity 0.3s, background 0.3s, transform 0.3s; cursor: pointer; }
 .carousel-dot.active { opacity: 1; background: var(--p0); transform: scale(1.4); }
@@ -82,7 +90,39 @@ footer a { color: var(--p0); transition: color 0.2s; }
 footer a:hover { color: var(--text); }
 .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
 .fade-in.visible { opacity: 1; transform: translateY(0); }
-@media (max-width: 768px) { nav, section, .carousel, .case-nav { padding-left: 24px; padding-right: 24px; } .card-row, .results-grid { grid-template-columns: 1fr; } .card { border-right: none; border-bottom: 1px solid var(--border); } .card:last-child { border-bottom: none; } }
+.lightbox {
+  display: none; position: fixed; inset: 0; z-index: 9999;
+  background: rgba(0,0,0,0.95); align-items: center; justify-content: center; padding: 20px;
+}
+.lightbox.active { display: flex; }
+.lightbox img { max-width: 100%; max-height: 100%; object-fit: contain; border-radius: 8px; }
+.lightbox-close {
+  position: absolute; top: 16px; right: 16px; width: 36px; height: 36px;
+  border-radius: 50%; background: rgba(255,255,255,0.1); border: none;
+  color: #fff; font-size: 20px; cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 10001;
+}
+.lightbox-close:hover { background: rgba(255,255,255,0.2); }
+.lightbox-nav {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  width: 48px; height: 48px; border-radius: 50%; border: none;
+  background: transparent; cursor: pointer;
+  display: flex; align-items: center; justify-content: center; z-index: 10001;
+}
+.lightbox-nav svg { width: 24px; height: 24px; }
+.lightbox-nav:hover svg { opacity: 0.9; }
+.lightbox-prev { left: 16px; }
+.lightbox-next { right: 16px; }
+@media (max-width: 768px) {
+  nav, section, .carousel, .case-nav { padding-left: 24px; padding-right: 24px; }
+  .card-row, .results-grid { grid-template-columns: 1fr; }
+  .card { border-right: none; border-bottom: 1px solid var(--border); }
+  .card:last-child { border-bottom: none; }
+  .carousel-frame { gap: 0; }
+  .carousel-track { width: 100%; border-radius: 8px; }
+  .carousel-slide img { max-height: none; width: 100%; max-width: 100%; height: auto; cursor: zoom-in; }
+  .carousel-nav-overlay { width: 36px; height: 36px; }
+  .carousel-nav-overlay svg { width: 16px; height: 16px; }
+}
 </style>
 </head>
 <body>
@@ -135,7 +175,6 @@ footer a:hover { color: var(--text); }
 <div class="carousel" id="carousel">
   <div class="carousel-caption" id="carousel-caption"></div>
   <div class="carousel-frame">
-  <button class="carousel-btn" id="prev-btn"><svg viewBox="0 0 24 24" fill="none" stroke="#1B5BBF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
   <div class="carousel-track">
     <div class="carousel-slide active" data-caption="<strong>Meeting Concierge.</strong> Invisible Engagement Intelligence — prep, conduct, and follow through."><img src="images/meeting-center/cover.png" alt="Meeting Center cover"></div>
     <div class="carousel-slide" data-caption="<strong>Meeting Prep.</strong> Client summary, prep tasks, AI-generated brief, Slack channel, documents, and attendees"><img src="images/meeting-center/01.png" alt="Meeting Prep"></div>
@@ -149,11 +188,9 @@ footer a:hover { color: var(--text); }
     <div class="carousel-slide" data-caption="<strong>Meeting Library.</strong> Full history view with chronological meeting records and conversation context"><img src="images/meeting-center/lib-02.png" alt="Meeting Library"></div>
     <div class="carousel-slide" data-caption="<strong>Meeting Templates.</strong> Configurable meeting types with pre-built agendas and Agentforce action mappings"><img src="images/meeting-center/lib-03.png" alt="Meeting Templates"></div>
   </div>
-  <button class="carousel-btn" id="next-btn"><svg viewBox="0 0 24 24" fill="none" stroke="#1B5BBF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
-  </div>
-
-      <button class="carousel-nav-overlay carousel-nav-prev" id="overlay-prev"><svg viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></button>
+  <button class="carousel-nav-overlay carousel-nav-prev" id="overlay-prev"><svg viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></button>
   <button class="carousel-nav-overlay carousel-nav-next" id="overlay-next"><svg viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+  </div>
   <div class="carousel-dots" id="carousel-dots"></div>
 </div>
 
@@ -230,8 +267,6 @@ function showSlide(n) {
   template.innerHTML = slides[current].dataset.caption;
   caption.appendChild(template.content);
 }
-document.getElementById('prev-btn').addEventListener('click', () => showSlide(current - 1));
-document.getElementById('next-btn').addEventListener('click', () => showSlide(current + 1));
 document.addEventListener('keydown', e => {
   if (e.key === 'ArrowLeft') showSlide(current - 1);
   if (e.key === 'ArrowRight') showSlide(current + 1);

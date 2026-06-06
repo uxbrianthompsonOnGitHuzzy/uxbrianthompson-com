@@ -164,9 +164,9 @@ footer a:hover { color: var(--text); }
 
 /* Carousel layout */
 .carousel, [id="carousel"] { position: relative; }
-.carousel-frame { display: flex; align-items: center; justify-content: center; gap: 16px; }
+.carousel-frame { display: flex; align-items: center; justify-content: center; gap: 16px; position: relative; }
 .carousel-track { overflow: hidden; border-radius: 14px; border: 1px solid var(--border); box-shadow: 0 8px 40px rgba(0,0,0,0.4); display: inline-flex; align-items: center; justify-content: center; position: relative; }
-.carousel-btn { width: 48px; height: 48px; border-radius: 50%; background: #fff; border: none; cursor: pointer; flex-shrink: 0; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(0,0,0,0.2); }
+.carousel-btn { display: none; }
 .carousel-slide img { max-height: 840px; width: auto; max-width: 100%; object-fit: contain; display: block; margin: 0 auto; }
 
 /* Carousel overlay arrows */
@@ -179,16 +179,15 @@ footer a:hover { color: var(--text); }
 }
 .carousel-nav-overlay svg { width: 20px; height: 20px; }
 .carousel-nav-overlay:hover svg { opacity: 0.9; }
-.carousel-nav-prev { left: 12px; }
-.carousel-nav-next { right: 12px; }
+.carousel-nav-prev { left: 16px; }
+.carousel-nav-next { right: 16px; }
 
 @media (max-width: 768px) {
   nav, .hero, section, .gallery-item, .phase-divider { padding-left: 24px; padding-right: 24px; }
   .card-row, .results-grid { grid-template-columns: 1fr; gap: 12px; border: none; background: none; }
   .card { border-right: none; border-bottom: none; border: 1px solid var(--border); border-radius: 14px; background: var(--panel); }
   .card:last-child { border-bottom: none; }
-  /* Carousel: full-width, hide old buttons */
-  .carousel-btn { display: none; }
+  /* Carousel: full-width on mobile */
   .carousel-frame { gap: 0; }
   .carousel-track { width: 100%; border-radius: 8px; }
   .carousel-slide img { max-height: none; width: 100%; max-width: 100%; height: auto; cursor: zoom-in; }
