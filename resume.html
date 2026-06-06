@@ -66,6 +66,27 @@
 .philosophy-list { list-style: none; display: flex; flex-direction: column; gap: 9px; margin-top: 8px; }
 .philosophy-list li { font-size: 14px; line-height: 1.6; color: var(--text-dim); font-weight: 300; font-style: italic; }
 
+.prev-work-card {
+  display: flex; align-items: center; gap: 20px;
+  background: var(--panel); border: 1px solid var(--border); border-radius: 14px;
+  padding: 20px 28px; position: relative; overflow: hidden;
+  transition: transform 0.3s cubic-bezier(.22,.6,.36,1), box-shadow 0.3s, border-color 0.3s;
+}
+.prev-work-card::after {
+  content: ''; position: absolute; inset: -1px; border-radius: 15px;
+  background: linear-gradient(135deg, rgba(140,100,255,0.22), rgba(40,210,190,0.14), rgba(230,80,160,0.18));
+  opacity: 0; transition: opacity 0.3s; z-index: -1; mix-blend-mode: screen;
+}
+.prev-work-card:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(167,139,250,0.08); border-color: rgba(167,139,250,0.25); }
+.prev-work-card:hover::after { opacity: 1; }
+.prev-work-label { font-size: 15px; font-weight: 700; color: var(--p3); flex-shrink: 0; }
+.prev-work-text { font-size: 15px; color: var(--text-dim); border-left: 1px solid rgba(244,114,182,0.25); padding-left: 20px; line-height: 1.5; }
+.prev-work-btn {
+  display: none; padding: 14px 24px; border-radius: 8px; font-size: 15px; font-weight: 700;
+  color: var(--p3); border: 1px solid rgba(244,114,182,0.25); text-align: center;
+  transition: background 0.2s, border-color 0.2s;
+}
+
 @media (max-width: 768px) {
   .resume-body { padding: 40px 24px; }
   .resume-entry { grid-template-columns: 1fr; }
@@ -73,6 +94,8 @@
   .resume-bottom { grid-template-columns: 1fr; }
   .re-two-col { grid-template-columns: 1fr; }
   .expertise-grid { grid-template-columns: 1fr; }
+  .prev-work-card { display: none; }
+  .prev-work-btn { display: block; }
 }
 </style>
 </head>
@@ -295,10 +318,11 @@
 </div>
 
 <div style="max-width: 1000px; margin: 0 auto; padding: 0 64px 60px;">
-  <a href="https://uxbrianthompson.myportfolio.com" target="_blank" style="display:flex; align-items:center; gap:20px; background:var(--panel); border:1px solid var(--border); border-radius:14px; padding:20px 28px; transition:border-color 0.3s, box-shadow 0.3s;">
-    <span style="font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--p3); white-space:nowrap;">Previous Work</span>
-    <span style="font-size:14px; color:var(--text-dim); font-weight:300;">To view additional work, check out my archive portfolio. uxbrianthompson.myportfolio.com</span>
+  <a href="https://uxbrianthompson.myportfolio.com" target="_blank" class="prev-work-card">
+    <span class="prev-work-label">Previous Work</span>
+    <span class="prev-work-text">To view additional work, check out my archive portfolio. uxbrianthompson.myportfolio.com</span>
   </a>
+  <a href="https://uxbrianthompson.myportfolio.com" target="_blank" class="prev-work-btn">View Previous Work &rarr;</a>
 </div>
 
 <footer>

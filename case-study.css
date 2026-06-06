@@ -191,7 +191,7 @@ footer a:hover { color: var(--text); }
   .carousel-frame { gap: 0; }
   .carousel-track { width: 100%; border-radius: 8px; }
   .carousel-slide img { max-height: none; width: 100%; max-width: 100%; height: auto; cursor: zoom-in; }
-  [id="carousel"] { padding: 20px 0; }
+  [id="carousel"] { padding: 20px 0 !important; }
   .carousel-nav-overlay { width: 36px; height: 36px; }
   .carousel-nav-overlay svg { width: 16px; height: 16px; }
 }
