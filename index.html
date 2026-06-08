@@ -226,22 +226,6 @@ p + p { margin-top: 16px; }
 .role p { font-size: 16px; color: var(--text-faint); line-height: 1.8; font-weight: 300; }
 .role strong { color: var(--text); font-weight: 600; }
 
-/* Previous Work card */
-.prev-work-card {
-  display: flex; align-items: center; gap: 20px;
-  background: var(--panel); border: 1px solid var(--border); border-radius: 14px;
-  padding: 24px 32px; position: relative; overflow: hidden;
-  transition: transform 0.3s cubic-bezier(.22,.6,.36,1), box-shadow 0.3s, border-color 0.3s;
-}
-.prev-work-card::after {
-  content: ''; position: absolute; inset: -1px; border-radius: 15px;
-  background: linear-gradient(135deg, rgba(140,100,255,0.22), rgba(40,210,190,0.14), rgba(230,80,160,0.18));
-  opacity: 0; transition: opacity 0.3s; z-index: -1; mix-blend-mode: screen;
-}
-.prev-work-card:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(167,139,250,0.08); border-color: rgba(167,139,250,0.25); }
-.prev-work-card:hover::after { opacity: 1; }
-.prev-work-label { font-size: 15px; font-weight: 700; color: var(--p3); flex-shrink: 0; }
-.prev-work-text { font-size: 15px; color: var(--text-dim); border-left: 1px solid rgba(244,114,182,0.25); padding-left: 20px; line-height: 1.5; }
 
 footer { text-align: center; padding: 80px 64px; color: var(--text-faint); font-size: 13px; }
 
@@ -249,13 +233,6 @@ footer { text-align: center; padding: 80px 64px; color: var(--text-faint); font-
 .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
 .fade-in.visible { opacity: 1; transform: translateY(0); }
 
-/* Previous Work button (mobile only) */
-.prev-work-btn {
-  display: none; padding: 14px 24px; border-radius: 8px; font-size: 15px; font-weight: 700;
-  color: var(--p3); border: 1px solid rgba(244,114,182,0.25); text-align: center;
-  transition: background 0.2s, border-color 0.2s;
-}
-.prev-work-btn:hover { background: rgba(244,114,182,0.06); border-color: rgba(244,114,182,0.4); }
 
 @media (max-width: 768px) {
   nav, .hero, section, .callout { padding-left: 24px; padding-right: 24px; }
@@ -263,8 +240,6 @@ footer { text-align: center; padding: 80px 64px; color: var(--text-faint); font-
   .hero h1 { font-size: 40px; }
   .role-grid { grid-template-columns: 1fr; gap: 12px; border: none; background: none; }
   .role-card { border-right: none; border: 1px solid var(--border); border-radius: 14px; background: var(--panel); }
-  .prev-work-card { display: none; }
-  .prev-work-btn { display: block; }
 }
 </style>
 </head>
@@ -456,13 +431,50 @@ footer { text-align: center; padding: 80px 64px; color: var(--text-faint); font-
   </div>
 </section>
 
-<div style="max-width: 1100px; margin: 0 auto; padding: 0 64px 60px;">
-  <a href="https://uxbrianthompson.myportfolio.com" target="_blank" class="prev-work-card">
-    <span class="prev-work-label">Previous Work</span>
-    <span class="prev-work-text">To view additional work, check out my archive portfolio. uxbrianthompson.myportfolio.com</span>
-  </a>
-  <a href="https://uxbrianthompson.myportfolio.com" target="_blank" class="prev-work-btn">View Previous Work &rarr;</a>
-</div>
+<hr class="divider">
+
+<section class="fade-in">
+  <span class="eyebrow">Previous Work</span>
+  <h2>Selected <span class="grad">earlier work.</span></h2>
+  <div class="projects-grid">
+    <a href="google.html" class="project-card">
+      <img class="card-hero" src="images/google/hero.jpg" alt="">
+      <div class="card-body">
+        <h4 class="p1">Google</h4>
+        <p>Pixel 7a, Pixel Fold, and Pixel Tablet &mdash; buy-flow and launch experiences for Google&rsquo;s 2023 hardware portfolio.</p>
+        <span class="tag">Sr. Experience Designer</span>
+      </div>
+      <span class="view-pill">View</span>
+    </a>
+    <a href="bank-of-america.html" class="project-card">
+      <img class="card-hero" src="images/bank-of-america/hero.jpg" alt="">
+      <div class="card-body">
+        <h4 class="p0">Bank of America</h4>
+        <p>AI-powered experiences integrating Erica across global consumer and enterprise products at enterprise scale.</p>
+        <span class="tag">Sr. Product Designer</span>
+      </div>
+      <span class="view-pill">View</span>
+    </a>
+    <a href="apple.html" class="project-card">
+      <img class="card-hero" src="images/apple/hero.jpg" alt="">
+      <div class="card-body">
+        <h4 class="p3">Apple</h4>
+        <p>Apple Watch launch &mdash; brand voice, UX direction, and launch experience for Apple&rsquo;s first wearable platform.</p>
+        <span class="tag">Assoc. Creative Director</span>
+      </div>
+      <span class="view-pill">View</span>
+    </a>
+    <a href="audi.html" class="project-card">
+      <img class="card-hero" src="images/audi/hero.jpg" alt="">
+      <div class="card-body">
+        <h4 class="p2">Audi</h4>
+        <p>AudiUSA site redesign and vehicle configurator &mdash; FWA Award, Cannes Gold Lion. 227% increase in configurations.</p>
+        <span class="tag">UX Designer &middot; FWA Award</span>
+      </div>
+      <span class="view-pill">View</span>
+    </a>
+  </div>
+</section>
 
 <footer>Brian Thompson &middot; AI Product Design &middot; 2026</footer>
 
