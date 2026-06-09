@@ -1,0 +1,990 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Binc — Command Center</title>
+  <style>
+    /* ── DARK MODE (default) — Monochrome Purple ── */
+    :root {
+      color-scheme: dark;
+      --bg:            #0f0c1a;
+      --surface:       #1a1428;
+      --surface-2:     #231d38;
+      --border:        #2e2748;
+      --text-primary:  #ece5ff;
+      --text-secondary:#9884c4;
+      --text-tertiary: #4e4470;
+      --accent:        #a07ef0;
+      --green:         #34d97b;
+      --amber:         #e8a832;
+      --red:           #e05878;
+      --blue:          #9070e8;
+      --green-bg:      rgba(52,217,123,0.10);
+      --green-text:    #34d97b;
+      --amber-bg:      rgba(232,168,50,0.10);
+      --amber-text:    #d09030;
+      --red-bg:        rgba(224,88,120,0.10);
+      --red-text:      #e05878;
+      --blue-bg:       rgba(144,112,232,0.12);
+      --blue-text:     #b090f8;
+      --shadow:        0 1px 4px rgba(0,0,0,0.65), 0 1px 2px rgba(0,0,0,0.5);
+
+      /* MD3 brand tokens — dark mode */
+      --md3-chip-bg:           #e8def8;
+      --md3-chip-badge-bg:     #4a4459;
+      --md3-chip-badge-border: #e8def8;
+      --md3-chip-badge-text:   #ffffff;
+      --md3-chip-label:        #4a4459;
+      --md3-refresh-bg:        #e8def8;
+      --md3-refresh-text:      #4a4459;
+      --md3-refresh-icon:      #4a4459;
+      --md3-toggle-bg:         #e8def8;
+      --md3-toggle-active-bg:  #4a4459;
+      --md3-toggle-active-bdr: #e8def8;
+      --md3-toggle-icon-active:#ffffff;
+      --md3-toggle-icon-ghost: #4a4459;
+    }
+
+    /* ── LIGHT MODE override — Lavender ── */
+    body.light-mode {
+      color-scheme: light;
+      --bg:            #f0ebff;
+      --surface:       #ffffff;
+      --surface-2:     #e8e0f8;
+      --border:        #cfc4ee;
+      --text-primary:  #1a0f3a;
+      --text-secondary:#5a4880;
+      --text-tertiary: #9880c0;
+      --shadow:        0 1px 3px rgba(20,0,60,0.08), 0 1px 2px rgba(20,0,60,0.05);
+      --green:         #1a8040;
+      --amber:         #8a5800;
+      --red:           #a0204a;
+      --blue:          #5040a8;
+      --green-bg:      rgba(26,128,64,0.1);
+      --green-text:    #1a7038;
+      --amber-bg:      rgba(138,88,0,0.1);
+      --amber-text:    #7a4800;
+      --red-bg:        rgba(160,32,74,0.1);
+      --red-text:      #900040;
+      --blue-bg:       rgba(80,64,168,0.1);
+      --blue-text:     #4030a0;
+
+      /* MD3 brand tokens — light mode (swapped) */
+      --md3-chip-bg:           #4a4459;
+      --md3-chip-badge-bg:     #e8def8;
+      --md3-chip-badge-border: #4a4459;
+      --md3-chip-badge-text:   #4a4459;
+      --md3-chip-label:        #e8def8;
+      --md3-refresh-bg:        #4a4459;
+      --md3-refresh-text:      #e8def8;
+      --md3-refresh-icon:      #e8def8;
+      --md3-toggle-bg:         #4a4458;
+      --md3-toggle-active-bg:  #e8def8;
+      --md3-toggle-active-bdr: #4a4458;
+      --md3-toggle-icon-active:#4a4459;
+      --md3-toggle-icon-ghost: #e8def8;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      background-image: radial-gradient(ellipse 110% 40% at 50% -4%, #241860 0%, transparent 55%);
+      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', Helvetica, sans-serif;
+      color: var(--text-primary);
+      font-size: 14px;
+      line-height: 1.5;
+      padding: 20px 20px 36px;
+      transition: background 0.2s, color 0.2s;
+    }
+    body.light-mode {
+      background-image: radial-gradient(ellipse 110% 40% at 50% -4%, #d0c0ff 0%, transparent 55%);
+    }
+
+    /* ── HEADER — Figma 470:3043 glassmorphism pill ── */
+    .binc-header {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 20px;
+      height: 56px;
+      border-radius: 100px;
+      background: rgba(74, 52, 120, 0.32);
+      backdrop-filter: blur(34px);
+      -webkit-backdrop-filter: blur(34px);
+      border: 1.4px solid rgba(186, 160, 255, 0.28);
+      margin-bottom: 16px;
+      overflow: hidden;
+    }
+    body.light-mode .binc-header {
+      background: rgba(120, 90, 180, 0.15);
+      border-color: rgba(120, 90, 180, 0.35);
+    }
+    /* Saturation overlay layer */
+    .binc-header-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(60, 30, 110, 0.2);
+      mix-blend-mode: saturation;
+      pointer-events: none;
+      border-radius: inherit;
+    }
+
+    /* ── BINC BADGE — Figma 469:3914 ── */
+    .binc-badge-pill {
+      display: inline-flex;
+      align-items: center;
+      background: var(--md3-chip-bg);
+      border-radius: 100px;
+      height: 34px;
+      padding-right: 16px;
+      cursor: pointer;
+      transition: opacity 0.15s;
+      user-select: none;
+      flex-shrink: 0;
+      position: relative;
+      z-index: 1;
+    }
+    .binc-badge-pill:hover  { opacity: 0.85; }
+    .binc-badge-pill:active { opacity: 0.7; }
+    .binc-badge-circle {
+      width: 34px;
+      height: 34px;
+      flex-shrink: 0;
+    }
+    .binc-badge-label {
+      font-family: 'Roboto', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--md3-chip-label);
+      letter-spacing: 0.1px;
+      margin-left: 8px;
+      white-space: nowrap;
+      transition: color 0.2s;
+    }
+
+    /* ── HEADER CONTROLS ── */
+    .header-controls {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ── COLOR TOGGLE — Figma 469:3755 ── */
+    .mode-toggle {
+      display: inline-flex;
+      align-items: center;
+      background: var(--md3-toggle-bg);
+      border-radius: 100px;
+      width: 64px;
+      height: 32px;
+      flex-shrink: 0;
+      overflow: hidden;
+      transition: background 0.2s;
+    }
+    .toggle-btn {
+      width: 32px;
+      height: 32px;
+      border-radius: 100px;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: all 0.18s;
+      color: var(--md3-toggle-icon-ghost);
+    }
+    .toggle-btn svg { width: 16px; height: 16px; }
+    .toggle-btn.active-toggle {
+      background: var(--md3-toggle-active-bg);
+      border: 2px solid var(--md3-toggle-active-bdr);
+      color: var(--md3-toggle-icon-active);
+    }
+
+    /* ── REFRESH BUTTON — Figma 470:2911 ── */
+    .tonal-refresh {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      height: 32px;
+      border-radius: 100px;
+      background: var(--md3-refresh-bg);
+      border: none;
+      color: var(--md3-refresh-text);
+      font-family: 'Roboto', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.1px;
+      padding: 0 14px 0 10px;
+      cursor: pointer;
+      transition: opacity 0.15s, background 0.2s;
+      white-space: nowrap;
+    }
+    .tonal-refresh:hover  { opacity: 0.85; }
+    .tonal-refresh:active { opacity: 0.7; }
+    .tonal-refresh svg { flex-shrink: 0; }
+    .spinning { animation: spin 0.8s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ── MODE SWITCHER — 3 pills ── */
+    .mode-switcher {
+      display: flex;
+      gap: 4px;
+      margin-bottom: 18px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 4px;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .mode-pill {
+      flex: 1;
+      text-align: center;
+      padding: 7px 12px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.18s;
+      color: var(--text-secondary);
+      border: none;
+      background: transparent;
+    }
+    .mode-pill.active-expand  { background: var(--green-bg);  color: var(--green-text); }
+    .mode-pill.active-express { background: var(--blue-bg);   color: var(--blue-text); }
+    .mode-pill.active-enjoy   { background: var(--amber-bg);  color: var(--amber-text); }
+    .mode-pill:not([class*="active"]):hover { background: var(--surface-2); color: var(--text-primary); }
+
+    /* ── VIEWS ── */
+    .view { display: none; }
+    .view.active { display: block; }
+
+    /* ── HOME CARDS ── */
+    .home-cards { display: flex; flex-direction: column; gap: 10px; }
+    .home-card {
+      background: var(--surface);
+      border-radius: 14px;
+      padding: 18px 20px;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+      cursor: pointer;
+      transition: all 0.15s;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .home-card:hover { transform: translateY(-1px); box-shadow: 0 4px 16px rgba(0,0,0,0.18); }
+    .home-card.expand  { border-left: 3px solid var(--green); }
+    .home-card.express { border-left: 3px solid var(--blue); }
+    .home-card.enjoy   { border-left: 3px solid var(--amber); }
+    .home-card-mode {
+      font-size: 9px; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; margin-bottom: 4px;
+    }
+    .home-card.expand  .home-card-mode { color: var(--green-text); }
+    .home-card.express .home-card-mode { color: var(--blue-text); }
+    .home-card.enjoy   .home-card-mode { color: var(--amber-text); }
+    .home-card-headline { font-size: 17px; font-weight: 700; letter-spacing: -0.3px; color: var(--text-primary); margin-bottom: 3px; }
+    .home-card-sub { font-size: 12px; color: var(--text-secondary); }
+    .home-card-right { text-align: right; flex-shrink: 0; }
+    .home-status-dot { width: 12px; height: 12px; border-radius: 50%; margin-left: auto; margin-bottom: 6px; }
+    .dot-green { background: var(--green); box-shadow: 0 0 8px rgba(52,217,123,0.45); }
+    .dot-amber { background: var(--amber); box-shadow: 0 0 8px rgba(232,168,50,0.35); }
+    .dot-blue  { background: var(--blue);  box-shadow: 0 0 8px rgba(144,112,232,0.45); }
+    .home-card-stat { font-size: 11px; font-weight: 600; }
+
+    /* ── DEFCON BAR ── */
+    .defcon-bar { border-radius: 10px; padding: 12px 16px; margin-bottom: 14px; display: flex; align-items: center; gap: 12px; }
+    .defcon-green { background: var(--green-bg);  border: 1px solid rgba(52,217,123,0.2); }
+    .defcon-amber { background: var(--amber-bg);  border: 1px solid rgba(232,168,50,0.2); }
+    .defcon-red   { background: var(--red-bg);    border: 1px solid rgba(224,88,120,0.2); }
+    .defcon-dot   { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+    .defcon-label { font-size: 9px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; }
+    .defcon-text  { font-size: 13px; font-weight: 600; flex: 1; }
+    .defcon-green .defcon-label, .defcon-green .defcon-text { color: var(--green-text); }
+    .defcon-amber .defcon-label, .defcon-amber .defcon-text { color: var(--amber-text); }
+    .defcon-red   .defcon-label, .defcon-red   .defcon-text { color: var(--red-text); }
+
+    /* ── PRIMARY ACTION ── */
+    .primary-action {
+      background: var(--accent); color: #fff; border-radius: 12px;
+      padding: 14px 16px; margin-bottom: 14px; display: flex;
+      align-items: center; justify-content: space-between;
+      cursor: pointer; transition: opacity 0.15s; border: none; width: 100%; text-align: left;
+    }
+    .primary-action:hover { opacity: 0.88; }
+    .primary-action-label { font-size: 9px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.65); margin-bottom: 3px; }
+    .primary-action-text  { font-size: 14px; font-weight: 600; }
+    .primary-action-arrow { font-size: 18px; opacity: 0.7; margin-left: 12px; flex-shrink: 0; }
+
+    /* ── SECTION LABEL ── */
+    .section-label { font-size: 9px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-tertiary); margin-bottom: 8px; margin-top: 4px; }
+
+    /* ── CARD ── */
+    .card { background: var(--surface); border-radius: 12px; padding: 15px; box-shadow: var(--shadow); border: 1px solid var(--border); margin-bottom: 12px; }
+
+    /* ── SEVERITY QUEUE ── */
+    .queue-item { padding: 10px 0; border-bottom: 1px solid var(--border); }
+    .queue-item:first-child { padding-top: 0; }
+    .queue-item:last-child  { border-bottom: none; padding-bottom: 0; }
+    .queue-severity { display: inline-flex; align-items: center; gap: 5px; font-size: 9px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 3px; }
+    .sev-high { color: var(--red-text); }
+    .sev-med  { color: var(--amber-text); }
+    .sev-low  { color: var(--blue-text); }
+    .queue-title { font-size: 13px; font-weight: 600; color: var(--text-primary); margin-bottom: 2px; }
+    .queue-sub   { font-size: 11px; color: var(--text-secondary); }
+
+    /* ── AGENT PROPOSALS ── */
+    .proposal-item { padding: 12px; background: var(--surface-2); border-radius: 10px; margin-bottom: 8px; border: 1px solid var(--border); }
+    .proposal-item:last-child { margin-bottom: 0; }
+    .proposal-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 6px; }
+    .proposal-title { font-size: 13px; font-weight: 600; color: var(--text-primary); }
+    .proposal-meta  { font-size: 10px; color: var(--text-tertiary); }
+    .proposal-body  { font-size: 12px; color: var(--text-secondary); margin-bottom: 10px; line-height: 1.45; }
+    .proposal-actions { display: flex; gap: 6px; }
+    .prop-btn { padding: 5px 12px; border-radius: 20px; font-size: 11px; font-weight: 600; cursor: pointer; border: 1px solid transparent; transition: all 0.15s; }
+    .btn-approve { background: var(--green-bg);  color: var(--green-text); border-color: rgba(48,209,88,0.25); }
+    .btn-approve:hover { background: var(--green); color: #000; }
+    .btn-edit    { background: var(--amber-bg);  color: var(--amber-text); border-color: rgba(255,214,10,0.25); }
+    .btn-edit:hover { background: var(--amber); color: #000; }
+    .btn-dismiss { background: transparent; color: var(--text-tertiary); border-color: var(--border); }
+    .btn-dismiss:hover { background: var(--red-bg); color: var(--red-text); }
+
+    /* ── OPPORTUNITIES ── */
+    .opp-item { padding: 9px 0; border-bottom: 1px solid var(--border); }
+    .opp-item:first-child { padding-top: 0; }
+    .opp-item:last-child  { border-bottom: none; padding-bottom: 0; }
+    .opp-tag   { font-size: 9px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--blue-text); margin-bottom: 2px; }
+    .opp-title { font-size: 13px; font-weight: 600; color: var(--text-primary); }
+    .opp-sub   { font-size: 11px; color: var(--text-secondary); margin-top: 1px; }
+
+    /* ── PROJECT CARDS ── */
+    .proj-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .proj-card { background: var(--surface); border-radius: 12px; padding: 14px; box-shadow: var(--shadow); border: 1px solid var(--border); }
+    .proj-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 6px; }
+    .proj-name { font-size: 9px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-tertiary); }
+    .badge { font-size: 9px; font-weight: 700; padding: 2px 7px; border-radius: 20px; white-space: nowrap; }
+    .badge-green { color: var(--green-text); background: var(--green-bg); }
+    .badge-amber { color: var(--amber-text); background: var(--amber-bg); }
+    .badge-blue  { color: var(--blue-text);  background: var(--blue-bg); }
+    .proj-headline { font-size: 13px; font-weight: 600; color: var(--text-primary); line-height: 1.3; margin-bottom: 9px; }
+    .proj-divider  { border: none; border-top: 1px solid var(--border); margin-bottom: 9px; }
+    .proj-row { margin-bottom: 6px; }
+    .proj-row:last-child { margin-bottom: 0; }
+    .row-lbl { font-size: 8px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-tertiary); margin-bottom: 1px; }
+    .row-val  { font-size: 11px; color: var(--text-secondary); line-height: 1.35; }
+    .row-val.decision { color: var(--amber-text); font-weight: 500; }
+
+    /* ── ESCAPE GAUGE ── */
+    .escape-gauge-card { background: var(--amber-bg); border: 1px solid rgba(232,168,50,0.2); border-radius: 12px; padding: 16px; margin-bottom: 12px; }
+    .escape-label { font-size: 9px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--amber-text); opacity: 0.7; margin-bottom: 8px; }
+    .escape-numbers { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 6px; }
+    .escape-current { font-size: 28px; font-weight: 800; color: var(--amber-text); letter-spacing: -1px; }
+    .escape-target  { font-size: 13px; color: var(--amber-text); opacity: 0.6; }
+    .escape-track { height: 10px; background: rgba(255,214,10,0.1); border-radius: 20px; overflow: hidden; margin-bottom: 6px; }
+    .escape-fill  { height: 100%; border-radius: 20px; background: linear-gradient(90deg, var(--amber), #c870e0); width: 0%; transition: width 1.2s cubic-bezier(0.4,0,0.2,1); }
+    .escape-sub { font-size: 11px; color: var(--amber-text); opacity: 0.5; }
+
+    /* ── TAX CARD ── */
+    .tax-card { background: var(--surface); border-radius: 12px; padding: 14px; box-shadow: var(--shadow); border: 1px solid var(--border); margin-bottom: 12px; }
+    .tax-label { font-size: 9px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-tertiary); margin-bottom: 10px; }
+    .tax-rows  { display: flex; flex-direction: column; gap: 6px; }
+    .tax-row   { display: flex; justify-content: space-between; align-items: center; }
+    .tax-row-label { font-size: 12px; color: var(--text-secondary); }
+    .tax-row-value { font-size: 12px; font-weight: 600; color: var(--text-primary); }
+
+    .lifestyle-item { padding: 9px 0; border-bottom: 1px solid var(--border); }
+    .lifestyle-item:first-child { padding-top: 0; }
+    .lifestyle-item:last-child  { border-bottom: none; padding-bottom: 0; }
+    .lifestyle-tag   { font-size: 9px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--amber-text); margin-bottom: 2px; }
+    .lifestyle-title { font-size: 13px; font-weight: 600; color: var(--text-primary); }
+    .lifestyle-sub   { font-size: 11px; color: var(--text-secondary); margin-top: 1px; }
+
+    /* ── QUICK ACTIONS ── */
+    .actions-row { display: flex; gap: 7px; flex-wrap: wrap; margin-top: 6px; }
+    .action-btn {
+      background: var(--surface); border: 1px solid var(--border); border-radius: 20px;
+      padding: 6px 12px; font-size: 11px; font-weight: 500; color: var(--text-secondary);
+      cursor: pointer; transition: all 0.15s; display: inline-flex; align-items: center;
+      gap: 5px; box-shadow: var(--shadow);
+    }
+    .action-btn svg { flex-shrink: 0; opacity: 0.75; }
+    .action-btn:hover { background: var(--accent); border-color: var(--accent); color: #fff; }
+    .action-btn:hover svg { opacity: 1; }
+
+    /* ── MARKET STRIP ── */
+    .market-strip { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; margin-bottom: 12px; }
+    .mkt-tile { background: var(--surface-2); border-radius: 8px; padding: 8px 6px; text-align: center; }
+    .mkt-name { font-size: 8px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-tertiary); margin-bottom: 4px; }
+    .mkt-val  { font-size: 14px; font-weight: 700; color: var(--text-primary); font-variant-numeric: tabular-nums; }
+    .mkt-chg  { font-size: 10px; font-weight: 500; margin-top: 2px; }
+    .up   { color: var(--green); }
+    .down { color: var(--red); }
+    .flat { color: var(--text-tertiary); }
+    .mkt-footer { font-size: 10px; color: var(--text-tertiary); font-style: italic; text-align: right; }
+
+    /* ── FOOTER ── */
+    .footer { margin-top: 24px; text-align: center; font-size: 10px; color: var(--text-tertiary); }
+
+    /* ── MOBILE RESPONSIVE ── */
+    @media (max-width: 520px) {
+      body { padding: 14px 14px 28px; }
+      .binc-header { padding: 0 14px; }
+      .proj-grid { grid-template-columns: 1fr; }
+      .market-strip { grid-template-columns: repeat(3, 1fr); }
+      .home-card { flex-direction: column; gap: 8px; }
+      .home-card-right { text-align: left; display: flex; align-items: center; gap: 8px; }
+      .home-status-dot { margin-left: 0; margin-bottom: 0; }
+      .actions-row { gap: 6px; }
+      .tonal-refresh span { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ══ HEADER — Figma 470:3043 glassmorphism pill ══ -->
+  <header class="binc-header">
+
+    <!-- Saturation blend overlay -->
+    <div class="binc-header-overlay"></div>
+
+    <!-- Binc Badge — Figma 469:3914 · home button -->
+    <div class="binc-badge-pill" onclick="setMode('home')" title="Home">
+      <svg class="binc-badge-circle" viewBox="0 0 34 34" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="17" cy="17" r="16"
+                fill="var(--md3-chip-badge-bg)"
+                stroke="var(--md3-chip-badge-border)"
+                stroke-width="2"/>
+        <text x="17" y="17"
+              text-anchor="middle" dominant-baseline="central"
+              font-family="'Roboto', 'SF Pro Text', -apple-system, Arial, sans-serif"
+              font-weight="500" font-size="18" letter-spacing="0"
+              fill="var(--md3-chip-badge-text)">B</text>
+      </svg>
+      <span class="binc-badge-label">Binc</span>
+    </div>
+
+    <!-- Controls — Refresh + Color toggle -->
+    <div class="header-controls">
+
+      <!-- Refresh button — Figma 470:2911 -->
+      <button class="tonal-refresh" onclick="refresh()" id="refreshBtn">
+        <svg id="refreshIcon" width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/>
+        </svg>
+        Refresh
+      </button>
+
+      <!-- Color mode toggle — Figma 469:3755 -->
+      <div class="mode-toggle" id="colorToggle">
+        <button class="toggle-btn" id="btnSun" onclick="setColorMode('light')" title="Light mode">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zM2 13h2c.55 0 1-.45 1-1s-.45-1-1-1H2c-.55 0-1 .45-1 1s.45 1 1 1zm18 0h2c.55 0 1-.45 1-1s-.45-1-1-1h-2c-.55 0-1 .45-1 1s.45 1 1 1zM11 2v2c0 .55.45 1 1 1s1-.45 1-1V2c0-.55-.45-1-1-1s-1 .45-1 1zm0 18v2c0 .55.45 1 1 1s1-.45 1-1v-2c0-.55-.45-1-1-1s-1 .45-1 1zM5.99 4.58c-.39-.39-1.03-.39-1.41 0-.39.39-.39 1.03 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0s.39-1.03 0-1.41L5.99 4.58zm12.37 12.37c-.39-.39-1.03-.39-1.41 0-.39.39-.39 1.03 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0 .39-.39.39-1.03 0-1.41l-1.06-1.06zm1.06-10.96c.39-.39.39-1.03 0-1.41-.39-.39-1.03-.39-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06zM7.05 18.36c.39-.39.39-1.03 0-1.41-.39-.39-1.03-.39-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06z"/>
+          </svg>
+        </button>
+        <button class="toggle-btn active-toggle" id="btnMoon" onclick="setColorMode('dark')" title="Dark mode">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-2.98 0-5.4-2.42-5.4-5.4 0-1.81.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1z"/>
+          </svg>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ══ MODE SWITCHER — 3 pills ══ -->
+  <div class="mode-switcher">
+    <button class="mode-pill" id="pill-expand"  onclick="setMode('expand')">Expand</button>
+    <button class="mode-pill" id="pill-express" onclick="setMode('express')">Express</button>
+    <button class="mode-pill" id="pill-enjoy"   onclick="setMode('enjoy')">Enjoy</button>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       HOME VIEW
+  ══════════════════════════════════════ -->
+  <div class="view active" id="view-home">
+    <div class="home-cards">
+
+      <div class="home-card expand" onclick="setMode('expand')">
+        <div class="home-card-left">
+          <div class="home-card-mode">Expand · Financial</div>
+          <div class="home-card-headline">Financial World</div>
+          <div class="home-card-sub">Markets, trading, investments, agent proposals</div>
+        </div>
+        <div class="home-card-right">
+          <div class="home-status-dot dot-green"></div>
+          <div class="home-card-stat" style="color:var(--green-text)">At Peace</div>
+          <div style="font-size:10px;color:var(--text-tertiary);margin-top:2px">2 proposals</div>
+        </div>
+      </div>
+
+      <div class="home-card express" onclick="setMode('express')">
+        <div class="home-card-left">
+          <div class="home-card-mode">Express · Building</div>
+          <div class="home-card-headline">Active Projects</div>
+          <div class="home-card-sub">Trading, portfolio, brand, Binc systems</div>
+        </div>
+        <div class="home-card-right">
+          <div class="home-status-dot dot-blue"></div>
+          <div class="home-card-stat" style="color:var(--blue-text)">Moving</div>
+          <div style="font-size:10px;color:var(--text-tertiary);margin-top:2px">1 decision needed</div>
+        </div>
+      </div>
+
+      <div class="home-card enjoy" onclick="setMode('enjoy')">
+        <div class="home-card-left">
+          <div class="home-card-mode">Enjoy · The Life</div>
+          <div class="home-card-headline">Escape Progress</div>
+          <div class="home-card-sub">Income vs. target, tax position, lifestyle design</div>
+        </div>
+        <div class="home-card-right">
+          <div class="home-status-dot dot-amber"></div>
+          <div class="home-card-stat" style="color:var(--amber-text)">0% → $325K</div>
+          <div style="font-size:10px;color:var(--text-tertiary);margin-top:2px">Discovery needed</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div style="margin-top:16px;">
+      <div class="section-label">Quick Actions</div>
+      <div class="actions-row">
+        <button class="action-btn" onclick="triggerPrompt('What\'s the single most important thing I should do today for Binc?')">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1" fill="currentColor" stroke="none"/></svg>
+          Today's Focus
+        </button>
+        <button class="action-btn" onclick="triggerPrompt('Give me a financial health check. What\'s the state of my financial world right now?')">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          Financial Health
+        </button>
+        <button class="action-btn" onclick="triggerPrompt('Let\'s run the retirement discovery session. Interview me to define the Enjoy target.')">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76" fill="currentColor" stroke="none"/></svg>
+          Retirement Discovery
+        </button>
+        <button class="action-btn" onclick="triggerPrompt('What\'s blocking Claude Trading the most right now?')">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          Unblock Trading
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       EXPAND VIEW
+  ══════════════════════════════════════ -->
+  <div class="view" id="view-expand">
+
+    <button class="primary-action" onclick="triggerPrompt('Walk me through my two agent proposals. I want to review them one at a time.')">
+      <div><div class="primary-action-label">Primary Action</div><div class="primary-action-text">Review 2 agent proposals waiting for approval</div></div>
+      <div class="primary-action-arrow">→</div>
+    </button>
+
+    <div class="defcon-bar defcon-amber" id="defconBar">
+      <div class="defcon-dot dot-amber"></div>
+      <div>
+        <div class="defcon-label">Financial Status · Yellow</div>
+        <div class="defcon-text">VIX 21.51 — Fear zone. Target 10–15% cash / 85–90% invested.</div>
+      </div>
+    </div>
+
+    <div class="section-label">Market Context</div>
+    <div class="market-strip" id="marketStrip">
+      <div class="mkt-tile"><div class="mkt-name">VIX</div><div class="mkt-val flat">—</div><div class="mkt-chg flat">—</div></div>
+      <div class="mkt-tile"><div class="mkt-name">S&P</div><div class="mkt-val flat">—</div><div class="mkt-chg flat">—</div></div>
+      <div class="mkt-tile"><div class="mkt-name">NDX</div><div class="mkt-val flat">—</div><div class="mkt-chg flat">—</div></div>
+      <div class="mkt-tile"><div class="mkt-name">OIL</div><div class="mkt-val flat">—</div><div class="mkt-chg flat">—</div></div>
+      <div class="mkt-tile"><div class="mkt-name">BTC</div><div class="mkt-val flat">—</div><div class="mkt-chg flat">—</div></div>
+    </div>
+    <div class="mkt-footer" id="mktFooter" style="margin-bottom:12px">Loading from morning brief…</div>
+
+    <div class="section-label">Needs Your Attention</div>
+    <div class="card">
+      <div class="queue-item">
+        <div class="queue-severity sev-med">⚑ Medium · Stack Decision</div>
+        <div class="queue-title">Claude Trading direction unresolved</div>
+        <div class="queue-sub">TradingView native vs. n8n middleware. Blocking paper trading start.</div>
+      </div>
+      <div class="queue-item">
+        <div class="queue-severity sev-low">○ Low · Subscription</div>
+        <div class="queue-title">Vector Algorithmics still running ($200–500/mo)</div>
+        <div class="queue-sub">Primary elimination target. Unlock: Claude Trading live with comparable signals.</div>
+      </div>
+    </div>
+
+    <div class="section-label">Agent Proposals</div>
+    <div class="card">
+      <div class="proposal-item">
+        <div class="proposal-header"><div class="proposal-title">Rebalance cash allocation</div><div class="proposal-meta">VIX signal</div></div>
+        <div class="proposal-body">VIX in normal range (15–20). Current cash position may exceed the contrarian framework target. Consider deploying to bring cash to 10–15%.</div>
+        <div class="proposal-actions">
+          <button class="prop-btn btn-approve" onclick="triggerPrompt('I want to approve the cash rebalance proposal. Walk me through the execution steps.')">Approve</button>
+          <button class="prop-btn btn-edit"    onclick="triggerPrompt('I want to edit the cash rebalance proposal. Ask me what changes I have in mind.')">Edit</button>
+          <button class="prop-btn btn-dismiss">Dismiss</button>
+        </div>
+      </div>
+      <div class="proposal-item">
+        <div class="proposal-header"><div class="proposal-title">Review Adobe CC cancellation</div><div class="proposal-meta">Subscription audit</div></div>
+        <div class="proposal-body">Adobe Creative Cloud (~$60/mo) flagged for evaluation. Portfolio26 is live and design work is moving to Figma + Claude Design. Consider cancelling before next billing.</div>
+        <div class="proposal-actions">
+          <button class="prop-btn btn-approve" onclick="triggerPrompt('Help me cancel Adobe Creative Cloud.')">Approve</button>
+          <button class="prop-btn btn-edit"    onclick="triggerPrompt('I want to edit the Adobe CC proposal. Ask me what I\'m thinking.')">Edit</button>
+          <button class="prop-btn btn-dismiss">Dismiss</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-label">Opportunities</div>
+    <div class="card">
+      <div class="opp-item">
+        <div class="opp-tag">Diversification</div>
+        <div class="opp-title">Treasury / T-bill allocation during elevated uncertainty</div>
+        <div class="opp-sub">Short-duration T-bills generating 4–5% with zero equity risk.</div>
+      </div>
+      <div class="opp-item">
+        <div class="opp-tag">Passive Income · Enjoy</div>
+        <div class="opp-title">Covered call strategy on existing equity positions</div>
+        <div class="opp-sub">Monthly premium income on RSU lots — connects to Escape Gauge income streams.</div>
+      </div>
+    </div>
+
+    <div class="actions-row">
+      <button class="action-btn" onclick="triggerPrompt('Give me a full financial health assessment.')">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        Full Health Check
+      </button>
+      <button class="action-btn" onclick="triggerPrompt('What are the current VIX-based cash allocation signals?')">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 18 13.5 8.5 8.5 13.5 1 6"/><polyline points="17 18 23 18 23 12"/></svg>
+        VIX Signal
+      </button>
+      <button class="action-btn" onclick="triggerPrompt('Run the subscription audit. What can we eliminate right now?')">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+        Subscription Audit
+      </button>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       EXPRESS VIEW
+  ══════════════════════════════════════ -->
+  <div class="view" id="view-express">
+
+    <button class="primary-action" style="background:var(--blue);" onclick="triggerPrompt('The Claude Trading stack direction is the most important decision blocking Binc right now. Walk me through my options.')">
+      <div><div class="primary-action-label">Primary Action</div><div class="primary-action-text">Decide: Claude Trading stack direction</div></div>
+      <div class="primary-action-arrow">→</div>
+    </button>
+
+    <div class="section-label">Active Projects</div>
+    <div class="proj-grid">
+
+      <div class="proj-card">
+        <div class="proj-header"><div class="proj-name">Claude Trading</div><span class="badge badge-amber">Needs Decision</span></div>
+        <div class="proj-headline">Architecture done. Stack pivot blocked.</div>
+        <hr class="proj-divider">
+        <div class="proj-row"><div class="row-lbl">Momentum</div><div class="row-val">Master Plan v2.3 complete. Michael Ionita research saved.</div></div>
+        <div class="proj-row"><div class="row-lbl">Blocker</div><div class="row-val">Stack direction unresolved. No paper trading started.</div></div>
+        <div class="proj-row"><div class="row-lbl">Decision</div><div class="row-val decision">Does TradingView native + Claude API eliminate n8n?</div></div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-header"><div class="proj-name">Chief of Staff</div><span class="badge badge-amber">Deploy Pending</span></div>
+        <div class="proj-headline">Career Radar + dark mode added.</div>
+        <hr class="proj-divider">
+        <div class="proj-row"><div class="row-lbl">Momentum</div><div class="row-val">Daily · Weekly · Monthly live via launchd. Dark mode HTML merged to Dropbox source.</div></div>
+        <div class="proj-row"><div class="row-lbl">Blocker</div><div class="row-val decision">Run deploy script to activate Career Radar + dark mode.</div></div>
+        <div class="proj-row"><div class="row-lbl">Next</div><div class="row-val">Phase 2: real account data → insight engine.</div></div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-header"><div class="proj-name">Portfolio26</div><span class="badge badge-green">Active</span></div>
+        <div class="proj-headline">Site live. About page rebuilt.</div>
+        <hr class="proj-divider">
+        <div class="proj-row"><div class="row-lbl">Momentum</div><div class="row-val">uxbrianthompson.com live. Nav, About, Slack carousel updated.</div></div>
+        <div class="proj-row"><div class="row-lbl">Blocker</div><div class="row-val">3 About images need sips resize + push from home.</div></div>
+        <div class="proj-row"><div class="row-lbl">Next</div><div class="row-val">Full PUSH-FROM-HOME.md checklist, then case study work.</div></div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-header"><div class="proj-name">Command Center</div><span class="badge badge-green">Active</span></div>
+        <div class="proj-headline">v3 live. Phase 2 is real account data.</div>
+        <hr class="proj-divider">
+        <div class="proj-row"><div class="row-lbl">Momentum</div><div class="row-val">Dark/light mode, Binc badge, MD3 components. binc.living registered.</div></div>
+        <div class="proj-row"><div class="row-lbl">Blocker</div><div class="row-val">Phase 2 needs Thinkorswim + eTrade connectors.</div></div>
+        <div class="proj-row"><div class="row-lbl">Next</div><div class="row-val">Personal context → insight cards → action layer.</div></div>
+      </div>
+
+    </div>
+
+    <div class="actions-row">
+      <button class="action-btn" onclick="triggerPrompt('Let\'s kick off Portfolio26. Run the full project kickoff protocol.')">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+        Portfolio26 Kickoff
+      </button>
+      <button class="action-btn" onclick="triggerPrompt('What\'s the current state of all active Binc projects? One-sentence status on each.')">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6" stroke-width="2.5"/><line x1="3" y1="12" x2="3.01" y2="12" stroke-width="2.5"/><line x1="3" y1="18" x2="3.01" y2="18" stroke-width="2.5"/></svg>
+        Project Status
+      </button>
+      <button class="action-btn" onclick="triggerPrompt('Let\'s study the Michael Ionita TradingView videos. Pull up the research file and walk me through what we have.')">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8" fill="currentColor" stroke="none"/></svg>
+        Study Trading Videos
+      </button>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       ENJOY VIEW
+  ══════════════════════════════════════ -->
+  <div class="view" id="view-enjoy">
+
+    <button class="primary-action" style="background:#7840c0;" onclick="triggerPrompt('Let\'s run the retirement discovery session. Interview me to define the real Enjoy target — income number, location, tax structure, timeline, lifestyle.')">
+      <div><div class="primary-action-label">Primary Action</div><div class="primary-action-text">Run retirement discovery → set the real Escape target</div></div>
+      <div class="primary-action-arrow">→</div>
+    </button>
+
+    <div class="escape-gauge-card">
+      <div class="escape-label">Escape Gauge · Annual Passive + Trading Income</div>
+      <div class="escape-numbers">
+        <div class="escape-current">$0</div>
+        <div class="escape-target">of $325K target / year</div>
+      </div>
+      <div class="escape-track"><div class="escape-fill" id="escapeFill"></div></div>
+      <div class="escape-sub">0% · Target is placeholder — run retirement discovery to set real number</div>
+    </div>
+
+    <div class="tax-card">
+      <div class="tax-label">Tax Position · Goal: 12% Bracket</div>
+      <div class="tax-rows">
+        <div class="tax-row"><div class="tax-row-label">12% bracket ceiling (single)</div><div class="tax-row-value">~$47,150 / year</div></div>
+        <div class="tax-row"><div class="tax-row-label">Target structure</div><div class="tax-row-value">Nevada + time abroad</div></div>
+        <div class="tax-row"><div class="tax-row-label">State income tax (NV)</div><div class="tax-row-value" style="color:var(--green-text)">$0</div></div>
+        <div class="tax-row"><div class="tax-row-label">Current taxable income</div><div class="tax-row-value" style="color:var(--text-tertiary)">TBD after discovery</div></div>
+      </div>
+    </div>
+
+    <div class="section-label">Income Streams → Escape</div>
+    <div class="card">
+      <div class="queue-item"><div class="queue-severity sev-med">Building</div><div class="queue-title">Claude Trading</div><div class="queue-sub">Target: $27K+/month · Status: Design phase, $0 generated</div></div>
+      <div class="queue-item"><div class="queue-severity" style="color:var(--text-tertiary)">Active</div><div class="queue-title">Salesforce RSUs / ESPP (E*Trade)</div><div class="queue-sub">Vesting schedule active · Review vest dates and sale timing</div></div>
+      <div class="queue-item"><div class="queue-severity" style="color:var(--text-tertiary)">Growing</div><div class="queue-title">Fidelity 401k / Roth</div><div class="queue-sub">Balance TBD after Phase 2 data connection</div></div>
+      <div class="queue-item"><div class="queue-severity" style="color:var(--text-tertiary)">Active</div><div class="queue-title">Schwab Brokerage + Roth</div><div class="queue-sub">Options + Roth IRA · Performance TBD</div></div>
+      <div class="queue-item"><div class="queue-severity" style="color:var(--text-tertiary)">Active</div><div class="queue-title">Crypto Roth (Public)</div><div class="queue-sub">Crypto IRA · Balance TBD after Phase 2 data connection</div></div>
+    </div>
+
+    <div class="section-label">Lifestyle Design Projects</div>
+    <div class="card">
+      <div class="lifestyle-item"><div class="lifestyle-tag">First · Unlock Everything</div><div class="lifestyle-title">Define retirement goals</div><div class="lifestyle-sub">Real income target, location (Las Vegas?), abroad strategy, tax structure, timeline</div></div>
+      <div class="lifestyle-item"><div class="lifestyle-tag">Second</div><div class="lifestyle-title">Home sale planning</div><div class="lifestyle-sub">San Mateo timing, proceeds strategy, what comes next</div></div>
+      <div class="lifestyle-item"><div class="lifestyle-tag">Third</div><div class="lifestyle-title">Location research</div><div class="lifestyle-sub">Nevada base vs. abroad — cost of living, tax, lifestyle quality</div></div>
+    </div>
+
+    <div class="actions-row">
+      <button class="action-btn" onclick="triggerPrompt('Let\'s run the retirement discovery session.')">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76" fill="currentColor" stroke="none"/></svg>
+        Start Discovery
+      </button>
+      <button class="action-btn" onclick="triggerPrompt('Walk me through IRS tax brackets for 2026 and how trading income gets taxed living in Nevada.')">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        Tax Structure
+      </button>
+      <button class="action-btn" onclick="triggerPrompt('Compare cost of living: Las Vegas vs. Bay Area. Show me the monthly delta.')">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        Las Vegas vs. Bay Area
+      </button>
+    </div>
+  </div>
+
+  <div class="footer">Binc · Command Center v3 · Monochrome · binc.living · June 2026</div>
+
+  <script>
+    // ── COLOR MODE ──
+    function setColorMode(mode) {
+      const isDark = mode === 'dark';
+      document.body.classList.toggle('light-mode', !isDark);
+      document.getElementById('btnSun').classList.toggle('active-toggle', !isDark);
+      document.getElementById('btnMoon').classList.toggle('active-toggle', isDark);
+      try { localStorage.setItem('binc-color-mode', mode); } catch(e) {}
+    }
+
+    // Restore saved preference (default: dark)
+    (function() {
+      let saved = 'dark';
+      try { saved = localStorage.getItem('binc-color-mode') || 'dark'; } catch(e) {}
+      setColorMode(saved);
+    })();
+
+    // ── MODE SWITCHER ──
+    const VIEWS = ['home', 'expand', 'express', 'enjoy'];
+    const PILLS = ['expand', 'express', 'enjoy'];
+
+    function setMode(mode) {
+      VIEWS.forEach(v => document.getElementById('view-' + v).classList.toggle('active', v === mode));
+      PILLS.forEach(p => {
+        const pill = document.getElementById('pill-' + p);
+        if (pill) pill.className = 'mode-pill' + (p === mode ? ' active-' + p : '');
+      });
+      if (mode === 'enjoy') setTimeout(() => { document.getElementById('escapeFill').style.width = '0%'; }, 100);
+    }
+
+    // ── SENDPROMPT FALLBACK ──
+    // Works in Cowork (sendPrompt injected globally) and anywhere else (opens claude.ai)
+    function triggerPrompt(text) {
+      if (typeof sendPrompt === 'function') {
+        sendPrompt(text);
+      } else {
+        window.open('https://claude.ai/new?q=' + encodeURIComponent(text), '_blank');
+      }
+    }
+
+    // ── DEFCON AUTO-UPDATE ──
+    function updateDefcon(vix) {
+      if (typeof vix !== 'number' || isNaN(vix)) return;
+      const bar = document.getElementById('defconBar');
+      if (!bar) return;
+      let cls, label, text;
+      if (vix >= 30) {
+        cls = 'defcon-red';
+        label = 'Financial Status · Red';
+        text = 'VIX ' + vix.toFixed(1) + ' — Extreme fear. Max cash. No new positions.';
+      } else if (vix >= 20) {
+        cls = 'defcon-amber';
+        label = 'Financial Status · Yellow';
+        text = 'VIX ' + vix.toFixed(1) + ' — Fear zone. Target 10–15% cash / 85–90% invested.';
+      } else {
+        cls = 'defcon-green';
+        label = 'Financial Status · Green';
+        text = 'VIX ' + vix.toFixed(1) + ' — Normal range. Target 3–7% cash. Fully deployed.';
+      }
+      const dotClass = cls === 'defcon-red' ? 'dot-red' : cls === 'defcon-amber' ? 'dot-amber' : 'dot-green';
+      bar.className = 'defcon-bar ' + cls;
+      bar.innerHTML = '<div class="defcon-dot ' + dotClass + '"></div><div><div class="defcon-label">' + label + '</div><div class="defcon-text">' + text + '</div></div>';
+    }
+
+    // ── MARKET DATA — tries Cowork Gmail first, falls back to public APIs ──
+    async function loadMarket() {
+      if (window.cowork) {
+        try { await loadMarketFromGmail(); return; } catch(e) {}
+      }
+      await loadMarketPublic();
+    }
+
+    async function loadMarketFromGmail() {
+      const r = await window.cowork.callMcpTool(
+        'mcp__ca69d032-66bb-41bd-b068-6982764a045b__search_threads',
+        { query: 'Morning Brief newer_than:2d', max_results: 3 }
+      );
+      let snippet = '';
+      if (Array.isArray(r) && r.length) snippet = r[0].snippet || '';
+      else if (r?.threads?.length) snippet = r.threads[0].snippet || '';
+      else if (r?.content) {
+        // structured content from callMcpTool wrapper
+        const parsed = typeof r.content === 'string' ? JSON.parse(r.content) : r.content;
+        if (Array.isArray(parsed) && parsed.length) snippet = parsed[0].snippet || '';
+        else if (parsed?.threads?.length) snippet = parsed.threads[0].snippet || '';
+      }
+      if (!snippet) { await loadMarketPublic(); return; }
+
+      const raw = await window.cowork.askClaude(
+        `Extract market data from this morning brief snippet. Return ONLY valid JSON with keys: vix, sp500, nasdaq, crude, btc (numbers), vixChange, sp500Change, nasdaqChange, crudeChange, btcChange (strings like "+1.2%"). Use null if missing. Snippet: "${snippet.substring(0, 600)}"`,
+        [snippet]
+      );
+      const data = JSON.parse(raw.replace(/```json|```/g, '').trim());
+      renderMarket(data);
+      if (data.vix) updateDefcon(data.vix);
+      document.getElementById('mktFooter').textContent =
+        'From this morning\'s brief · ' + new Date().toLocaleTimeString('en-US',
+          { hour: '2-digit', minute: '2-digit', timeZone: 'America/Los_Angeles' }) + ' PT';
+    }
+
+    async function loadMarketPublic() {
+      const data = {};
+
+      // BTC via CoinGecko (CORS-enabled, no auth needed)
+      try {
+        const r = await fetch(
+          'https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd&include_24hr_change=true',
+          { signal: AbortSignal.timeout(8000) }
+        );
+        const d = await r.json();
+        data.btc = d.bitcoin.usd;
+        const chg = d.bitcoin.usd_24h_change;
+        data.btcChange = (chg >= 0 ? '+' : '') + chg.toFixed(1) + '%';
+      } catch(e) {}
+
+      // Equities + VIX via Yahoo Finance
+      const tickers = { vix: '^VIX', sp500: '^GSPC', nasdaq: '^IXIC', crude: 'CL=F' };
+      for (const [key, ticker] of Object.entries(tickers)) {
+        try {
+          const r = await fetch(
+            'https://query1.finance.yahoo.com/v8/finance/chart/' + encodeURIComponent(ticker) + '?interval=1d&range=2d',
+            { signal: AbortSignal.timeout(8000) }
+          );
+          const d = await r.json();
+          const meta = d.chart.result[0].meta;
+          const price = meta.regularMarketPrice;
+          const prev = meta.previousClose || meta.chartPreviousClose;
+          const pct = prev ? ((price - prev) / prev * 100) : 0;
+          data[key] = price;
+          data[key + 'Change'] = (pct >= 0 ? '+' : '') + pct.toFixed(1) + '%';
+        } catch(e) {}
+      }
+
+      if (Object.keys(data).length > 0) {
+        renderMarket(data);
+        if (data.vix) updateDefcon(data.vix);
+        const src = (data.btc || data.sp500) ? 'Live' : 'Partial data';
+        document.getElementById('mktFooter').textContent =
+          src + ' · ' + new Date().toLocaleTimeString('en-US',
+            { hour: '2-digit', minute: '2-digit', timeZone: 'America/Los_Angeles' }) + ' PT';
+      } else {
+        blankMarket();
+      }
+    }
+
+    function renderMarket(d) {
+      const tiles = [
+        { name:'VIX', v:d.vix,    c:d.vixChange,    fmt:'' },
+        { name:'S&P', v:d.sp500,  c:d.sp500Change,  fmt:'K' },
+        { name:'NDX', v:d.nasdaq, c:d.nasdaqChange, fmt:'K' },
+        { name:'OIL', v:d.crude,  c:d.crudeChange,  fmt:'' },
+        { name:'BTC', v:d.btc,    c:d.btcChange,    fmt:'K' },
+      ];
+      document.getElementById('marketStrip').innerHTML = tiles.map(t => {
+        const val = t.v != null ? fmtNum(t.v, t.fmt) : '—';
+        const chg = t.c || '—';
+        const cls = chg.startsWith('+') ? 'up' : chg.startsWith('-') ? 'down' : 'flat';
+        return `<div class="mkt-tile"><div class="mkt-name">${t.name}</div><div class="mkt-val ${val==='—'?'flat':''}">${val}</div><div class="mkt-chg ${cls}">${chg}</div></div>`;
+      }).join('');
+    }
+
+    function fmtNum(n, fmt) {
+      if (typeof n !== 'number') return String(n);
+      if (fmt === 'K' && n > 999) return (n / 1000).toFixed(1) + 'K';
+      if (n > 10000) return n.toLocaleString('en-US', { maximumFractionDigits: 0 });
+      return n > 100 ? n.toFixed(0) : n.toFixed(2);
+    }
+
+    function blankMarket() {
+      document.getElementById('mktFooter').textContent = 'Market data unavailable — check connection';
+    }
+
+    // ── REFRESH ──
+    async function refresh() {
+      const icon = document.getElementById('refreshIcon');
+      const btn  = document.getElementById('refreshBtn');
+      icon.classList.add('spinning'); btn.disabled = true;
+      await loadMarket();
+      icon.classList.remove('spinning'); btn.disabled = false;
+    }
+
+    // ── INIT ──
+    loadMarket();
+  </script>
+
+</body>
+</html>
