@@ -236,12 +236,13 @@ footer { text-align: center; padding: 80px 64px; color: var(--text-faint); font-
 
 @media (max-width: 768px) {
   nav, .hero, section, .callout { padding-left: 24px; padding-right: 24px; }
-  .stats-grid { grid-template-columns: repeat(2, 1fr) !important; }
+  .stats-grid { grid-template-columns: 1fr !important; }
   .projects-grid { grid-template-columns: 1fr; }
   .hero h1 { font-size: 40px; }
   .role-grid { grid-template-columns: 1fr !important; gap: 12px; border: none; background: none; }
   .role-card { border-right: none; border: 1px solid var(--border); border-radius: 14px; background: var(--panel); }
-  section ul[style*="grid-template-columns"] { grid-template-columns: repeat(2, 1fr) !important; }
+  section ul[style*="grid-template-columns"] { grid-template-columns: 1fr !important; }
+  section div[style*="grid-template-columns"] { grid-template-columns: 1fr !important; }
 }
 </style>
 </head>
