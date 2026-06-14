@@ -155,7 +155,7 @@ p { font-size: 18px; line-height: 1.8; color: var(--text-dim); font-weight: 300;
 .carousel-nav-overlay {
   position: absolute; top: 50%; transform: translateY(-50%);
   width: 44px; height: 44px; border-radius: 50%; border: none;
-  background: transparent; cursor: pointer;
+  background: rgba(128,128,128,0.15); border: 1px solid rgba(128,128,128,0.4); cursor: pointer; backdrop-filter: blur(4px);
   display: flex; align-items: center; justify-content: center;
   z-index: 10;
 }
@@ -212,7 +212,7 @@ footer a:hover { color: var(--text); }
 .lightbox-nav {
   position: absolute; top: 50%; transform: translateY(-50%);
   width: 48px; height: 48px; border-radius: 50%; border: none;
-  background: transparent; cursor: pointer;
+  background: rgba(128,128,128,0.15); border: 1px solid rgba(128,128,128,0.4); cursor: pointer; backdrop-filter: blur(4px);
   display: flex; align-items: center; justify-content: center; z-index: 10001;
 }
 .lightbox-nav svg { width: 24px; height: 24px; }
@@ -310,8 +310,8 @@ footer a:hover { color: var(--text); }
     <div class="carousel-slide" data-caption="<strong>Grow group.</strong> Growth Opportunities: Centers of Influence, Pattern Discovery, Uninvested Cash"><img src="images/run-my-day/9.png" alt="Grow"></div>
     <div class="carousel-slide" data-caption="<strong>Centers of Influence.</strong> Referral potential, $14.2M network value, connected insights, recommended action"><img src="images/run-my-day/10.png" alt="Influence"></div>
   </div>
-  <button class="carousel-nav-overlay carousel-nav-prev" id="overlay-prev"><svg viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></button>
-  <button class="carousel-nav-overlay carousel-nav-next" id="overlay-next"><svg viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+  <button class="carousel-nav-overlay carousel-nav-prev" id="overlay-prev"><svg viewBox="0 0 24 24" fill="none" stroke="rgba(128,128,128,0.85)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></button>
+  <button class="carousel-nav-overlay carousel-nav-next" id="overlay-next"><svg viewBox="0 0 24 24" fill="none" stroke="rgba(128,128,128,0.85)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
   </div>
   <div class="carousel-dots" id="carousel-dots"></div>
 </div>
@@ -339,12 +339,12 @@ footer a:hover { color: var(--text); }
   <span class="eyebrow">Results</span>
   <h2>Impact.</h2>
   <div class="results-grid">
-    <div class="result-card"><h4>$2M closed ACV</h4><p>Influenced by the Agentic Advisor demo org</p></div>
-    <div class="result-card"><h4>$10M+ pipeline</h4><p>Generated across wealth management accounts</p></div>
-    <div class="result-card"><h4>World Tour NYC</h4><p>Featured as headline FSC innovation, Spring 2026</p></div>
-    <div class="result-card"><h4>45 min &rarr; 5 min</h4><p>Morning prep time &mdash; 89% reduction</p></div>
-    <div class="result-card"><h4>Gartner analysts</h4><p>&ldquo;Delighted&rdquo; by proactive life-event detection</p></div>
-    <div class="result-card"><h4>Field SE enablement</h4><p>Shipping to demo sandboxes, May 2026</p></div>
+    <div class="result-card"><h4 style="color:var(--p0)">$2M closed ACV</h4><p>Influenced by the Agentic Advisor demo org</p></div>
+    <div class="result-card"><h4 style="color:var(--p1)">$10M+ pipeline</h4><p>Generated across wealth management accounts</p></div>
+    <div class="result-card"><h4 style="color:var(--p3)">World Tour NYC</h4><p>Featured as headline FSC innovation, Spring 2026</p></div>
+    <div class="result-card"><h4 style="color:var(--p2)">45 min &rarr; 5 min</h4><p>Morning prep time &mdash; 89% reduction</p></div>
+    <div class="result-card"><h4 style="color:var(--p1)">Gartner analysts</h4><p>&ldquo;Delighted&rdquo; by proactive life-event detection</p></div>
+    <div class="result-card"><h4 style="color:var(--p0)">Field SE enablement</h4><p>Shipping to demo sandboxes, May 2026</p></div>
   </div>
 </section>
 
@@ -359,8 +359,8 @@ footer a:hover { color: var(--text); }
 
 <div class="lightbox" id="lightbox">
   <button class="lightbox-close">&times;</button>
-  <button class="lightbox-nav lightbox-prev" id="lb-prev"><svg viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></button>
-  <button class="lightbox-nav lightbox-next" id="lb-next"><svg viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+  <button class="lightbox-nav lightbox-prev" id="lb-prev"><svg viewBox="0 0 24 24" fill="none" stroke="rgba(128,128,128,0.85)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></button>
+  <button class="lightbox-nav lightbox-next" id="lb-next"><svg viewBox="0 0 24 24" fill="none" stroke="rgba(128,128,128,0.85)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
   <img id="lightbox-img" src="" alt="">
 </div>
 
