@@ -1,7 +1,7 @@
 :root {
   --bg: #07090f; --panel: #0d1119; --border: rgba(167,139,250,0.12);
   --border-hover: rgba(167,139,250,0.3);
-  --text: #f1f4fa; --text-dim: #8b95ab; --text-faint: #4a5268;
+  --text: #f1f4fa; --text-dim: #8b95ab; --text-faint: #7a8397;
   --p0: #a78bfa; --p1: #5eead4; --p2: #fbbf24; --p3: #f472b6;
   --grad-hero: linear-gradient(135deg, #a78bfa 0%, #5eead4 40%, #f472b6 100%);
 }
