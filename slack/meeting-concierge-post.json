@@ -71,7 +71,7 @@
     {
       "type": "context",
       "elements": [
-        {"type": "mrkdwn", "text": "✦ *Agentforce* · Meeting Center · Auto-generated from voice capture + notes · `Medium Confidence`"}
+        {"type": "mrkdwn", "text": "✦ *Agentforce* · Meeting Concierge · Auto-generated from voice capture + notes · `Medium Confidence`"}
       ]
     }
   ]
