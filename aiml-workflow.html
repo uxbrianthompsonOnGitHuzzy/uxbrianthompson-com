@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" href="/favicon.png" type="image/png" sizes="192x192">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="description" content="AI product design for high-stakes work: agentic systems, human judgment, and the software underneath.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Brian Thompson">
+<meta property="og:title" content="AIML Workflow — Brian Thompson">
+<meta property="og:description" content="AI product design for high-stakes work: agentic systems, human judgment, and the software underneath.">
+<meta property="og:url" content="https://www.uxbrianthompson.com/aiml-workflow.html">
+<meta property="og:image" content="https://www.uxbrianthompson.com/images/og-share.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Brian Thompson portfolio: Google Pixel, Audi, Financial Services Cloud, Apple Watch, and Funimation">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="AIML Workflow — Brian Thompson">
+<meta name="twitter:description" content="AI product design for high-stakes work: agentic systems, human judgment, and the software underneath.">
+<meta name="twitter:image" content="https://www.uxbrianthompson.com/images/og-share.jpg">
+<title>AIML Workflow — Brian Thompson</title>
+<link rel="stylesheet" href="case-study.css">
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-brand"><strong>Brian Thompson</strong> &ndash; AI Product Design</a>
+  <div style="display:flex; gap:32px;">
+    <a href="index.html" class="nav-back">Work</a>
+    <a href="resume.html" class="nav-back">Resume</a>
+    <a href="about.html" class="nav-back">About</a>
+  </div>
+</nav>
+
+<div style="background: url('images/hero-cinematic-aiml.png') no-repeat center center; background-size: cover; height: 40vh; min-height: 280px; margin-top: 64px;"></div>
+
+<section style="text-align:center; padding: 80px 64px 60px; max-width: 1100px; margin: 0 auto;">
+  <span class="section-label">Method</span>
+  <h2 style="font-size:clamp(40px,6vw,64px); letter-spacing:-1.5px; line-height:1.0;"><span class="grad">AIML Workflow.</span></h2>
+  <p style="margin:20px auto 0; max-width:580px; font-size:20px; font-weight:300; line-height:1.6;">Specification, not a prompt.</p>
+</section>
+
+<hr class="divider">
+
+<section class="fade-in">
+  <span class="section-label">Challenge</span>
+  <h2>A prompt isn&rsquo;t a <span class="grad">process.</span></h2>
+  <p>Two designers cannot sit in every room with a hundred engineers. Design that only lives in one person&rsquo;s head is a bottleneck. AI used as a drafting toy is the same bottleneck with extra steps. The work needed an operating system: a spec that outlives the chat, a standard that runs without me in the room, and a handoff engineers can pick up without translating.</p>
+</section>
+
+<hr class="divider">
+
+<section class="fade-in">
+  <span class="section-label">What I Built</span>
+  <h2>Screens are the output. This is the <span class="grad">operating system.</span></h2>
+  <p>A specification written before any prompt, pointed at the real codebase, iterated in code until a prototype runs, then revised against what engineering can actually ship.</p>
+  <div class="card-row">
+    <div class="card">
+      <h4 style="color:var(--p0)">Spec First</h4>
+      <div class="card-sub">Before any UI</div>
+      <p>Problem, users, and constraints written as a system. If I can&rsquo;t state the decision in a sentence, no interface was going to save it.</p>
+    </div>
+    <div class="card">
+      <h4 style="color:var(--p1)">Encoded Standard</h4>
+      <div class="card-sub">Skills, prompts, components</div>
+      <p>Reusable instruction files and a prompt library pointed at the real codebase, so the first draft is already production-shaped.</p>
+    </div>
+    <div class="card">
+      <h4 style="color:var(--p3)">Running Handoff</h4>
+      <div class="card-sub">Prototype, not slides</div>
+      <p>The loop closes at engineering. A prototype nobody has pushed back on is still a proposal.</p>
+    </div>
+  </div>
+</section>
+
+<div class="phase-divider p1">
+  <div class="phase-num">01</div>
+  <div class="phase-name">Journey</div>
+  <div class="phase-sub">From a fuzzy problem to a prototype an engineer can pick up.</div>
+</div>
+
+<figure class="journey-hero">
+  <img src="images/aiml-workflow/01-chain.png" alt="Eight-step AIML workflow chain">
+  <figcaption><strong>The chain.</strong> Problem, structured context, markdown spec, Claude / Cursor, iteration, prototype, engineering, revision.</figcaption>
+</figure>
+
+<div class="spec-launchpad-wrap">
+  <p class="spec-lead">Spec library. Nine files. Click one to walk through it below.</p>
+  <div class="spec-launchpad" id="spec-launchpad">
+    <button type="button" class="spec-card start" data-slide="0">
+      <span class="sc-tag">Start Here</span>
+      <span class="sc-label">Walkthrough</span>
+      <span class="sc-path">WALKTHROUGH.md</span>
+      <span class="sc-view">View</span>
+    </button>
+    <button type="button" class="spec-card" data-slide="1">
+      <span class="sc-label">Problem</span>
+      <span class="sc-path">00_problem.md</span>
+      <span class="sc-view">View</span>
+    </button>
+    <button type="button" class="spec-card" data-slide="2">
+      <span class="sc-label">Research</span>
+      <span class="sc-path">01_research.md</span>
+      <span class="sc-view">View</span>
+    </button>
+    <button type="button" class="spec-card" data-slide="3">
+      <span class="sc-label">Architecture</span>
+      <span class="sc-path">02_architecture.md</span>
+      <span class="sc-view">View</span>
+    </button>
+    <button type="button" class="spec-card" data-slide="4">
+      <span class="sc-label">Prompt Library</span>
+      <span class="sc-path">03_prompt-library.md</span>
+      <span class="sc-view">View</span>
+    </button>
+    <button type="button" class="spec-card" data-slide="5">
+      <span class="sc-label">Decisions</span>
+      <span class="sc-path">04_decisions.md</span>
+      <span class="sc-view">View</span>
+    </button>
+    <button type="button" class="spec-card" data-slide="6">
+      <span class="sc-label">Open Questions</span>
+      <span class="sc-path">05_open-questions.md</span>
+      <span class="sc-view">View</span>
+    </button>
+    <button type="button" class="spec-card" data-slide="7">
+      <span class="sc-label">Components</span>
+      <span class="sc-path">components/README.md</span>
+      <span class="sc-view">View</span>
+    </button>
+    <button type="button" class="spec-card" data-slide="8">
+      <span class="sc-label">Prototype</span>
+      <span class="sc-path">prototype/README.md</span>
+      <span class="sc-view">View</span>
+    </button>
+  </div>
+</div>
+
+<div class="carousel" id="carousel" style="max-width:1920px; margin:0 auto; padding:40px 64px;">
+  <div class="carousel-caption" id="carousel-caption" style="text-align:center; font-size:17px; color:var(--text); margin-bottom:16px; font-weight:300;"></div>
+  <div class="carousel-frame">
+  <div class="carousel-track">
+    <div class="carousel-slide active" data-caption="<strong>Walkthrough.</strong> How someone arrives cold: numbered files in dependency order, not chronology."><img src="images/aiml-workflow/02-walkthrough.png" alt="Repo walkthrough anatomy"></div>
+    <div class="carousel-slide" data-caption="<strong>Problem framing.</strong> Signal to decision, stated before any screen. This is the before."><img src="images/aiml-workflow/03-problem.png" alt="Problem framing anatomy"></div>
+    <div class="carousel-slide" data-caption="<strong>Research.</strong> The evidence the design stands on: customer inputs, insights, and structural analogs."><img src="images/aiml-workflow/09-research.png" alt="Research anatomy"></div>
+    <div class="carousel-slide" data-caption="<strong>Human–AI boundary.</strong> AI does volume. A human holds the accountable call."><img src="images/aiml-workflow/04-architecture.png" alt="Architecture anatomy"></div>
+    <div class="carousel-slide" data-caption="<strong>Prompt library.</strong> Reusable specifications, not one-off chats. Kickoff prompt starts every project."><img src="images/aiml-workflow/05-prompt-library.png" alt="Prompt library anatomy"></div>
+    <div class="carousel-slide" data-caption="<strong>Decision log.</strong> Options, rationale, tradeoff — so the why survives handoff. D-01: review-then-send, never auto-send."><img src="images/aiml-workflow/06-decisions.png" alt="Decision log anatomy"></div>
+    <div class="carousel-slide" data-caption="<strong>Open questions.</strong> What is still unvalidated, and the check that would settle each item."><img src="images/aiml-workflow/10-open-questions.png" alt="Open questions anatomy"></div>
+    <div class="carousel-slide" data-caption="<strong>Components.</strong> Design-system-true building blocks on the real system, not visually close approximations."><img src="images/aiml-workflow/11-components.png" alt="Components anatomy"></div>
+    <div class="carousel-slide" data-caption="<strong>Prototype as handoff.</strong> Running HTML on the real design system. This is the after."><img src="images/aiml-workflow/08-prototype.png" alt="Prototype approach anatomy"></div>
+  </div>
+  <button class="carousel-nav-overlay carousel-nav-prev" id="overlay-prev"><svg viewBox="0 0 24 24" fill="none" stroke="rgba(128,128,128,0.85)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></button>
+  <button class="carousel-nav-overlay carousel-nav-next" id="overlay-next"><svg viewBox="0 0 24 24" fill="none" stroke="rgba(128,128,128,0.85)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+  </div>
+  <div class="carousel-dots" id="carousel-dots" style="display:flex;align-items:center;justify-content:center;gap:8px;margin-top:20px;"></div>
+</div>
+
+<div class="phase-divider p0">
+  <div class="phase-num">02</div>
+  <div class="phase-name">Leverage</div>
+  <div class="phase-sub">Skills, rules, and governance that make the next project start where the last one ended.</div>
+</div>
+
+<section class="fade-in">
+  <span class="section-label">Library</span>
+  <h2>Repeatable, not just <span class="grad">fast once.</span></h2>
+  <p>12 rules. 10 skills. 17 specs. Version-controlled like code. Whatever generalizes gets pushed back so the next project inherits it. Three columns, on purpose: what I wrote from scratch, what I published as governance, and what I adopted and modified. The last column stays named as adopted. Claiming it as mine would be the one thing that costs credibility.</p>
+  <div class="leverage-grid">
+    <div class="lev-col c0">
+      <div class="lev-h">Created<span class="lev-sub">From scratch</span></div>
+      <div class="lev-card"><h5>Claude Vibes Workflow</h5><p>Design-to-code SOP: a discovery gate first, then an 8-step build.</p></div>
+      <div class="lev-card"><h5>UX Readiness Gate</h5><p>Scores a PRD on quoted evidence, then gathers what&rsquo;s missing.</p></div>
+      <div class="lev-card"><h5>Design OS + Doc Standard</h5><p>One standard every spec is held to, annotated in a rail so it&rsquo;s readable.</p></div>
+      <div class="lev-card"><h5>Project Hub + Hub-Hub</h5><p>Every project one click from one page: versions, links, status.</p></div>
+      <div class="lev-card"><h5>Capture Pipeline</h5><p>Figma prototypes to GIF and org screenshots, without hand-editing.</p></div>
+    </div>
+    <div class="lev-col c1">
+      <div class="lev-h">Published<span class="lev-sub">Governance that runs without being asked</span></div>
+      <div class="lev-card"><h5>Workflow Conventions</h5><p>How work starts, commits, and publishes: decided once, not per session.</p></div>
+      <div class="lev-card"><h5>Writing &amp; Typography</h5><p>House voice enforced by rule, not by remembering to ask for it.</p></div>
+      <div class="lev-card"><h5>Approval Gate</h5><p>Nothing sends, posts, or edits a shared doc without an explicit yes.</p></div>
+      <div class="lev-card"><h5>SLDS Standards</h5><p>Token-first and component-first. Real hooks, never approximations.</p></div>
+      <div class="lev-card"><h5>Narrative Canon</h5><p>One reconciled source for personas, so demo data can&rsquo;t drift apart.</p></div>
+    </div>
+    <div class="lev-col c2">
+      <div class="lev-h">Enhanced<span class="lev-sub">Adopted and modified</span></div>
+      <div class="lev-card"><h5>Superpowers</h5><p>Anthropic&rsquo;s set: test-driven development, systematic debugging, parallel agents.</p></div>
+      <div class="lev-card"><h5>DQE Plugins</h5><p>Salesforce&rsquo;s own SLDS validators, wired into the build loop.</p></div>
+      <div class="lev-card"><h5>MCP Toolchain</h5><p>Figma, Salesforce DX, and Playwright driven as one verification loop.</p></div>
+      <div class="lev-card"><h5>Verification Sweeps</h5><p>Playwright clicks every control on a build before a link gets shared.</p></div>
+      <div class="lev-card"><h5>SLDS 2 UI Kit</h5><p>A baseline fork every new prototype starts from, instead of scratch.</p></div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section class="fade-in">
+  <span class="section-label">Key Decisions</span>
+  <h2>What makes the method <span class="grad">hold.</span></h2>
+  <ul class="points">
+    <li><strong>Specification, not a prompt:</strong> If the problem can&rsquo;t be stated as a system, no UI was going to save it. The spec comes first.</li>
+    <li><strong>Markdown is the durable artifact:</strong> Intent that lives only in a chat dies at handoff. Versioned markdown travels to any human or model.</li>
+    <li><strong>Human holds the one gate:</strong> AI is confident enough to draft and to surface, never autonomous enough to remove the person who answers for the call.</li>
+    <li><strong>Loop closes at engineering:</strong> A prototype nobody has pushed back on is still a proposal. Revision against what can actually ship is the last step.</li>
+    <li><strong>Encode the standard:</strong> Skills, prompts, and components carry the bar into rooms I&rsquo;m not in.</li>
+  </ul>
+</section>
+
+<hr class="divider">
+
+<section class="fade-in">
+  <span class="section-label">Results</span>
+  <h2>Impact.</h2>
+  <div class="results-grid">
+    <div class="result-card"><h4 style="color:var(--p0)">Eight-step chain</h4><p>The same process, reused &mdash; from problem through revision</p></div>
+    <div class="result-card"><h4 style="color:var(--p1)">Spec as OS</h4><p>Numbered markdown files that outlive any chat and survive handoff</p></div>
+    <div class="result-card"><h4 style="color:var(--p3)">Skills that bootstrap</h4><p>Every project starts from the same bar, not a blank session</p></div>
+    <div class="result-card"><h4 style="color:var(--p2)">Decision log</h4><p>Options, rationale, and tradeoff travel with the work</p></div>
+    <div class="result-card"><h4 style="color:var(--p1)">Prototype as handoff</h4><p>The artifact customers and engineers react to, not a deck</p></div>
+    <div class="result-card"><h4 style="color:var(--p0)">Worked example in GA</h4><p>Agentic Advisor shipped &mdash; the method produced a production surface</p></div>
+  </div>
+</section>
+
+<div class="case-nav">
+  <a href="setup.html" class="case-nav-btn">&larr; Previous</a>
+  <a href="incubation.html" class="case-nav-btn">Next &rarr;</a>
+</div>
+
+<footer>
+  <a href="index.html">&larr; Home</a>
+</footer>
+
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close">&times;</button>
+  <button class="lightbox-nav lightbox-prev" id="lb-prev"><svg viewBox="0 0 24 24" fill="none" stroke="rgba(128,128,128,0.85)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></button>
+  <button class="lightbox-nav lightbox-next" id="lb-next"><svg viewBox="0 0 24 24" fill="none" stroke="rgba(128,128,128,0.85)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+  <img id="lightbox-img" src="" alt="">
+</div>
+
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.08 });
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+const slides = document.querySelectorAll('.carousel-slide');
+const caption = document.getElementById('carousel-caption');
+const dotsContainer = document.getElementById('carousel-dots');
+let current = 0;
+const total = slides.length;
+for (let i = 0; i < total; i++) {
+  const dot = document.createElement('span');
+  dot.className = 'carousel-dot';
+  dot.style.cssText = 'width:6px;height:6px;border-radius:50%;background:var(--text-faint);opacity:0.4;transition:all 0.3s;cursor:pointer;';
+  dot.addEventListener('click', () => showSlide(i));
+  dotsContainer.appendChild(dot);
+}
+const dots = document.querySelectorAll('.carousel-dot');
+function showSlide(n) {
+  current = (n + total) % total;
+  slides.forEach(s => s.style.display = 'none');
+  slides[current].style.display = 'block';
+  dots.forEach(d => { d.style.opacity = '0.4'; d.style.background = 'var(--text-faint)'; d.style.transform = 'scale(1)'; });
+  dots[current].style.opacity = '1';
+  dots[current].style.background = '#a78bfa';
+  dots[current].style.transform = 'scale(1.4)';
+  caption.replaceChildren();
+  const template = document.createElement('template');
+  template.innerHTML = slides[current].dataset.caption;
+  caption.appendChild(template.content);
+}
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowLeft') showSlide(current - 1);
+  if (e.key === 'ArrowRight') showSlide(current + 1);
+});
+showSlide(0);
+
+document.querySelectorAll('#spec-launchpad [data-slide]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    showSlide(Number(btn.dataset.slide));
+    document.getElementById('carousel').scrollIntoView({ behavior: 'smooth', block: 'center' });
+  });
+});
+
+const overlayPrev = document.getElementById('overlay-prev');
+const overlayNext = document.getElementById('overlay-next');
+if (overlayPrev) overlayPrev.addEventListener('click', () => showSlide(current - 1));
+if (overlayNext) overlayNext.addEventListener('click', () => showSlide(current + 1));
+
+let touchStartX = 0;
+const carouselEl = document.getElementById('carousel');
+carouselEl.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
+carouselEl.addEventListener('touchend', e => {
+  const diff = touchStartX - e.changedTouches[0].clientX;
+  if (Math.abs(diff) > 50) { diff > 0 ? showSlide(current + 1) : showSlide(current - 1); }
+});
+
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = document.getElementById('lightbox-img');
+const allImgs = Array.from(document.querySelectorAll('.carousel-slide img'));
+let lbIndex = 0;
+
+function openLightbox(idx) { lbIndex = idx; lightboxImg.src = allImgs[lbIndex].src; lightbox.classList.add('active'); }
+function lbNav(dir) { lbIndex = (lbIndex + dir + allImgs.length) % allImgs.length; lightboxImg.src = allImgs[lbIndex].src; }
+
+allImgs.forEach((img, i) => img.addEventListener('click', () => openLightbox(i)));
+document.getElementById('lb-prev').addEventListener('click', (e) => { e.stopPropagation(); lbNav(-1); });
+document.getElementById('lb-next').addEventListener('click', (e) => { e.stopPropagation(); lbNav(1); });
+lightbox.addEventListener('click', (e) => { if (e.target === lightbox) lightbox.classList.remove('active'); });
+
+let lbTouchX = 0;
+lightboxImg.parentElement.addEventListener('touchstart', e => { lbTouchX = e.touches[0].clientX; }, { passive: true });
+lightboxImg.parentElement.addEventListener('touchend', e => {
+  const diff = lbTouchX - e.changedTouches[0].clientX;
+  if (Math.abs(diff) > 50) { diff > 0 ? lbNav(1) : lbNav(-1); }
+});
+</script>
+
+</body>
+</html>
